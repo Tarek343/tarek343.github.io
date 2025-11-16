@@ -8,25 +8,22 @@
 <style>
 /* Reset and Base Styles */
 * {margin:0; padding:0; box-sizing:border-box;}
-/* إبقاء خاصية CSS كأفضل ممارسة */
 html {scroll-behavior: smooth;} 
 body {font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; color:#f0f0f0; background:#121212;} 
 header {background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:white; padding:1rem 0; position:fixed; width:100%; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.5);}
 nav {display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 1rem;}
 
-/* تعديل هنا لإضافة مسافة وتوسيط الأيقونة مع الشعار */
 .logo {
     font-size:1.5rem; 
     font-weight:bold;
-    display: flex; /* لجعل الأيقونة والنص متجاورين */
-    align-items: center; /* لتوسيط الأيقونة عموديًا مع النص */
-    gap: 10px; /* مسافة بين الأيقونة والنص */
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
 }
-.logo i { /* تنسيق الأيقونة داخل الشعار */
-    font-size: 1.5rem; /* نفس حجم الخط للشعار */
-    color: #4ECDC4; /* لون مميز للأيقونة */
+.logo i { 
+    font-size: 1.5rem; 
+    color: #4ECDC4; 
 }
-/* نهاية التعديل */
 
 .nav-links {display:flex; list-style:none; gap:2rem;}
 .nav-links a {color:white; text-decoration:none; transition:opacity 0.3s ease, color 0.3s ease;}
@@ -41,6 +38,59 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 @keyframes fadeInUp {from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);}}
 section {padding:5rem 1rem; max-width:1200px; margin:0 auto;}
 .section-title {text-align:center; font-size:2.5rem; margin-bottom:3rem; color:#f0f0f0;} 
+
+/* === تنسيق قسم الجمل المتحركة الجديد === */
+#data-quotes {
+    /* لون خلفية داكن وشيك (تدرج من رمادي غامق إلى أسود ناعم) */
+    background: linear-gradient(90deg, #1f1f1f 0%, #171717 100%); 
+    border-top: 3px solid #667eea; /* شريط علوي بلون مميز للموقع */
+    border-bottom: 3px solid #667eea; /* شريط سفلي بلون مميز */
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+    overflow: hidden; 
+    min-height: 150px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.7); 
+}
+
+.quotes-container {
+    max-width: 900px; 
+    margin: 0 auto;
+}
+
+.quote-text {
+    font-size: 1.8rem; 
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0; 
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
+    transform: translateY(20px); 
+}
+
+.quote-text.active {
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+@media (max-width: 768px) {
+    .quote-text {
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: 480px) {
+    .quote-text {
+        font-size: 1.1rem;
+    }
+    #data-quotes {
+        padding: 2rem 0.5rem;
+    }
+}
+/* === نهاية تنسيق قسم الجمل المتحركة === */
+
+
 .about-content {display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;}
 .about-text h3 {font-size:1.5rem; margin-bottom:1rem; color:#667eea;}
 .about-text p {margin-bottom:1.5rem; text-align:justify;}
@@ -84,7 +134,6 @@ section {padding:5rem 1rem; max-width:1200px; margin:0 auto;}
 .request-btn:hover {
     background: #39b5ab;
 }
-/* نهاية تنسيق الأزرار الجديدة */
 
 .tag {background:#333; padding:0.25rem 0.75rem; border-radius:15px; font-size:0.8rem; color:#f0f0f0;} 
 .contact-content {display:grid; grid-template-columns:1fr 1fr; gap:3rem; max-width:800px; margin:0 auto;}
@@ -95,12 +144,12 @@ section {padding:5rem 1rem; max-width:1200px; margin:0 auto;}
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-    gap: 15px; /* إضافة مسافة بين الأيقونة والنص */
+    gap: 15px; 
 }
-.contact-item i { /* تنسيق الأيقونات */
+.contact-item i { 
     color: #667eea;
     font-size: 1.5rem; 
-    width: 40px; /* تحديد عرض لضبط المحاذاة */
+    width: 40px; 
     text-align: center;
 }
 
@@ -147,6 +196,11 @@ Tarek Nageh
 </div>
 </section>
 
+<section id="data-quotes" class="fade-in">
+    <div class="quotes-container">
+        <p id="data-quote-display" class="quote-text"></p>
+    </div>
+</section>
 <section id="teaser" style="background:#1a1a1a; padding:3rem 1rem; text-align:center;" class="fade-in">
     <h3 style="color:#4ECDC4; font-size:1.8rem; margin-bottom:10px;">Turning Data Into Decisions.</h3>
     <p style="color:#b0b0b0; max-width:700px; margin:0 auto; font-size:1.1rem;">"My core mission is to transform complex datasets into clear, actionable, and visually engaging insights that drive business growth."</p>
@@ -266,13 +320,51 @@ Tarek Nageh
 const mobileMenu = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 mobileMenu.addEventListener('click', ()=>{navLinks.classList.toggle('active');});
-// Smooth Scrolling - إعادة كود JS لضمان السلاسة القوية في جميع المتصفحات
+// Smooth Scrolling 
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click', function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'});}navLinks.classList.remove('active');});});
 // Fade-in Animation
 const observerOptions={threshold:0.1,rootMargin:'0px 0px -50px 0px'};
 const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},observerOptions);
 document.querySelectorAll('.fade-in').forEach(el=>{observer.observe(el);});
-// تم حذف الكود الخاص بـ Form Submission Simulation
+
+// ==============================================
+// الدوال الخاصة بالجمل المتحركة
+const dataQuotes = [
+    "Turning complex datasets into clear, actionable, business intelligence.",
+    "Data is the foundation; Analysis is the architect.",
+    "The most valuable asset you have is data, not technology.",
+    "My focus: Simplifying the narrative behind the numbers.",
+    "Predictive analysis is the key to unlocking future growth.",
+    "Data visualization transforms insight into immediate action.",
+    "I specialize in Power BI / Fabric dashboards that drive decisions.",
+    "Every metric tells a story; I ensure it's the right one.",
+    "From raw SQL query to boardroom presentation—that’s the process.",
+    "Beyond reporting: Identifying and solving the core business problem."
+];
+let currentQuoteIndex = 0;
+const quoteTextElement = document.getElementById('data-quote-display');
+
+function displayNextQuote() {
+    // إزالة الفئة 'active' لإخفاء النص الحالي وبدء الانتقال
+    quoteTextElement.classList.remove('active');
+
+    // بعد فترة وجيزة (لتتمكن حركة الاختفاء من الإكتمال)، تحديث النص وإظهاره
+    setTimeout(() => {
+        currentQuoteIndex = (currentQuoteIndex + 1) % dataQuotes.length;
+        quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
+        quoteTextElement.classList.add('active');
+    }, 1000); // تأخير 1000 مللي ثانية (1 ثانية) للسماح بالانتقال
+}
+
+// عرض أول جملة فوراً عند تحميل الصفحة
+if (quoteTextElement) {
+    quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
+    quoteTextElement.classList.add('active');
+    
+    // تشغيل الدالة لتغيير الجملة كل 3 ثوانٍ
+    setInterval(displayNextQuote, 3000); // 3000 مللي ثانية = 3 ثوانٍ
+}
+// ==============================================
 </script>
 </body>
 </html>
