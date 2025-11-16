@@ -300,20 +300,28 @@ Tarek Nageh
 </div>
 </div>
 
-<form class="contact-form fade-in" 
+<form id="contact-form" class="contact-form fade-in" 
       action="https://formspree.io/f/mblqopwn" 
       method="POST">
     
     <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required></div>
-    
     <div class="form-group"><label for="email">Your Email</label><input type="email" id="email" name="_replyto" required></div>
-    
     <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required></div>
-    
     <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
     
     <button type="submit" class="submit-btn">Send Message</button>
 </form>
+
+<p id="form-status" style="
+    text-align: center; 
+    margin-top: 20px; 
+    padding: 15px; 
+    border-radius: 8px; 
+    background-color: #4ECDC4; 
+    color: #121212; 
+    font-weight: bold; 
+    display: none; 
+"></p>
 </div>
 </section>
 
@@ -374,6 +382,60 @@ if (quoteTextElement) {
     // تم تغيير زمن العرض إلى 5000 مللي ثانية (5 ثوانٍ)
     setInterval(displayNextQuote, 5000); 
 }
+// ==============================================
+
+// ==============================================
+// AJAX Form Submission for Success Message (Formspree)
+const form = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault(); // منع الإرسال الافتراضي
+
+    const data = new FormData(form);
+    
+    try {
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // عرض رسالة النجاح
+            formStatus.style.display = 'block';
+            formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+            form.reset(); // إفراغ حقول النموذج
+            
+            // إخفاء الرسالة بعد 4 ثواني
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 4000); 
+        } else {
+            // في حالة فشل الإرسال (خطأ Formspree)
+            formStatus.style.display = 'block';
+            formStatus.style.backgroundColor = 'red';
+            formStatus.textContent = 'Oops! There was an error sending your message.';
+            
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+                formStatus.style.backgroundColor = '#4ECDC4'; // إعادة اللون الأصلي
+            }, 4000);
+        }
+    } catch (error) {
+        // في حالة فشل اتصال الشبكة
+        formStatus.style.display = 'block';
+        formStatus.style.backgroundColor = 'red';
+        formStatus.textContent = 'Network error. Please try again later.';
+        
+        setTimeout(() => {
+            formStatus.style.display = 'none';
+            formStatus.style.backgroundColor = '#4ECDC4';
+        }, 4000);
+    }
+});
 // ==============================================
 </script>
 </body>
