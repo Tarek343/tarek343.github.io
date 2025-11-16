@@ -54,6 +54,8 @@ section {padding:5rem 1rem; max-width:1200px; margin:0 auto;}
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 30px rgba(0,0,0,0.7); 
+    /* === المسافة الجديدة 30px === */
+    margin-bottom: 30px; 
 }
 
 .quotes-container {
@@ -328,18 +330,18 @@ const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(e
 document.querySelectorAll('.fade-in').forEach(el=>{observer.observe(el);});
 
 // ==============================================
-// الدوال الخاصة بالجمل المتحركة
+// الدوال الخاصة بالجمل المتحركة (اقتباسات مشهورة)
 const dataQuotes = [
-    "Turning complex datasets into clear, actionable, business intelligence.",
-    "Data is the foundation; Analysis is the architect.",
-    "The most valuable asset you have is data, not technology.",
-    "My focus: Simplifying the narrative behind the numbers.",
-    "Predictive analysis is the key to unlocking future growth.",
-    "Data visualization transforms insight into immediate action.",
-    "I specialize in Power BI / Fabric dashboards that drive decisions.",
-    "Every metric tells a story; I ensure it's the right one.",
-    "From raw SQL query to boardroom presentation—that’s the process.",
-    "Beyond reporting: Identifying and solving the core business problem."
+    "Data is the new oil.",
+    "Without big data analytics, companies are blind and deaf, wandering out onto the web like deer on a freeway.",
+    "The goal is to turn data into information, and information into insight.",
+    "We are drowning in information and starving for wisdom.",
+    "The world is now driven by data, not by oil.",
+    "Where there is data, there is value.",
+    "Hiding within those mounds of data is knowledge that could change the world.",
+    "Torture the data, and it will confess to anything.",
+    "You can have all the data in the world, but if you don't use it, it means nothing.",
+    "The data stream is huge, and its potential is even bigger."
 ];
 let currentQuoteIndex = 0;
 const quoteTextElement = document.getElementById('data-quote-display');
