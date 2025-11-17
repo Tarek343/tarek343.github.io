@@ -35,22 +35,106 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 .nav-links a {color:white; text-decoration:none; transition:opacity 0.3s ease, color 0.3s ease;}
 .nav-links a:hover {opacity:0.8; color: #4ECDC4;}
 
-/* NEW IFRAME HOME SECTION STYLES */
-#home-iframe-container {
-    padding-top: 70px; /* لتعويض شريط التنقل الثابت */
-    width: 100%;
-}
-#home-iframe {
-    width: 100%;
-    /* ارتفاع الـ iframe سيتم ضبطه بواسطة JavaScript */
-    border: none;
-    display: block;
-    overflow-y: hidden; /* لمنع ظهور شريط تمرير داخل الـ iframe */
-}
-/* END NEW IFRAME HOME SECTION STYLES */
 
 /* =================================================== */
-/* DRILL-DOWN MENU STYLES (القائمة الجانبية الجديدة) */
+/* HOME SECTION STYLES (منقولة من home.html ومُعدلة) */
+.hero {
+    background:linear-gradient(rgba(18,18,18,0.8),rgba(18,18,18,0.9)), #121212; 
+    background-size:cover; 
+    background-position:center; 
+    min-height: 70vh; /* ارتفاع أقل */
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    text-align:center; 
+    color:white; 
+    padding: 70px 1rem 50px 1rem; /* لتعويض شريط التنقل الثابت */
+}
+.hero-content h1 {font-size:3.5rem; margin-bottom:1rem; animation:fadeInUp 1s ease;}
+.hero-content p {font-size:1.3rem; margin-bottom:2rem; animation:fadeInUp 1s ease 0.2s both;}
+
+/* SOCIAL ICONS STYLES (منقولة من home.html) */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 2.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-3px);
+}
+
+.social-icons a[aria-label="LinkedIn"]:hover {
+    color: #0A66C2; 
+}
+
+.social-icons a[aria-label="WhatsApp"]:hover {
+    color: #25D366; 
+}
+
+.social-icons a[aria-label="GitHub"]:hover {
+    color: #6e5494; 
+}
+
+/* DATA QUOTES STYLES (منقولة من home.html) */
+#data-quotes {
+    background: linear-gradient(90deg, #1f1f1f 0%, #171717 100%); 
+    border-top: 3px solid #667eea; 
+    border-bottom: 3px solid #667eea; 
+    color: white;
+    padding: 2.5rem 1rem; 
+    text-align: center;
+    overflow: hidden; 
+    min-height: 100px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.7); 
+}
+
+.quotes-container {max-width: 900px; margin: 0 auto;}
+
+.quote-text {
+    font-size: 1.8rem; 
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0; 
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
+    transform: translateY(20px); 
+}
+
+.quote-text.active {opacity: 1; transform: translateY(0);}
+
+/* TEASER STYLES (منقولة من home.html) */
+#teaser {
+    background:#1a1a1a; 
+    padding:3rem 1rem; 
+    text-align:center;
+}
+#teaser h3 {
+    color:#4ECDC4; 
+    font-size:1.8rem; 
+    margin-bottom:10px;
+}
+#teaser p {
+    color:#b0b0b0; 
+    max-width:700px; 
+    margin:0 auto; 
+    font-size:1.1rem;
+}
+/* =================================================== */
+
+
+/* =================================================== */
+/* DRILL-DOWN MENU STYLES */
 .menu-toggle {
     display: none; 
     font-size: 1.5rem;
@@ -102,6 +186,7 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
     nav {
         justify-content: space-between; 
     }
+    .hero {min-height: 60vh;}
 }
 /* =================================================== */
 
@@ -226,7 +311,7 @@ footer {background:#000; color:white; text-align:center; padding:2rem 1rem;}
 Tarek Nageh
 </div>
 <ul class="nav-links">
-<li><a href="#home-iframe-container">Home</a></li>
+<li><a href="#hero-content">Home</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#portfolio">Portfolio</a></li>
 <li><a href="#contact">Contact</a></li>
@@ -238,13 +323,47 @@ Tarek Nageh
 </header>
 
 <nav id="drill-down-menu" class="side-menu">
-    <a href="#home-iframe-container">Home</a>
+    <a href="#hero-content">Home</a>
     <a href="#about">About</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#contact">Contact</a>
 </nav>
-<section id="home-iframe-container">
-    <iframe src="home.html" id="home-iframe" title="Home Page Content"></iframe>
+<section id="hero-content" class="hero">
+    <div class="hero-content">
+        <h1>Creative Data Analyst</h1>
+        <p>Transforming data and dashboards into meaningful visual experiences</p>
+        
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
+               target="_blank" 
+               aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://wa.me/201060440658" 
+               target="_blank" 
+               aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            
+            <a href="https://github.com/Tarek343" 
+               target="_blank" 
+               aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        </div>
+</section>
+
+<section id="data-quotes">
+    <div class="quotes-container">
+        <p id="data-quote-display" class="quote-text"></p>
+    </div>
+</section>
+
+<section id="teaser">
+    <h3 style="color:#4ECDC4; font-size:1.8rem; margin-bottom:10px;">Turning Data Into Decisions.</h3>
+    <p style="color:#b0b0b0; max-width:700px; margin:0 auto; font-size:1.1rem;">"My core mission is to transform complex datasets into clear, actionable, and visually engaging insights that drive business growth."</p>
 </section>
 <section id="about" class="fade-in">
 <h2 class="section-title">About Me</h2>
@@ -407,7 +526,7 @@ Tarek Nageh
 
 <script>
 // Smooth Scrolling 
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click', function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'});}
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click', function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start', block: (this.getAttribute('href') === '#hero-content' ? 'start' : 'center')});}
 });});
 
 // Fade-in Animation
@@ -505,32 +624,36 @@ form.addEventListener('submit', async function(e) {
 // ==============================================
 
 // ==============================================
-// DYNAMIC IFRAME HEIGHT ADJUSTMENT (مهم جداً لضبط ارتفاع Home)
-function adjustIframeHeight() {
-    const iframe = document.getElementById('home-iframe');
+// Quotes Display Logic (منقولة من home.html)
+const dataQuotes = [
+    "Data is the new oil.",
+    "Without big data analytics, companies are blind and deaf, wandering out onto the web like deer on a freeway.",
+    "The goal is to turn data into information, and information into insight.",
+    "We are drowning in information and starving for wisdom.",
+    "The world is now driven by data, not by oil.",
+    "Where there is data, there is value.",
+    "Hiding within those mounds of data is knowledge that could change the world.",
+    "Torture the data, and it will confess to anything.",
+    "You can have all the data in the world, but if you don't use it, it means nothing.",
+    "The data stream is huge, and its potential is even bigger."
+];
+let currentQuoteIndex = 0;
+const quoteTextElement = document.getElementById('data-quote-display');
 
-    iframe.onload = function() {
-        try {
-            // الحصول على ارتفاع محتوى ملف home.html (داخل الـ iframe)
-            const contentHeight = iframe.contentWindow.document.body.scrollHeight;
-            
-            // تعيين ارتفاع الـ iframe ليكون مساوياً لارتفاع المحتوى الداخلي + هامش بسيط
-            iframe.style.height = (contentHeight + 20) + 'px'; 
-
-        } catch (e) {
-            // يتم الوصول إلى هنا إذا كان ملف home.html ليس في نفس النطاق (GitHub Pages)
-            console.warn('Could not access iframe content for height adjustment. Ensure home.html is uploaded correctly.', e);
-        }
-    };
-    
-    // محاولة تشغيل onload إذا كان المحتوى قد تم تحميله بالفعل
-    if (iframe.contentWindow.document.readyState === 'complete') {
-        iframe.onload();
-    }
+function displayNextQuote() {
+    quoteTextElement.classList.remove('active');
+    setTimeout(() => {
+        currentQuoteIndex = (currentQuoteIndex + 1) % dataQuotes.length;
+        quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
+        quoteTextElement.classList.add('active');
+    }, 1000); 
 }
 
-// تشغيل الدالة عند تحميل الصفحة
-window.addEventListener('load', adjustIframeHeight);
+if (quoteTextElement) {
+    quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
+    quoteTextElement.classList.add('active');
+    setInterval(displayNextQuote, 5000); 
+}
 // ==============================================
 </script>
 </body>
