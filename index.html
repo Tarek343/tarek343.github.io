@@ -34,19 +34,19 @@ nav {display:flex; justify-content:space-between; align-items:center; max-width:
 .nav-links {display:flex; list-style:none; gap:2rem;}
 .nav-links a {color:white; text-decoration:none; transition:opacity 0.3s ease, color 0.3s ease;}
 .nav-links a:hover {opacity:0.8; color: #4ECDC4;}
-/* تم إزالة .mobile-menu القديم */
 
 /* NEW IFRAME HOME SECTION STYLES */
 #home-iframe-container {
     padding-top: 70px; /* لتعويض شريط التنقل الثابت */
     width: 100%;
-    min-height: 100vh;
+    /* تم إزالة min-height: 100vh; */
 }
 #home-iframe {
     width: 100%;
-    height: 100vh; 
+    /* تم إزالة height: 100vh; - سيتم ضبطه بواسطة JavaScript */
     border: none;
     display: block;
+    overflow-y: hidden; /* لمنع ظهور شريط تمرير داخل الـ iframe */
 }
 /* END NEW IFRAME HOME SECTION STYLES */
 
@@ -416,7 +416,6 @@ Tarek Nageh
 // Mobile Menu Toggle (OLD LOGIC REMOVED)
 // Smooth Scrolling 
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click', function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'});}
-    // navLinks.classList.remove('active'); // Old logic
 });});
 
 // Fade-in Animation
@@ -538,6 +537,45 @@ form.addEventListener('submit', async function(e) {
     }
 });
 // ==============================================
+
+// ==============================================
+// *** NEW: Dynamic Iframe Height Adjustment ***
+function adjustIframeHeight() {
+    const iframe = document.getElementById('home-iframe');
+
+    // يجب أن يتم تحميل محتوى iframe بنجاح ليتمكن الكود من الوصول إلى خصائص محتواه
+    iframe.onload = function() {
+        try {
+            // الحصول على ارتفاع محتوى ملف home.html (داخل الـ iframe)
+            const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+            
+            // تعيين ارتفاع الـ iframe ليكون مساوياً لارتفاع المحتوى الداخلي
+            iframe.style.height = (contentHeight) + 'px';
+            
+            // بما أن الـ home.html يحتوي على قسم بطول 100vh، قد يكون الارتفاع كبيراً، لذا نحتاج لتعديل طفيف
+            // للتأكد من أن الأقسام الأخرى تظهر أسفله مباشرة
+            
+            // يتم ضبط الارتفاع لمرة واحدة بعد التحميل
+            console.log('Iframe height adjusted to: ' + contentHeight + 'px');
+
+        } catch (e) {
+            // يتم الوصول إلى هنا إذا كان ملف home.html ليس في نفس النطاق (Domain)
+            console.warn('Could not access iframe content for height adjustment. Ensure home.html is in the same directory/origin.', e);
+        }
+    };
+}
+
+// تشغيل الدالة عند تحميل الصفحة
+window.addEventListener('load', adjustIframeHeight);
+// تشغيل الدالة يدوياً في حالة عدم تحميل حدث window.load بشكل صحيح
+adjustIframeHeight();
+// ==============================================
+
+/*
+    ملاحظة: تحتاج إلى حفظ الملفين في نفس المجلد:
+    1. index.html (الكود أعلاه)
+    2. home.html (ملف الصفحة الرئيسية المنفصل الذي أرسلته لك سابقاً)
+*/
 </script>
 </body>
 </html>
