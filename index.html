@@ -1,159 +1,543 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Content</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tarek Portfolio | Professional Power BI Data Analyst & Dashboard Designer</title>
+<meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design, and translating complex data into actionable business decisions.">
+<meta name="keywords" content="Tarek Portfolio, Data Analyst, Power BI, Fabric, SQL, Dashboard Design, Data Visualization, Python, Creative Data Analyst">
+<meta name="author" content="Tarek Nageh">
+<meta name="robots" content="index, follow"> 
+<link rel="icon" href="favicon.jpg" type="image/jpeg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+/* Reset and Base Styles */
+* {margin:0; padding:0; box-sizing:border-box;}
+html {scroll-behavior: smooth;} 
+body {font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; color:#f0f0f0; background:#121212;} 
+header {background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:white; padding:1rem 0; position:fixed; width:100%; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.5);}
+nav {display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 1rem;}
+
+.logo {
+    font-size:1.5rem; 
+    font-weight:bold;
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.logo i { 
+    font-size: 1.5rem; 
+    color: #4ECDC4; 
+}
+
+.nav-links {display:flex; list-style:none; gap:2rem;}
+.nav-links a {color:white; text-decoration:none; transition:opacity 0.3s ease, color 0.3s ease;}
+.nav-links a:hover {opacity:0.8; color: #4ECDC4;}
+/* تم إزالة .mobile-menu القديم */
+
+/* NEW IFRAME HOME SECTION STYLES */
+#home-iframe-container {
+    padding-top: 70px; /* لتعويض شريط التنقل الثابت */
+    width: 100%;
+    min-height: 100vh;
+}
+#home-iframe {
+    width: 100%;
+    height: 100vh; 
+    border: none;
+    display: block;
+}
+/* END NEW IFRAME HOME SECTION STYLES */
+
+/* =================================================== */
+/* DRILL-DOWN MENU STYLES (القائمة الجانبية الجديدة) */
+/* زر فتح القائمة (الشرط الثلاث) */
+.menu-toggle {
+    display: none; /* إخفاء في وضع سطح المكتب */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    z-index: 1001; /* ليكون فوق الـ header */
+}
+
+/* القائمة الجانبية نفسها */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px; 
+    background: #1a1a1a; 
+    z-index: 999;
+    padding-top: 80px; /* مساحة لرأس الصفحة */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
     
-    <style>
-        /* Reset for the iframe content */
-        * {margin:0; padding:0; box-sizing:border-box;}
-        body {
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            line-height:1.6; 
-            color:#f0f0f0; 
-            background:#121212; /* نفس خلفية index.html */
-            overflow-x: hidden; /* منع التمرير الأفقي غير المرغوب فيه */
-        }
-        
-        /* HER SECTION STYLES */
-        .hero {
-            background:linear-gradient(rgba(18,18,18,0.8),rgba(18,18,18,0.9)), #121212; 
-            background-size:cover; 
-            background-position:center; 
-            height:100vh; 
-            display:flex; 
-            align-items:center; 
-            justify-content:center; 
-            text-align:center; 
-            color:white; 
-            margin-top:0; /* يجب أن يبدأ من الأعلى داخل الإطار */
-            padding-top: 60px; /* لتعويض شريط التنقل الرئيسي */
-        }
-        .hero-content h1 {font-size:3.5rem; margin-bottom:1rem; animation:fadeInUp 1s ease;}
-        .hero-content p {font-size:1.3rem; margin-bottom:2rem; animation:fadeInUp 1s ease 0.2s both;}
-        .cta-button {
-            display:inline-block; 
-            background:#4ECDC4; 
-            color:#121212; 
-            padding:1rem 2rem; 
-            text-decoration:none; 
-            border-radius:50px; 
-            font-weight:bold; 
-            transition:transform 0.3s ease, box-shadow 0.3s ease; 
-            animation:fadeInUp 1s ease 0.4s both;
-        }
-        .cta-button:hover {transform:translateY(-2px); box-shadow:0 10px 25px rgba(78, 205, 196, 0.4);}
-        @keyframes fadeInUp {from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);}}
+    /* الحالة الأولية: مخفية خارج الشاشة */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
 
-        /* DATA QUOTES STYLES */
-        #data-quotes {
-            background: linear-gradient(90deg, #1f1f1f 0%, #171717 100%); 
-            border-top: 3px solid #667eea; 
-            border-bottom: 3px solid #667eea; 
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            overflow: hidden; 
-            min-height: 150px; 
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(0,0,0,0.7); 
-            margin-top: 30px;
-            margin-bottom: 30px; 
-        }
+.side-menu.open {
+    /* حالة الإظهار */
+    transform: translateX(0);
+}
 
-        .quotes-container {max-width: 900px; margin: 0 auto;}
+.side-menu a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #2a2a2a;
+    transition: background 0.3s ease;
+}
 
-        .quote-text {
-            font-size: 1.8rem; 
-            font-weight: 500;
-            line-height: 1.4;
-            opacity: 0; 
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
-            transform: translateY(20px); 
-        }
+.side-menu a:hover {
+    background: #667eea;
+}
 
-        .quote-text.active {opacity: 1; transform: translateY(0);}
-        
-        /* TEASER STYLES */
-        #teaser {
-            background:#1a1a1a; 
-            padding:3rem 1rem; 
-            text-align:center;
-        }
-        #teaser h3 {
-            color:#4ECDC4; 
-            font-size:1.8rem; 
-            margin-bottom:10px;
-        }
-        #teaser p {
-            color:#b0b0b0; 
-            max-width:700px; 
-            margin:0 auto; 
-            font-size:1.1rem;
-        }
+/* Show hamburger icon and hide desktop links on smaller screens */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* إخفاء الروابط التقليدية */
+    }
+    .menu-toggle {
+        display: block; /* إظهار أيقونة القائمة */
+    }
+    nav {
+        justify-content: space-between; 
+    }
+}
+/* =================================================== */
 
-        /* MEDIA QUERIES for responsiveness */
-        @media (max-width: 768px) {
-            .hero-content h1 {font-size: 2.5rem;}
-            .hero-content p {font-size: 1.1rem;}
-            .quote-text {font-size: 1.4rem;}
-        }
-    </style>
+
+@keyframes fadeInUp {from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);}}
+section {padding:5rem 1rem; max-width:1200px; margin:0 auto;}
+.section-title {text-align:center; font-size:2.5rem; margin-bottom:3rem; color:#f0f0f0;} 
+
+.about-content {display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;}
+.about-text h3 {font-size:1.5rem; margin-bottom:1rem; color:#667eea;}
+.about-text p {margin-bottom:1.5rem; text-align:justify;}
+.skills {display:flex; flex-wrap:wrap; gap:0.5rem;}
+.skill-tag {background:#667eea; color:white; padding:0.5rem 1rem; border-radius:20px; font-size:0.9rem; transition:background 0.3s ease;}
+.skill-tag:hover {background:#764ba2;}
+.portfolio-grid {display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:2rem; margin-top:3rem;}
+.portfolio-item {background:#1a1a1a; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.3); transition:transform 0.3s ease, box-shadow 0.3s ease;}
+.portfolio-item:hover {transform:translateY(-5px); box-shadow:0 15px 40px rgba(0,0,0,0.4);}
+.portfolio-image {height:200px; background-size:cover; background-position:center; background-repeat:no-repeat; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem; border-bottom:4px solid #667eea;}
+.portfolio-content {padding:1.5rem;}
+.portfolio-content h3 {margin-bottom:0.5rem; color:#f0f0f0;} 
+.portfolio-content p {color:#b0b0b0; margin-bottom:1rem;} 
+.portfolio-tags {display:flex; gap:0.5rem; flex-wrap:wrap;}
+
+/* تنسيق أزرار الداشبورد الجديدة */
+.portfolio-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+.portfolio-buttons a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.view-btn {
+    background: #667eea; 
+    color: white;
+}
+.view-btn:hover {
+    background: #764ba2;
+}
+.request-btn {
+    background: #4ECDC4; 
+    color: #121212;
+}
+.request-btn:hover {
+    background: #39b5ab;
+}
+
+/* === Read More/Less Button Styling === */
+.toggle-btn {
+    background: #667eea; 
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 5px; 
+    margin-bottom: 10px; 
+    transition: background 0.3s ease;
+    display: block; 
+}
+.toggle-btn:hover {
+    background: #764ba2;
+}
+/* ==================================== */
+
+.tag {background:#333; padding:0.25rem 0.75rem; border-radius:15px; font-size:0.8rem; color:#f0f0f0;} 
+.contact-content {display:grid; grid-template-columns:1fr 1fr; gap:3rem; max-width:800px; margin:0 auto;}
+.contact-info h3 {color:#667eea; margin-bottom:1.5rem;}
+
+/* تعديل أنماط Contact Item لتتوافق مع أيقونات Font Awesome */
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 15px; 
+}
+.contact-item i { 
+    color: #667eea;
+    font-size: 1.5rem; 
+    width: 40px; 
+    text-align: center;
+}
+
+.contact-form {background:#1a1a1a; padding:2rem; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.3);}
+.form-group {margin-bottom:1.5rem;}
+.form-group label {display:block; margin-bottom:0.5rem; color:#f0f0f0; font-weight:500;} 
+.form-group input, .form-group textarea {width:100%; padding:0.75rem; border:2px solid #333; background:#222; color:#f0f0f0; border-radius:8px; font-size:1rem; transition:border-color 0.3s ease;}
+.form-group input:focus, .form-group textarea:focus {outline:none; border-color:#667eea;}
+.form-group textarea {height:120px; resize:vertical;}
+.submit-btn {background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:white; padding:1rem 2rem; border:none; border-radius:8px; font-size:1rem; cursor:pointer; width:100%; transition:transform 0.3s ease;}
+.submit-btn:hover {transform:translateY(-2px);}
+footer {background:#000; color:white; text-align:center; padding:2rem 1rem;}
+.social-links {display:flex; justify-content:center; gap:1rem; margin:1rem 0;}
+.social-links a {color:white; font-size:1.5rem; transition:color 0.3s ease;}
+.social-links a:hover {
+    color:#4ECDC4;
+}
+
+/* تنسيق أيقونة واتساب عند المرور عليها */
+.social-links a[aria-label="WhatsApp"] i.fab.fa-whatsapp:hover {
+    color: #25D366; 
+}
+
+.embedded-dashboard { width: 100%; height: 350px; border: none; }
+.fade-in{opacity:0; transform:translateY(30px); transition:opacity 0.6s ease, transform 0.6s ease;}
+.fade-in.visible{opacity:1; transform:translateY(0);}
+</style>
 </head>
 <body>
-    <section id="hero-content-only" class="hero">
-        <div class="hero-content">
-            <h1>Creative Data Analyst</h1>
-            <p>Transforming data and dashboards into meaningful visual experiences</p>
-            <a href="#portfolio" class="cta-button">View My Work</a> 
-        </div>
-    </section>
 
-    <section id="data-quotes">
-        <div class="quotes-container">
-            <p id="data-quote-display" class="quote-text"></p>
-        </div>
-    </section>
+<header>
+<nav>
+<div class="logo">
+    <i class="fas fa-chart-bar"></i> 
+Tarek Nageh
+</div>
+<ul class="nav-links">
+<li><a href="#home-iframe-container">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<div class="menu-toggle">
+    <i class="fas fa-bars"></i>
+</div>
+</nav>
+</header>
 
-    <section id="teaser">
-        <h3 style="color:#4ECDC4; font-size:1.8rem; margin-bottom:10px;">Turning Data Into Decisions.</h3>
-        <p style="color:#b0b0b0; max-width:700px; margin:0 auto; font-size:1.1rem;">"My core mission is to transform complex datasets into clear, actionable, and visually engaging insights that drive business growth."</p>
-    </section>
+<nav id="drill-down-menu" class="side-menu">
+    <a href="#home-iframe-container">Home</a>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+</nav>
+<section id="home-iframe-container">
+    <iframe src="home.html" id="home-iframe" title="Home Page Content"></iframe>
+</section>
+<section id="about" class="fade-in">
+<h2 class="section-title">About Me</h2>
+<div class="about-content">
+<div class="about-text">
+<h3>Passionate Professional</h3>
+<p>I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization.</p>
+<div class="skills">
+<span class="skill-tag">Data Analysis</span>
+<span class="skill-tag">Power BI / Fabric</span>
+<span class="skill-tag">Excel</span>
+<span class="skill-tag">Dashboard Design</span>
+<span class="skill-tag">SQL</span>
+<span class="skill-tag">SQL Server</span>
+<span class="skill-tag">Python</span>
+<span class="skill-tag">Visualization</span>
+</div>
+</div>
+<div style="text-align:center;">
+    <img src="https://i.postimg.cc/XYwSZ03S/cropped-circle-image-(2)-LE-upscale-balanced-x4.jpg" 
+         alt="Tarek Nageh Profile Picture" 
+         style="width:250px; height:250px; border-radius:50%; object-fit:cover; border:5px solid #667eea; display:block; margin:0 auto;">
+</div>
+</div>
+</section>
 
-    <script>
-        const dataQuotes = [
-            "Data is the new oil.",
-            "Without big data analytics, companies are blind and deaf, wandering out onto the web like deer on a freeway.",
-            "The goal is to turn data into information, and information into insight.",
-            "We are drowning in information and starving for wisdom.",
-            "The world is now driven by data, not by oil.",
-            "Where there is data, there is value.",
-            "Hiding within those mounds of data is knowledge that could change the world.",
-            "Torture the data, and it will confess to anything.",
-            "You can have all the data in the world, but if you don't use it, it means nothing.",
-            "The data stream is huge, and its potential is even bigger."
-        ];
-        let currentQuoteIndex = 0;
-        const quoteTextElement = document.getElementById('data-quote-display');
+<section id="portfolio" style="background:#121212;">
+<h2 class="section-title">Portfolio</h2>
+<div class="portfolio-grid">
 
-        function displayNextQuote() {
-            quoteTextElement.classList.remove('active');
+<div class="portfolio-item fade-in">
+<div class="portfolio-image" style="background-image: url('https://i.postimg.cc/1XGf3tRq/unnamed.png');"></div>
+<div class="portfolio-content">
+<h3>Dashboard 1 - Sales Overview</h3>
+<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
+    Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track 9.9M Total Profit from 20M Total Sales, achieving 49.9% profitability. 
+    <span class="read-more-content" id="content1">
+        The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized DAX functions to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth. This comprehensive Sales Analysis Dashboard turns raw transaction data into clear, actionable insights.
+    </span>
+</p>
+<button class="toggle-btn" data-target="content1" id="btn1">Read More</button>
+
+<div class="portfolio-buttons">
+    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODUyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-btn">View Dashboard</a>
+    <a href="#contact" class="request-btn">Request Access</a>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item fade-in">
+<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png');"></div>
+<div class="portfolio-content">
+<h3>Dashboard 2 - Employees Overview</h3>
+<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
+    Case Study: HR Workforce Analysis and Headcount Planning. This Power BI Dashboard provides a detailed overview of the organization's Human Resources data, covering 689 employees and a total salary of 1.4M. 
+    <span class="read-more-content" id="content2">
+        The data analysis focuses on departmental distribution (Manufacturing is largest), gender ratios (mostly male, 65%), and geographical distribution (Main center has the largest headcount of 251). I employed advanced filtering and data visualization to highlight the peak headcount period in 2019, enabling HR leaders to better understand employee trends, plan recruitment strategies, and manage compensation and workforce efficiency effectively.
+    </span>
+</p>
+<button class="toggle-btn" data-target="content2" id="btn2">Read More</button>
+<div class="portfolio-buttons">
+    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-btn">View Dashboard</a>
+    <a href="#contact" class="request-btn">Request Access</a>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item fade-in">
+<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/cCSL2SRz/unnamed-(2).png');"></div>
+<div class="portfolio-content">
+<h3>Dashboard 3 - Sales & COGS</h3>
+<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
+    Case Study: Retail Profitability and Cost of Goods Sold (COGS) Analysis. This Power BI Dashboard offers a focused view on retail financial health, tracking 15.38K Total Sales and an average COGS of 307.59. 
+    <span class="read-more-content" id="content3">
+        The core of this financial data analysis is understanding profitability drivers, showing stable sales across key cities (Yangon, Naypyitaw, Mandalay) and analyzing payment distribution (Cash is the main payment at 34.4%). Through strategic data visualization, the dashboard allows stakeholders to analyze gender-based purchasing patterns (F52%/M48%) and identify opportunities to reduce COGS and maximize profit margins.
+    </span>
+</p>
+<button class="toggle-btn" data-target="content3" id="btn3">Read More</button>
+<div class="portfolio-buttons">
+    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-btn">View Dashboard</a>
+    <a href="#contact" class="request-btn">Request Access</a>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Get In Touch</h2>
+<div class="contact-content">
+<div class="contact-info fade-in">
+<h3>Let's Create Something Amazing</h3>
+<p>Ready to bring your vision to life? Contact me to discuss your project.</p>
+
+<div class="contact-item">
+    <i class="fas fa-envelope"></i>
+    <div><strong>Email:</strong> <a href="mailto:Tareknageh343@gmail.com" style="color:inherit; text-decoration:none;">Tareknageh343@gmail.com</a></div>
+</div>
+<div class="contact-item">
+    <i class="fas fa-phone"></i>
+    <div><strong>Phone:</strong> 01060440658</div>
+</div>
+<div class="contact-item">
+    <i class="fas fa-map-marker-alt"></i>
+    <div><strong>Location:</strong> Cairo, Egypt</div>
+</div>
+</div>
+
+<form id="contact-form" class="contact-form fade-in" 
+      action="https://formspree.io/f/mblqopwn" 
+      method="POST">
+    
+    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required></div>
+    <div class="form-group"><label for="email">Your Email</label><input type="email" id="email" name="_replyto" required></div>
+    <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required></div>
+    <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+    
+    <button type="submit" class="submit-btn">Send Message</button>
+</form>
+
+<p id="form-status" style="
+    text-align: center; 
+    margin-top: 20px; 
+    padding: 15px; 
+    border-radius: 8px; 
+    background-color: #4ECDC4; 
+    color: #121212; 
+    font-weight: bold; 
+    display: none; 
+"></p>
+</div>
+</section>
+
+<footer>
+<div class="social-links">
+    <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
+       target="_blank" 
+       aria-label="LinkedIn" 
+       style="text-decoration:none; color:white;">
+        <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+    
+    <a href="https://github.com/Tarek343" 
+       target="_blank" 
+       aria-label="GitHub" 
+       style="text-decoration:none; color:white;">
+        <i class="fab fa-github"></i> GitHub
+    </a>
+    
+    <a href="https://wa.me/201060440658" 
+       target="_blank" 
+       aria-label="WhatsApp" 
+       style="text-decoration:none; color:white;">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+</div>
+<p>&copy; 2025 Tarek Nageh. All rights reserved.</p>
+</footer>
+
+<script>
+// Mobile Menu Toggle (OLD LOGIC REMOVED)
+// Smooth Scrolling 
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click', function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth',block:'start'});}
+    // navLinks.classList.remove('active'); // Old logic
+});});
+
+// Fade-in Animation
+const observerOptions={threshold:0.1,rootMargin:'0px 0px -50px 0px'};
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},observerOptions);
+document.querySelectorAll('.fade-in').forEach(el=>{observer.observe(el);});
+
+
+// ==============================================
+// 3. New Drill-Down Menu Toggle Logic (JavaScript)
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.getElementById('drill-down-menu');
+
+menuToggle.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+});
+
+// Close menu when a link is clicked (for smooth scrolling)
+sideMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        // Use a slight delay to ensure smooth scrolling starts before closing the menu
+        setTimeout(() => {
+            sideMenu.classList.remove('open');
+        }, 300); 
+    });
+});
+// ==============================================
+
+// ==============================================
+// Script for Read More / Read Less functionality
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Set initial state (Hide all expandable content)
+    document.querySelectorAll('.read-more-content').forEach(content => {
+        // Hide content initially
+        content.style.display = 'none';
+        
+        // Use inline-block for better text flow when shown
+        content.style.transition = 'opacity 0.5s ease'; 
+        content.style.opacity = '0'; // Prepare for fade-in effect
+    });
+
+    // Add click event listener to all toggle buttons
+    document.querySelectorAll('.toggle-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+
+            if (content.style.display === 'none') {
+                // Expand (Read More)
+                content.style.display = 'inline'; 
+                setTimeout(() => {
+                    content.style.opacity = '1';
+                }, 10); 
+                this.textContent = 'Read Less';
+            } else {
+                // Collapse (Read Less)
+                content.style.opacity = '0';
+                setTimeout(() => {
+                    content.style.display = 'none';
+                }, 500); // Wait for fade-out transition to complete
+                this.textContent = 'Read More';
+            }
+        });
+    });
+});
+// ==============================================
+
+// ==============================================
+// AJAX Form Submission for Success Message (Formspree)
+const form = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault(); // منع الإرسال الافتراضي
+
+    const data = new FormData(form);
+    
+    try {
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // عرض رسالة النجاح
+            formStatus.style.display = 'block';
+            formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+            form.reset(); // إفراغ حقول النموذج
+            
+            // إخفاء الرسالة بعد 4 ثواني
             setTimeout(() => {
-                currentQuoteIndex = (currentQuoteIndex + 1) % dataQuotes.length;
-                quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
-                quoteTextElement.classList.add('active');
-            }, 1000); 
+                formStatus.style.display = 'none';
+            }, 4000); 
+        } else {
+            // في حالة فشل الإرسال (خطأ Formspree)
+            formStatus.style.display = 'block';
+            formStatus.style.backgroundColor = 'red';
+            formStatus.textContent = 'Oops! There was an error sending your message.';
+            
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+                formStatus.style.backgroundColor = '#4ECDC4'; // إعادة اللون الأصلي
+            }, 4000);
         }
-
-        if (quoteTextElement) {
-            quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
-            quoteTextElement.classList.add('active');
-            setInterval(displayNextQuote, 5000); 
-        }
-    </script>
+    } catch (error) {
+        // في حالة فشل اتصال الشبكة
+        formStatus.style.display = 'block';
+        formStatus.style.backgroundColor = 'red';
+        formStatus.textContent = 'Network error. Please try again later.';
+        
+        setTimeout(() => {
+                formStatus.style.display = 'none';
+                formStatus.style.backgroundColor = '#4ECDC4';
+        }, 4000);
+    }
+});
+// ==============================================
+</script>
 </body>
 </html>
