@@ -1,7 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // 🚨 التعديل الجديد: لفرض التمرير للأعلى عند التحميل ومنع القفز إلى #Contact
+    window.scrollTo(0, 0);
+    // إزالة علامة الهاش من الرابط لمنع التمرير التلقائي في التحميلات المستقبلية
+    if(window.location.hash) {
+        history.replaceState('', document.title, window.location.pathname + window.location.search);
+    }
+    
     // ==============================================
-    // Scripts from Original HTML
+    // Scripts from Original HTML (وظائف أساسية)
     // ==============================================
     
     // Smooth Scrolling 
@@ -103,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             activeColor: 'rgba(255, 255, 255, 1)',
             proximity: 100,
             maxScale: 1.5,
-            throttle: 50 
+            throttle: 80 
         };
 
         function resizeCanvas() {
@@ -130,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (distance < config.proximity) {
                         const influence = 1 - (distance / config.proximity);
                         scale = 1 + influence * (config.maxScale - 1);
-                        opacity = 0.4 + influence * 0.6; // زيادة الشفافية
+                        opacity = 0.4 + influence * 0.6; 
                     }
                     
                     ctx.beginPath();
@@ -169,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const items = gsap.utils.toArray(dock.querySelectorAll('.dock-item'));
 
         dock.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return; 
+
             items.forEach(item => {
                 const itemRect = item.getBoundingClientRect();
                 const itemCenter = itemRect.left + itemRect.width / 2;
@@ -201,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalGroups = Array.from(form.querySelectorAll('.form-group'));
         const formContent = document.createElement('div');
         formContent.id = 'form-steps-container';
-        form.prepend(formContent); // وضع الحاوية في البداية
+        form.prepend(formContent); 
 
         let stepsElements = [];
 
@@ -223,11 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 nextButton.addEventListener('click', () => handleNextStep(index + 1, inputField));
             }
             
-            // تهيئة حالة الإخفاء الأولية
             gsap.set(group, { opacity: 0, maxHeight: 0, y: 20 });
         });
 
-        // إضافة زر الإرسال للخطوة الأخيرة
         const submitButton = document.createElement('button');
         submitButton.type = 'submit';
         submitButton.className = 'submit-btn';
@@ -236,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
             stepsElements[stepsElements.length - 1].appendChild(submitButton);
         }
 
-        // إظهار الخطوة الأولى
         const firstStep = formContent.querySelector('[data-step="1"]');
         if (firstStep) {
             firstStep.classList.add('active');
@@ -245,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function handleNextStep(currentStepId, inputField) {
-            // التحقق من الحقل
             if (!inputField.value.trim() || (inputField.type === 'email' && !inputField.value.includes('@'))) {
                 gsap.fromTo(inputField, { x: -5 }, { x: 5, repeat: 3, yoyo: true, clearProps: "x", duration: 0.05 });
                 return;
@@ -255,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const nextStepEl = formContent.querySelector(`[data-step="${currentStepId + 1}"]`);
 
             if (nextStepEl) {
-                // 1. إخفاء الخطوة الحالية
                 gsap.to(currentStepEl, {
                     opacity: 0,
                     maxHeight: 0,
@@ -263,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     duration: 0.3,
                     onComplete: () => {
                         currentStepEl.classList.remove('active');
-                        // 2. إظهار الخطوة التالية
                         nextStepEl.classList.add('active'); 
                         gsap.fromTo(nextStepEl, 
                             { opacity: 0, y: 20 }, 
@@ -278,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // إعادة ربط AJAX Form Submission
         form.addEventListener('submit', async function(e) {
             e.preventDefault(); 
             const messageField = form.querySelector('textarea#message');
@@ -301,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     formStatus.style.display = 'block';
                     formStatus.textContent = 'Thank you! Your message has been sent successfully.';
                     
-                    // Reset to first step with animation
                     gsap.to(stepsElements[stepsElements.length - 1], { opacity: 0, maxHeight: 0, y: -20, duration: 0.3 });
                     
                     setTimeout(() => {
@@ -338,13 +339,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const isLargeScreen = window.innerWidth >= 1024;
 
             card.addEventListener('mousemove', (e) => {
+                if (!isLargeScreen) return; 
+                
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                // Tilt and Magnetism
                 const rotateX = ((y - centerY) / centerY) * -5; 
                 const rotateY = ((x - centerX) / centerX) * 5;  
                 const magnetX = (x - centerX) * 0.05; 
@@ -360,24 +362,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     transformPerspective: 1000
                 });
 
-                // Update Glow Properties
-                if (isLargeScreen) {
-                    const relativeX = ((x) / rect.width) * 100;
-                    const relativeY = ((y) / rect.height) * 100;
-                    card.style.setProperty('--glow-x', `${relativeX}%`);
-                    card.style.setProperty('--glow-y', `${relativeY}%`);
-                }
+                const relativeX = ((x) / rect.width) * 100;
+                const relativeY = ((y) / rect.height) * 100;
+                card.style.setProperty('--glow-x', `${relativeX}%`);
+                card.style.setProperty('--glow-y', `${relativeY}%`);
             });
 
             card.addEventListener('mouseenter', () => {
                  if (isLargeScreen) {
                     gsap.to(card, { '--glow-intensity': 1, duration: 0.5 });
-                    gsap.to(card.querySelector('.magic-bento-card--border-glow::after'), { opacity: 1, duration: 0.3 });
+                    const afterElement = card.querySelector('.magic-bento-card--border-glow');
+                    if(afterElement) gsap.to(afterElement, { opacity: 1, duration: 0.3 });
                 }
             });
             
             card.addEventListener('mouseleave', () => {
-                // Reset everything smoothly
                 gsap.to(card, {
                     rotateX: 0,
                     rotateY: 0,
@@ -388,11 +387,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: 'elastic.out(1, 0.5)'
                 });
                 if (isLargeScreen) {
-                    gsap.to(card.querySelector('.magic-bento-card--border-glow::after'), { opacity: 0, duration: 0.3 });
+                    const afterElement = card.querySelector('.magic-bento-card--border-glow');
+                    if(afterElement) gsap.to(afterElement, { opacity: 0, duration: 0.3 });
                 }
             });
 
-            // Click Ripple Effect
             card.addEventListener('click', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
