@@ -1,51 +1,802 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tarek Portfolio | Professional Power BI Data Analyst & Dashboard Designer</title>
-<meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design, and translating complex data into actionable business decisions.">
-<meta name="keywords" content="Tarek Portfolio, Data Analyst, Power BI, Fabric, SQL, Dashboard Design, Data Visualization, Python">
+<title>Tarek Nageh | Data Analyst & Power BI Expert</title>
+<meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
+<meta name="keywords" content="Tarek Nageh, Data Analyst, Power BI, Fabric, SQL, Dashboard Design">
 <meta name="author" content="Tarek Nageh">
-<meta name="robots" content="index, follow"> 
-<meta name="google-site-verification" content="atrHQANNw6hrtgDbG2M-xIDSobKQJBaB2hyGCMDL0sE" />
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="atrHQANNw6hrtgDbG2M-xIDSobKQJBaB2hyGCMDL0sE">
+
+<!-- Open Graph -->
 <meta property="og:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
-<meta property="og:description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design, and transforming complex data into actionable business insights.">
+<meta property="og:description" content="Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
 <meta property="og:image" content="https://tarek343.github.io/profile.jpg">
 <meta property="og:url" content="https://tarek343.github.io/">
 <meta property="og:type" content="website">
+
 <link rel="icon" href="favicon.jpg" type="image/jpeg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="main-styles.css">
-<link rel="stylesheet" href="portfolio-styles.css">
+<style>
+/* CSS Variables for Theming */
+:root {
+    --primary: #4A90E2;
+    --secondary: #50E3C2;
+    --dark: #0D1321;
+    --darker: #141A29;
+    --light: #f0f0f0;
+    --gray: #b0b0b0;
+    --card-bg: #141A29;
+    --transition: all 0.3s ease;
+}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--light);
+    background: var(--dark);
+    overflow-x: hidden;
+}
+
+/* Header & Navigation */
+header {
+    background: var(--primary);
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    transition: var(--transition);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo i {
+    color: var(--secondary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Side Menu (Mobile) */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background: var(--darker);
+    z-index: 1001;
+    padding: 5rem 2rem;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+}
+
+.side-menu.open {
+    right: 0;
+}
+
+.side-menu a {
+    display: block;
+    color: var(--light);
+    text-decoration: none;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: var(--transition);
+}
+
+.side-menu a:hover {
+    color: var(--secondary);
+    padding-left: 10px;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(135deg, var(--dark) 0%, #1a2332 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(74,144,226,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--light) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    color: var(--gray);
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+.hero-buttons-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.cta-button, .cv-download-btn-hero {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cta-button {
+    background: var(--secondary);
+    color: var(--dark);
+    box-shadow: 0 4px 15px rgba(80, 227, 194, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(80, 227, 194, 0.4);
+}
+
+.cv-download-btn-hero {
+    background: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cv-download-btn-hero:hover {
+    background: var(--secondary);
+    color: var(--dark);
+}
+
+/* Quotes Section */
+#data-quotes {
+    background: linear-gradient(90deg, #1f1f1f 0%, #171717 100%);
+    border-top: 3px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
+    padding: 3rem 2rem;
+    text-align: center;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-text {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 500;
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+    font-style: italic;
+    color: var(--light);
+}
+
+.quote-text.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section Styles */
+section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 3rem;
+    color: var(--light);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--secondary);
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.about-text p {
+    margin-bottom: 2rem;
+    color: var(--gray);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-tag {
+    background: rgba(74, 144, 226, 0.2);
+    color: var(--primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+    transition: var(--transition);
+    cursor: default;
+}
+
+.skill-tag:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.about-image {
+    text-align: center;
+}
+
+.about-image img {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+    transition: var(--transition);
+}
+
+.about-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
+}
+
+/* Portfolio Section */
+#portfolio {
+    background: var(--dark);
+    max-width: 100%;
+    padding: 5rem 2rem;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.magic-bento-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.magic-bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: var(--primary);
+}
+
+.portfolio-image {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.portfolio-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, var(--card-bg), transparent);
+}
+
+.portfolio-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-content h3 {
+    margin-bottom: 1rem;
+    color: var(--light);
+    font-size: 1.3rem;
+}
+
+.portfolio-content p {
+    color: var(--gray);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.read-more-content {
+    display: none;
+    margin-top: 0.5rem;
+}
+
+.toggle-btn {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    align-self: flex-start;
+}
+
+.toggle-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.portfolio-buttons {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+.portfolio-buttons a {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.view-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.view-btn:hover {
+    background: #3A7CC8;
+    transform: translateY(-2px);
+}
+
+.request-btn {
+    background: transparent;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.request-btn:hover {
+    background: var(--secondary);
+    color: var(--dark);
+}
+
+/* Contact Section */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-info h3 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.contact-info > p {
+    color: var(--gray);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+}
+
+.contact-item i {
+    color: var(--secondary);
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(80, 227, 194, 0.1);
+    border-radius: 50%;
+}
+
+.contact-item a {
+    color: var(--light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--secondary);
+}
+
+.contact-form {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: var(--light);
+    border-radius: 10px;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255,255,255,0.08);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--secondary);
+    color: var(--dark);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(80, 227, 194, 0.3);
+}
+
+#form-status {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: var(--darker);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.dock-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.dock-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.05);
+    transition: var(--transition);
+}
+
+.dock-item:hover {
+    color: var(--secondary);
+    background: rgba(80, 227, 194, 0.1);
+    transform: translateY(-3px);
+}
+
+footer p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .about-image {
+        order: -1;
+    }
+    
+    .about-image img {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .hero {
+        padding: 5rem 1.5rem 3rem;
+    }
+    
+    .hero-buttons-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-buttons {
+        flex-direction: column;
+    }
+    
+    section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    .dock-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills {
+        justify-content: center;
+    }
+    
+    .skill-tag {
+        font-size: 0.85rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3A7CC8;
+}
+</style>
 </head>
 <body>
 
-<div id="dot-grid-container" class="dot-grid-container"></div> 
-
 <header>
-<nav>
-<div class="logo">
-    <i class="fas fa-chart-bar"></i> 
-Tarek Nageh
-</div>
-<ul class="nav-links"> 
-<li><a href="#hero-content">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#portfolio">Portfolio</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<div class="menu-toggle">
-    <i class="fas fa-bars"></i>
-</div>
-</nav>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-chart-bar"></i> 
+            Tarek Nageh
+        </div>
+        <ul class="nav-links"> 
+            <li><a href="#hero-content">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
 </header>
 
 <nav id="drill-down-menu" class="side-menu">
@@ -61,13 +812,14 @@ Tarek Nageh
         <p>Transforming data and dashboards into meaningful visual experiences</p>
         
         <div class="hero-buttons-container">
-            <a href="#portfolio" class="cta-button">View My Work</a> 
+            <a href="#portfolio" class="cta-button">
+                <i class="fas fa-eye"></i> View My Work
+            </a> 
             
-            <a href="Tarek_Nageh_Resume.pdf" download="Tarek_Nageh_Resume.pdf" class="cv-download-btn-hero">
-                Download my CV
+            <a href="Tarek_Nageh_Resume.pdf" download class="cv-download-btn-hero">
+                <i class="fas fa-download"></i> Download CV
             </a>
         </div>
-        
     </div>
 </section>
 
@@ -78,176 +830,373 @@ Tarek Nageh
 </section>
 
 <section id="about" class="fade-in">
-<h2 class="section-title">About Me</h2>
-<div class="about-content">
-<div class="about-text">
-<h3 class="fade-in">Passionate Professional</h3>
-<p class="fade-in" style="transition-delay: 0.1s;">I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization.</p>
-<div id="skills-carousel-container" class="skills fade-in" style="transition-delay: 0.2s;">
-<span class="skill-tag">Data Analysis</span>
-    <span class="skill-tag">Power BI / Fabric</span>
-    <span class="skill-tag">Excel</span>
-    <span class="skill-tag">Dashboard Design</span>
-    <span class="skill-tag">SQL</span>
-    <span class="skill-tag">SQL Server</span>
-    <span class="skill-tag">Python</span>
-    <span class="skill-tag">Visualization</span>
-</div>
-</div>
-<div style="text-align:center;">
-    <img src="profile.jpg" 
-         alt="Tarek Nageh Profile Picture" 
-         style="width:250px; height:250px; border-radius:50%; object-fit:cover; border:5px solid #4A90E2; display:block; margin:0 auto;">
-</div>
-</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+        <div class="about-text">
+            <h3>Passionate Professional</h3>
+            <p>I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization, helping businesses make data-driven decisions through compelling visual stories.</p>
+            <div class="skills">
+                <span class="skill-tag">Data Analysis</span>
+                <span class="skill-tag">Power BI / Fabric</span>
+                <span class="skill-tag">Excel</span>
+                <span class="skill-tag">Dashboard Design</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">SQL Server</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Visualization</span>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="profile.jpg" alt="Tarek Nageh Profile Picture">
+        </div>
+    </div>
 </section>
 
-<section id="portfolio" style="background: #0D1321;">
-<h2 class="section-title">Portfolio</h2>
-<div class="portfolio-grid">
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('https://i.postimg.cc/1XGf3tRq/unnamed.png');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 1 - Sales Overview</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track 9.9M Total Profit from 20M Total Sales, achieving 49.9% profitability. 
-    <span class="read-more-content" id="content1">
-        The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized DAX functions to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth. This comprehensive Sales Analysis Dashboard turns raw transaction data into clear, actionable insights.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content1" id="btn1">Read More</button>
+<section id="portfolio">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio-grid">
+        
+        <!-- Project 1 -->
+        <div class="magic-bento-card fade-in">
+            <div class="portfolio-image" style="background-image: url('https://i.postimg.cc/1XGf3tRq/unnamed.png');"></div>
+            <div class="portfolio-content">
+                <h3>Sales Performance Dashboard</h3>
+                <p>
+                    Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track 9.9M Total Profit from 20M Total Sales, achieving 49.9% profitability.
+                    <span class="read-more-content" id="content1">
+                        The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized DAX functions to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth.
+                    </span>
+                </p>
+                <button class="toggle-btn" data-target="content1">Read More</button>
+                <div class="portfolio-buttons">
+                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-btn">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                    <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" class="request-btn">
+                        <i class="fab fa-github"></i> Repository
+                    </a>
+                </div>
+            </div>
+        </div>
 
-<div class="portfolio-buttons fade-in">
-    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-btn">View Live Dashboard</a>
-    <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
+        <!-- Project 2 -->
+        <div class="magic-bento-card fade-in">
+            <div class="portfolio-image" style="background-image: url('https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png');"></div>
+            <div class="portfolio-content">
+                <h3>HR Analytics Dashboard</h3>
+                <p>
+                    Case Study: HR Workforce Analysis and Headcount Planning. This Power BI Dashboard provides a detailed overview of the organization's Human Resources data, covering 689 employees and a total salary of 1.4M.
+                    <span class="read-more-content" id="content2">
+                        The data analysis focuses on departmental distribution (Manufacturing is largest), gender ratios (mostly male, 65%), and geographical distribution (Main center has the largest headcount of 251). I employed advanced filtering and data visualization to highlight the peak headcount period in 2019, enabling HR leaders to better understand employee trends and plan recruitment strategies.
+                    </span>
+                </p>
+                <button class="toggle-btn" data-target="content2">Read More</button>
+                <div class="portfolio-buttons">
+                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-btn">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                    <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" class="request-btn">
+                        <i class="fab fa-github"></i> Repository
+                    </a>
+                </div>
+            </div>
+        </div>
 
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 2 - Employees Overview</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: HR Workforce Analysis and Headcount Planning. This Power BI Dashboard provides a detailed overview of the organization's Human Resources data, covering 689 employees and a total salary of 1.4M. 
-    <span class="read-more-content" id="content2">
-        The data analysis focuses on departmental distribution (Manufacturing is largest), gender ratios (mostly male, 65%), and geographical distribution (Main center has the largest headcount of 251). I employed advanced filtering and data visualization to highlight the peak headcount period in 2019, enabling HR leaders to better understand employee trends, plan recruitment strategies, and manage compensation and workforce efficiency effectively.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content2" id="btn2">Read More</button>
-<div class="portfolio-buttons fade-in">
-    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-btn">View Live Dashboard</a>
-    <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
+        <!-- Project 3 -->
+        <div class="magic-bento-card fade-in">
+            <div class="portfolio-image" style="background-image: url('https://i.postimg.cc/cCSL2SRz/unnamed-(2).png');"></div>
+            <div class="portfolio-content">
+                <h3>Retail COGS Analysis</h3>
+                <p>
+                    Case Study: Retail Profitability and Cost of Goods Sold (COGS) Analysis. This Power BI Dashboard offers a focused view on retail financial health, tracking 15.38K Total Sales and an average COGS of 307.59.
+                    <span class="read-more-content" id="content3">
+                        The core of this financial data analysis is understanding profitability drivers, showing stable sales across key cities (Yangon, Naypyitaw, Mandalay) and analyzing payment distribution (Cash is the main payment at 34.4%). Through strategic data visualization, the dashboard allows stakeholders to analyze gender-based purchasing patterns and identify opportunities to reduce COGS.
+                    </span>
+                </p>
+                <button class="toggle-btn" data-target="content3">Read More</button>
+                <div class="portfolio-buttons">
+                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-btn">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                    <a href="https://github.com/Tarek343/Profitability-and-COGS-Analysis" target="_blank" class="request-btn">
+                        <i class="fab fa-github"></i> Repository
+                    </a>
+                </div>
+            </div>
+        </div>
 
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/cCSL2SRz/unnamed-(2).png');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 3 - Sales & COGS</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: Retail Profitability and Cost of Goods Sold (COGS) Analysis. This Power BI Dashboard offers a focused view on retail financial health, tracking 15.38K Total Sales and an average COGS of 307.59. 
-    <span class="read-more-content" id="content3">
-        The core of this financial data analysis is understanding profitability drivers, showing stable sales across key cities (Yangon, Naypyitaw, Mandalay) and analyzing payment distribution (Cash is the main payment at 34.4%). Through strategic data visualization, the dashboard allows stakeholders to analyze gender-based purchasing patterns (F52%/M48%) and identify opportunities to reduce COGS and maximize profit margins.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content3" id="btn3">Read More</button>
-<div class="portfolio-buttons fade-in">
-    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-btn">View Live Dashboard</a>
-    <a href="https://github.com/Tarek343/Profitability-and-COGS-Analysis" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
+        <!-- Project 4 -->
+        <div class="magic-bento-card fade-in">
+            <div class="portfolio-image" style="background-image: url('https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg');"></div>
+            <div class="portfolio-content">
+                <h3>Excel Sales Tracker</h3>
+                <p>
+                    Case Study: Comprehensive Sales and Profitability Tracking for Retail. This advanced Excel Dashboard offers a dynamic view of sales metrics, profit margins, and detailed geographical/product distribution across various Egyptian branches.
+                    <span class="read-more-content" id="content4">
+                        The analysis integrates Sales, Profit, and Detailed Item Metrics across three interconnected dashboards (Sales, Profit, and Details). Key features include: tracking high sales ($62.7K$), maximum profit ($3.1K$), dynamic filters by Branch and Geographic Segment, and a deep-dive table showing profitability by product category (Smartphones/Tablets) in each branch.
+                    </span>
+                </p>
+                <button class="toggle-btn" data-target="content4">Read More</button>
+                <div class="portfolio-buttons">
+                    <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" class="view-btn">
+                        <i class="fas fa-file-excel"></i> View File
+                    </a>
+                    <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" class="request-btn">
+                        <i class="fab fa-github"></i> Repository
+                    </a>
+                </div>
+            </div>
+        </div>
 
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 4 - Sales and Profit Performance Analysis</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: Comprehensive Sales and Profitability Tracking for Retail. This advanced Excel Dashboard offers a dynamic view of sales metrics, profit margins, and detailed geographical/product distribution across various Egyptian branches and segments. 
-    <span class="read-more-content" id="content4">
-        The analysis integrates Sales, Profit, and Detailed Item Metrics across three interconnected dashboards (Sales, Profit, and Details). Key features include: tracking high sales ($62.7K$), maximum profit ($3.1K$), dynamic filters by Branch and Geographic Segment, and a deep-dive table showing profitability by product category (Smartphones/Tablets) in each branch. The use of Excel's power features ensures real-time, actionable insights for strategic decision-making and performance monitoring.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content4" id="btn4">Read More</button>
-<div class="portfolio-buttons fade-in">
-    <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" class="view-btn">View Excel File</a>
-    <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
-</div>
+    </div>
 </section>
 
 <section id="contact">
-<h2 class="section-title">Get In Touch</h2>
-<div class="contact-content">
-<div class="contact-info fade-in">
-<h3>Let's Create Something Amazing</h3>
-<p>Ready to bring your vision to life? Contact me to discuss your project.</p>
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-content">
+        <div class="contact-info fade-in">
+            <h3>Let's Create Something Amazing</h3>
+            <p>Ready to bring your vision to life? Contact me to discuss your project and how we can work together.</p>
 
-<div class="contact-item">
-    <i class="fas fa-envelope"></i>
-    <div><strong>Email:</strong> <a href="mailto:Tareknageh343@gmail.com" style="color:inherit; text-decoration:none;">Tareknageh343@gmail.com</a></div>
-</div>
-<div class="contact-item">
-    <i class="fas fa-phone"></i>
-    <div><strong>Phone:</strong> 01060440658</div>
-</div>
-<div class="contact-item">
-    <i class="fas fa-map-marker-alt"></i>
-    <div><strong>Location:</strong> Cairo, Egypt</div>
-</div>
-</div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <strong>Email:</strong><br>
+                    <a href="mailto:Tareknageh343@gmail.com">Tareknageh343@gmail.com</a>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <strong>Phone:</strong><br>
+                    01060440658
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <strong>Location:</strong><br>
+                    Cairo, Egypt
+                </div>
+            </div>
+        </div>
 
-<form id="contact-form" class="contact-form fade-in" 
-      action="https://formspree.io/f/mblqopwn" 
-      method="POST">
-    
-    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required></div>
-    <div class="form-group"><label for="email">Your Email</label><input type="email" id="email" name="_replyto" required></div>
-    <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required></div>
-    <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-    
-    <button type="submit" class="submit-btn" style="display:none;">Send Message</button>
-</form>
+        <form id="contact-form" class="contact-form fade-in" action="https://formspree.io/f/mblqopwn" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="_replyto" placeholder="john@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
 
-<p id="form-status"></p>
-</div>
+        <p id="form-status"></p>
+    </div>
 </section>
 
 <footer>
-<div class="social-links dock-container">
-    <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
-       target="_blank" 
-       aria-label="LinkedIn" 
-       class="dock-item"
-       style="text-decoration:none; color:white;">
-        <i class="fab fa-linkedin"></i> LinkedIn
-    </a>
-    
-    <a href="https://github.com/Tarek343" 
-       target="_blank" 
-       aria-label="GitHub" 
-       class="dock-item"
-       style="text-decoration:none; color:white;">
-        <i class="fab fa-github"></i> GitHub
-    </a>
-    
-    <a href="https://wa.me/201060440658" 
-       target="_blank" 
-       aria-label="WhatsApp" 
-       class="dock-item"
-       style="text-decoration:none; color:white;">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-</div>
-<p>&copy; 2025 Tarek Nageh. All rights reserved.</p>
+    <div class="dock-container">
+        <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" class="dock-item">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        
+        <a href="https://github.com/Tarek343" target="_blank" class="dock-item">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+        
+        <a href="https://wa.me/201060440658" target="_blank" class="dock-item">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+    </div>
+    <p>&copy; 2025 Tarek Nageh. All rights reserved.</p>
 </footer>
 
-<script src="portfolio-scripts.js" defer></script>
+<script>
+// ==============================================
+// Smooth Scrolling & Active Navigation
+// ==============================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            // Close mobile menu if open
+            document.getElementById('drill-down-menu').classList.remove('open');
+        }
+    });
+});
+
+// ==============================================
+// Fade-in Animation on Scroll
+// ==============================================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+});
+
+// ==============================================
+// Mobile Menu Toggle
+// ==============================================
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.getElementById('drill-down-menu');
+
+menuToggle.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        sideMenu.classList.remove('open');
+    }
+});
+
+// ==============================================
+// Read More / Read Less Functionality
+// ==============================================
+document.querySelectorAll('.toggle-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'inline';
+            this.textContent = 'Read Less';
+        } else {
+            content.style.display = 'none';
+            this.textContent = 'Read More';
+        }
+    });
+});
+
+// ==============================================
+// Quotes Rotator
+// ==============================================
+const dataQuotes = [
+    "Data is the new oil.",
+    "Without big data analytics, companies are blind and deaf.",
+    "The goal is to turn data into information, and information into insight.",
+    "We are drowning in information and starving for wisdom.",
+    "The world is now driven by data, not by oil.",
+    "Where there is data, there is value.",
+    "Hiding within those mounds of data is knowledge that could change the world.",
+    "Torture the data, and it will confess to anything.",
+    "You can have all the data in the world, but if you don't use it, it means nothing.",
+    "The data stream is huge, and its potential is even bigger."
+];
+
+let currentQuoteIndex = 0;
+const quoteTextElement = document.getElementById('data-quote-display');
+
+if (quoteTextElement) {
+    quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
+    setTimeout(() => quoteTextElement.classList.add('active'), 100);
+    
+    setInterval(() => {
+        quoteTextElement.classList.remove('active');
+        setTimeout(() => {
+            currentQuoteIndex = (currentQuoteIndex + 1) % dataQuotes.length;
+            quoteTextElement.textContent = dataQuotes[currentQuoteIndex];
+            quoteTextElement.classList.add('active');
+        }, 1000);
+    }, 5000);
+}
+
+// ==============================================
+// Form Handling
+// ==============================================
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const originalText = submitBtn.innerHTML;
+    
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
+    
+    try {
+        const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            formStatus.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+            formStatus.style.color = '#50E3C2';
+            contactForm.reset();
+        } else {
+            throw new Error('Failed to send');
+        }
+    } catch (error) {
+        formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+        formStatus.style.color = '#ff6b6b';
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        setTimeout(() => {
+            formStatus.textContent = '';
+        }, 5000);
+    }
+});
+
+// ==============================================
+// Header Scroll Effect
+// ==============================================
+let lastScroll = 0;
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+        header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+    } else {
+        header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+    }
+    
+    lastScroll = currentScroll;
+});
+</script>
+
 </body>
 </html>
-```http://googleusercontent.com/generated_image_content/0
-
