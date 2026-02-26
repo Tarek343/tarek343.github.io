@@ -1,253 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Tarek Portfolio | Professional Power BI Data Analyst & Dashboard Designer</title>
-<meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design, and translating complex data into actionable business decisions.">
-<meta name="keywords" content="Tarek Portfolio, Data Analyst, Power BI, Fabric, SQL, Dashboard Design, Data Visualization, Python">
-<meta name="author" content="Tarek Nageh">
-<meta name="robots" content="index, follow"> 
-<meta name="google-site-verification" content="atrHQANNw6hrtgDbG2M-xIDSobKQJBaB2hyGCMDL0sE" />
-<meta property="og:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
-<meta property="og:description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design, and transforming complex data into actionable business insights.">
-<meta property="og:image" content="https://tarek343.github.io/profile.jpg">
-<meta property="og:url" content="https://tarek343.github.io/">
-<meta property="og:type" content="website">
-<link rel="icon" href="favicon.jpg" type="image/jpeg">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="main-styles.css">
-<link rel="stylesheet" href="portfolio-styles.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarek Portfolio | Professional Power BI Data Analyst & Dashboard Designer</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design, and translating complex data into actionable business decisions.">
+    <meta name="keywords" content="Tarek Portfolio, Data Analyst, Power BI, Fabric, SQL, Dashboard Design, Data Visualization, Python">
+    <meta name="author" content="Tarek Nageh">
+    <meta name="robots" content="index, follow"> 
+    <meta name="google-site-verification" content="atrHQANNw6hrtgDbG2M-xIDSobKQJBaB2hyGCMDL0sE" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
+    <meta property="og:description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design, and transforming complex data into actionable business insights.">
+    <meta property="og:image" content="https://tarek343.github.io/profile.jpg">
+    <meta property="og:url" content="https://tarek343.github.io/">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.jpg" type="image/jpeg">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="main-styles.css">
+    <link rel="stylesheet" href="portfolio-styles.css">
 </head>
 <body>
+    <div id="dot-grid-container" class="dot-grid-container"></div> 
+    
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-chart-bar"></i> 
+                Tarek Nageh
+            </div>
+            <ul class="nav-links"> 
+                <li><a href="#hero-content">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
 
-<div id="dot-grid-container" class="dot-grid-container"></div> 
+    <nav id="drill-down-menu" class="side-menu">
+        <a href="#hero-content">Home</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-<header>
-<nav>
-<div class="logo">
-    <i class="fas fa-chart-bar"></i> 
-Tarek Nageh
-</div>
-<ul class="nav-links"> 
-<li><a href="#hero-content">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#portfolio">Portfolio</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<div class="menu-toggle">
-    <i class="fas fa-bars"></i>
-</div>
-</nav>
-</header>
-
-<nav id="drill-down-menu" class="side-menu">
-    <a href="#hero-content">Home</a>
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<section id="hero-content" class="hero">
-    <div class="hero-content">
-        <h1>Data Analyst</h1>
-        <p>Transforming data and dashboards into meaningful visual experiences</p>
-        
-        <div class="hero-buttons-container">
-            <a href="#portfolio" class="cta-button">View My Work</a> 
+    <!-- Hero Section -->
+    <section id="hero-content" class="hero">
+        <div class="hero-content">
+            <h1>Data Analyst</h1>
+            <p>Transforming data and dashboards into meaningful visual experiences</p>
             
-            <a href="Tarek_Nageh_Resume.pdf" download="Tarek_Nageh_Resume.pdf" class="cv-download-btn-hero">
-                Download my CV
-            </a>
+            <div class="hero-buttons-container">
+                <a href="#portfolio" class="cta-button">View My Work</a> 
+                <a href="Tarek_Nageh_Resume.pdf" download="Tarek_Nageh_Resume.pdf" class="cv-download-btn-hero">
+                    Download my CV
+                </a>
+            </div>
         </div>
-        
-    </div>
-</section>
+    </section>
 
-<section id="data-quotes">
-    <div class="quotes-container">
-        <p id="data-quote-display" class="quote-text"></p>
-    </div>
-</section>
+    <!-- Data Quotes Section -->
+    <section id="data-quotes">
+        <div class="quotes-container">
+            <p id="data-quote-display" class="quote-text"></p>
+        </div>
+    </section>
 
-<section id="about" class="fade-in">
-<h2 class="section-title">About Me</h2>
-<div class="about-content">
-<div class="about-text">
-<h3 class="fade-in">Passionate Professional</h3>
-<p class="fade-in" style="transition-delay: 0.1s;">I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization.</p>
-<div id="skills-carousel-container" class="skills fade-in" style="transition-delay: 0.2s;">
-<span class="skill-tag">Data Analysis</span>
-    <span class="skill-tag">Power BI / Fabric</span>
-    <span class="skill-tag">Excel</span>
-    <span class="skill-tag">Dashboard Design</span>
-    <span class="skill-tag">SQL</span>
-    <span class="skill-tag">SQL Server</span>
-    <span class="skill-tag">Python</span>
-    <span class="skill-tag">Visualization</span>
-</div>
-</div>
-<div style="text-align:center;">
-    <img src="profile.jpg" 
-         alt="Tarek Nageh Profile Picture" 
-         style="width:250px; height:250px; border-radius:50%; object-fit:cover; border:5px solid #4A90E2; display:block; margin:0 auto;">
-</div>
-</div>
-</section>
-
-<section id="portfolio" style="background: #0D1321;">
-<h2 class="section-title">Portfolio</h2>
-<div class="portfolio-grid">
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('https://i.postimg.cc/1XGf3tRq/unnamed.png');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 1 - Sales Overview</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track 9.9M Total Profit from 20M Total Sales, achieving 49.9% profitability. 
-    <span class="read-more-content" id="content1">
-        The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized DAX functions to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth. This comprehensive Sales Analysis Dashboard turns raw transaction data into clear, actionable insights.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content1" id="btn1">Read More</button>
-
-<div class="portfolio-buttons fade-in">
-    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-btn">View Live Dashboard</a>
-    <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
-
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 2 - Employees Overview</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: HR Workforce Analysis and Headcount Planning. This Power BI Dashboard provides a detailed overview of the organization's Human Resources data, covering 689 employees and a total salary of 1.4M. 
-    <span class="read-more-content" id="content2">
-        The data analysis focuses on departmental distribution (Manufacturing is largest), gender ratios (mostly male, 65%), and geographical distribution (Main center has the largest headcount of 251). I employed advanced filtering and data visualization to highlight the peak headcount period in 2019, enabling HR leaders to better understand employee trends, plan recruitment strategies, and manage compensation and workforce efficiency effectively.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content2" id="btn2">Read More</button>
-<div class="portfolio-buttons fade-in">
-    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-btn">View Live Dashboard</a>
-    <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
-
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/cCSL2SRz/unnamed-(2).png');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 3 - Sales & COGS</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: Retail Profitability and Cost of Goods Sold (COGS) Analysis. This Power BI Dashboard offers a focused view on retail financial health, tracking 15.38K Total Sales and an average COGS of 307.59. 
-    <span class="read-more-content" id="content3">
-        The core of this financial data analysis is understanding profitability drivers, showing stable sales across key cities (Yangon, Naypyitaw, Mandalay) and analyzing payment distribution (Cash is the main payment at 34.4%). Through strategic data visualization, the dashboard allows stakeholders to analyze gender-based purchasing patterns (F52%/M48%) and identify opportunities to reduce COGS and maximize profit margins.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content3" id="btn3">Read More</button>
-<div class="portfolio-buttons fade-in">
-    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-btn">View Live Dashboard</a>
-    <a href="https://github.com/Tarek343/Profitability-and-COGS-Analysis" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
-
-<div class="magic-bento-card magic-bento-card--border-glow fade-in">
-<div class="portfolio-image" style="background-image: url('Https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg');"></div>
-<div class="portfolio-content">
-<h3>Dashboard 4 - Sales and Profit Performance Analysis</h3>
-<p style="color:#f0f0f0; margin-bottom: 1.5rem; text-align:justify;">
-    Case Study: Comprehensive Sales and Profitability Tracking for Retail. This advanced Excel Dashboard offers a dynamic view of sales metrics, profit margins, and detailed geographical/product distribution across various Egyptian branches and segments. 
-    <span class="read-more-content" id="content4">
-        The analysis integrates Sales, Profit, and Detailed Item Metrics across three interconnected dashboards (Sales, Profit, and Details). Key features include: tracking high sales ($62.7K$), maximum profit ($3.1K$), dynamic filters by Branch and Geographic Segment, and a deep-dive table showing profitability by product category (Smartphones/Tablets) in each branch. The use of Excel's power features ensures real-time, actionable insights for strategic decision-making and performance monitoring.
-    </span>
-</p>
-<button class="toggle-btn" data-target="content4" id="btn4">Read More</button>
-<div class="portfolio-buttons fade-in">
-    <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" class="view-btn">View Excel File</a>
-    <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" class="request-btn">View Repo</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section id="contact">
-<h2 class="section-title">Get In Touch</h2>
-<div class="contact-content">
-<div class="contact-info fade-in">
-<h3>Let's Create Something Amazing</h3>
-<p>Ready to bring your vision to life? Contact me to discuss your project.</p>
-
-<div class="contact-item">
-    <i class="fas fa-envelope"></i>
-    <div><strong>Email:</strong> <a href="mailto:Tareknageh343@gmail.com" style="color:inherit; text-decoration:none;">Tareknageh343@gmail.com</a></div>
-</div>
-<div class="contact-item">
-    <i class="fas fa-phone"></i>
-    <div><strong>Phone:</strong> 01060440658</div>
-</div>
-<div class="contact-item">
-    <i class="fas fa-map-marker-alt"></i>
-    <div><strong>Location:</strong> Cairo, Egypt</div>
-</div>
-</div>
-
-<form id="contact-form" class="contact-form fade-in" 
-      action="https://formspree.io/f/mblqopwn" 
-      method="POST">
-    
-    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required></div>
-    <div class="form-group"><label for="email">Your Email</label><input type="email" id="email" name="_replyto" required></div>
-    <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required></div>
-    <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-    
-    <button type="submit" class="submit-btn" style="display:none;">Send Message</button>
-</form>
-
-<p id="form-status"></p>
-</div>
-</section>
-
-<footer>
-<div class="social-links dock-container">
-    <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
-       target="_blank" 
-       aria-label="LinkedIn" 
-       class="dock-item"
-       style="text-decoration:none; color:white;">
-        <i class="fab fa-linkedin"></i> LinkedIn
-    </a>
-    
-    <a href="https://github.com/Tarek343" 
-       target="_blank" 
-       aria-label="GitHub" 
-       class="dock-item"
-       style="text-decoration:none; color:white;">
-        <i class="fab fa-github"></i> GitHub
-    </a>
-    
-    <a href="https://wa.me/201060440658" 
-       target="_blank" 
-       aria-label="WhatsApp" 
-       class="dock-item"
-       style="text-decoration:none; color:white;">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-</div>
-<p>&copy; 2025 Tarek Nageh. All rights reserved.</p>
-</footer>
-
-<script src="portfolio-scripts.js" defer></script>
-</body>
-</html>
-```http://googleusercontent.com/generated_image_content/0
-
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3 class="fade-in">Passionate Professional</h3>
+                <p class="fade-in" style="transition-delay: 0.1s;">
+                    I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization.
+                </p>
+                
+                <div id="skills-carousel-container" class="skills fade-in" style="transition-delay: 0.2s;">
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Power BI / Fabric</span>
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">Dashboard Design</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">SQL Server</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Visualization</span>
+                </div>
+            </div>
+            
+            <div style="t
