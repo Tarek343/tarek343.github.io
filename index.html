@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarek Nageh | Data Analyst & Power BI Expert</title>
-    <meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
+    <title>Tarek Nageh | Data Analyst Portfolio</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -19,7 +18,7 @@
             --bg-card: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --glass: rgba(30, 41, 59, 0.75);
+            --glass: rgba(30, 41, 59, 0.8);
             --border: rgba(255, 255, 255, 0.1);
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -33,179 +32,144 @@
             line-height: 1.6;
         }
 
-        /* --- Scroll Progress Bar --- */
+        /* --- Progress Bar --- */
         #progress-bar {
             position: fixed; top: 0; left: 0; height: 4px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
-            z-index: 10000; width: 0%; transition: width 0.1s;
+            z-index: 10000; width: 0%;
         }
 
-        /* --- Modern Floating Navigation --- */
+        /* --- Floating Navigation --- */
         nav {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 500px; background: var(--glass);
+            width: 90%; max-width: 550px; background: var(--glass);
             backdrop-filter: blur(12px); padding: 12px 25px; border-radius: 50px;
             border: 1px solid var(--border); display: flex;
             justify-content: space-between; align-items: center; z-index: 9999;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        @media (min-width: 1024px) {
-            nav { top: 20px; bottom: auto; max-width: 600px; height: fit-content; }
-        }
+        @media (min-width: 1024px) { nav { top: 20px; bottom: auto; } }
 
         .nav-link {
-            color: var(--text-muted); text-decoration: none; font-size: 13px;
+            color: var(--text-muted); text-decoration: none; font-size: 12px;
             display: flex; flex-direction: column; align-items: center; gap: 4px;
-            transition: var(--transition); font-weight: 600;
+            transition: var(--transition); font-weight: 600; text-transform: uppercase;
         }
         .nav-link i { font-size: 18px; }
         .nav-link.active { color: var(--primary); }
-        .nav-link:hover { color: var(--text-main); }
 
         /* --- Hero Section --- */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent),
-                        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.1), transparent);
+            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.1), transparent);
             padding: 20px;
         }
 
+        .hero-img-container {
+            width: 180px; height: 180px; border-radius: 50%;
+            padding: 5px; background: linear-gradient(45deg, var(--primary), var(--secondary));
+            margin-bottom: 30px; animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-img {
+            width: 100%; height: 100%; border-radius: 50%;
+            object-fit: cover; border: 4px solid var(--bg-dark);
+        }
+
         .hero h1 {
-            font-size: clamp(40px, 8vw, 75px); font-weight: 800; margin-bottom: 10px;
+            font-size: clamp(35px, 7vw, 65px); font-weight: 800;
             background: linear-gradient(to right, #fff, #94a3b8);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .typing-text {
-            font-size: clamp(18px, 3vw, 24px); color: var(--secondary);
-            font-weight: 600; min-height: 35px; margin-bottom: 35px;
-        }
+        .typing-text { color: var(--secondary); font-weight: 600; font-size: 20px; margin: 15px 0 30px; min-height: 30px; }
 
-        .btn {
-            padding: 14px 35px; border-radius: 50px; text-decoration: none;
-            font-weight: 700; transition: var(--transition); display: inline-flex;
-            align-items: center; gap: 10px; cursor: pointer; border: none; font-family: inherit;
-        }
-        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: 0 4px 15px var(--primary-glow); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--primary-glow); }
-        .btn-outline { background: transparent; border: 1px solid var(--border); color: white; }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); }
-
-        /* --- Section Styling --- */
+        /* --- Filter Group --- */
         section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 36px; font-weight: 800; }
-        .section-header h2 span { color: var(--primary); }
-
-        /* --- About Me --- */
-        .about-container { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
-        @media (min-width: 768px) { .about-container { grid-template-columns: 1fr 1fr; } }
-        .about-img { width: 100%; max-width: 300px; border-radius: 50%; border: 5px solid var(--primary); margin: 0 auto; display: block; }
-        .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-        .skill-tag { background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 6px 15px; border-radius: 50px; font-size: 13px; font-weight: 600; }
-
-        /* --- Project Filter --- */
-        .filter-group { display: flex; justify-content: center; gap: 12px; margin-bottom: 45px; flex-wrap: wrap; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; transition: var(--transition); font-weight: 600; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .filter-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; transition: 0.3s; font-weight: 600; }
         .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
         /* --- Project Cards --- */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .project-card { background: var(--bg-card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: var(--transition); display: flex; flex-direction: column; }
-        .project-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .project-card { background: var(--bg-card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: 0.4s; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
         .project-img { width: 100%; height: 220px; object-fit: cover; transition: 0.5s; }
         .project-card:hover .project-img { transform: scale(1.05); }
         .project-content { padding: 25px; flex: 1; display: flex; flex-direction: column; }
-        .tag-row { margin-bottom: 15px; }
+        .tag { color: var(--primary); font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .project-links { margin-top: auto; display: flex; gap: 15px; padding-top: 20px; }
-        .project-links a { text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; }
-        .view-link { color: var(--secondary); }
-        .repo-link { color: var(--text-muted); }
-        .view-link:hover { color: white; }
+        .project-links a { text-decoration: none; font-weight: 700; font-size: 14px; color: var(--secondary); }
 
-        /* --- Contact --- */
-        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
-        @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1.5fr; } }
-        .contact-form { background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border); }
-        .form-group { margin-bottom: 20px; }
-        .form-control { width: 100%; background: rgba(0,0,0,0.2); border: 1px solid var(--border); padding: 15px; border-radius: 12px; color: white; font-family: inherit; transition: var(--transition); }
-        .form-control:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); }
-        
-        /* --- Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+        /* --- Contact Notification --- */
+        #notification {
+            position: fixed; top: 25px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            padding: 15px 35px; border-radius: 50px; background: #10b981; color: white;
+            font-weight: 700; z-index: 10001; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        #notification.show { transform: translateX(-50%) translateY(0); }
+
+        .btn { padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-family: inherit; transition: 0.3s; }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 15px var(--primary-glow); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--primary-glow); }
+
+        /* --- Reveal Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         footer { text-align: center; padding: 60px 20px 120px; border-top: 1px solid var(--border); margin-top: 50px; }
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 30px; }
-        .social-links a { color: var(--text-muted); font-size: 24px; transition: var(--transition); }
-        .social-links a:hover { color: var(--primary); transform: translateY(-5px); }
     </style>
 </head>
 <body>
 
     <div id="progress-bar"></div>
+    <div id="notification">Thank you! Your message has been sent successfully.</div>
 
     <nav>
         <a href="#home" class="nav-link active"><i class="fas fa-home"></i>Home</a>
-        <a href="#about" class="nav-link"><i class="fas fa-user"></i>About</a>
-        <a href="#portfolio" class="nav-link"><i class="fas fa-chart-pie"></i>Projects</a>
-        <a href="#contact" class="nav-link"><i class="fas fa-paper-plane"></i>Contact</a>
+        <a href="#portfolio" class="nav-link"><i class="fas fa-chart-bar"></i>Projects</a>
+        <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i>Contact</a>
     </nav>
 
     <section id="home" class="hero">
+        <div class="hero-img-container">
+            <img src="profile.jpg" alt="Tarek Nageh" class="hero-img">
+        </div>
         <h1>Tarek Nageh</h1>
         <div class="typing-text" id="typewriter"></div>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <a href="#portfolio" class="btn btn-primary">Explore My Work</a>
-            <a href="Tarek_Analyst_CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
-        </div>
-    </section>
-
-    <section id="about" class="reveal">
-        <div class="about-container">
-            <div>
-                <img src="profile.jpg" alt="Tarek Nageh" class="about-img">
-            </div>
-            <div>
-                <h2 style="font-size: 32px; margin-bottom: 20px;">Passionate <span style="color: var(--primary);">Professional</span></h2>
-                <p style="color: var(--text-muted); font-size: 17px; margin-bottom: 25px;">
-                    I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization, helping businesses make data-driven decisions through compelling visual stories.
-                </p>
-                <div class="skills-flex">
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Power BI / Fabric</span>
-                    <span class="skill-tag">SQL Server</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Excel</span>
-                    <span class="skill-tag">Dashboard Design</span>
-                </div>
-            </div>
-        </div>
+        <a href="#portfolio" class="btn btn-primary">View My Work</a>
     </section>
 
     <section id="portfolio">
         <div class="section-header">
-            <h2>Featured <span>Projects</span></h2>
+            <h2 style="font-size: 36px;">Featured <span>Projects</span></h2>
         </div>
         
         <div class="filter-group">
             <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="powerbi">Power BI / Fabric</button>
-            <button class="filter-btn" data-filter="excel">Excel Analysis</button>
+            <button class="filter-btn" data-filter="powerbi">Power BI</button>
+            <button class="filter-btn" data-filter="excel">Excel</button>
         </div>
 
         <div class="projects-grid">
             <div class="project-card reveal" data-category="powerbi">
                 <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Performance">
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <span class="tag">Power BI</span>
                     <h3>Sales Performance Dashboard</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Advanced QoQ analysis tracking 9.9M Profit from 20M Sales with interactive trends.</p>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Advanced QoQ analysis tracking 9.9M Profit with interactive trends.</p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
-                        <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" class="repo-link">Repository <i class="fab fa-github"></i></a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" style="color:var(--text-muted)">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -213,51 +177,51 @@
             <div class="project-card reveal" data-category="powerbi">
                 <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics">
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <span class="tag">Power BI</span>
                     <h3>HR Analytics Dashboard</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Workforce analysis for 689 employees, focusing on headcount trends and department metrics.</p>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Workforce analysis for 689 employees focusing on headcount metrics.</p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
-                        <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" class="repo-link">Repository <i class="fab fa-github"></i></a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" style="color:var(--text-muted)">GitHub</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/cCSL2SRz/unnamed-(2).png" class="project-img" alt="Retail Analysis">
+                <img src="https://i.postimg.cc/cCSL2SRz/unnamed-(2).png" class="project-img" alt="Retail COGS">
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <span class="tag">Power BI</span>
                     <h3>Retail COGS Analysis</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Financial health tracking of 15.38K sales, analyzing profitability and payment distribution.</p>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Financial health tracking and payment distribution analysis.</p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
-                        <a href="https://github.com/Tarek343/Profitability-and-COGS-Analysis" target="_blank" class="repo-link">Repository <i class="fab fa-github"></i></a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://github.com/Tarek343/Profitability-and-COGS-Analysis" target="_blank" style="color:var(--text-muted)">GitHub</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card reveal" data-category="excel">
-                <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Dashboard">
+                <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker">
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Excel</span></div>
+                    <span class="tag">Excel</span>
                     <h3>Excel Sales Tracker</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Dynamic dashboards for Egyptian branches using Pivot Tables and advanced filtering.</p>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Dynamic branch tracking with Pivot Tables and custom slicers.</p>
                     <div class="project-links">
-                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" class="view-link">View File <i class="fas fa-file-excel"></i></a>
-                        <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" class="repo-link">Repository <i class="fab fa-github"></i></a>
+                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank">View File →</a>
+                        <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" style="color:var(--text-muted)">GitHub</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Student Dashboard">
+                <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance">
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
-                    <h3>Course Performance</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Engagement analysis for 1,000+ students across 10 countries and 303 courses.</p>
+                    <span class="tag">Power BI</span>
+                    <h3>Platforms Performance</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">Engagement analysis for 1,000+ students across 303 courses.</p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
-                        <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank" class="repo-link">Repository <i class="fab fa-github"></i></a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank" style="color:var(--text-muted)">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -268,55 +232,33 @@
         <div class="section-header">
             <h2>Get In <span>Touch</span></h2>
         </div>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>Let's Create Something Amazing</h3>
-                <p style="color: var(--text-muted); margin: 20px 0 40px;">Ready to bring your vision to life? Contact me to discuss your project and how we can work together.</p>
-                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 25px;">
-                    <i class="fas fa-envelope" style="color: var(--primary); font-size: 20px;"></i>
-                    <span>Tareknageh343@gmail.com</span>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <form id="contact-form" action="https://formspree.io/f/mblqopwn" method="POST" style="background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border);">
+                <div style="margin-bottom: 15px;">
+                    <input type="text" name="name" placeholder="Name" style="width:100%; padding:15px; border-radius:12px; background:rgba(0,0,0,0.2); border:1px solid var(--border); color:white;" required>
                 </div>
-                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 25px;">
-                    <i class="fas fa-phone" style="color: var(--primary); font-size: 20px;"></i>
-                    <span>+20 1060440658</span>
+                <div style="margin-bottom: 15px;">
+                    <input type="email" name="email" placeholder="Email" style="width:100%; padding:15px; border-radius:12px; background:rgba(0,0,0,0.2); border:1px solid var(--border); color:white;" required>
                 </div>
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <i class="fas fa-map-marker-alt" style="color: var(--primary); font-size: 20px;"></i>
-                    <span>Cairo, Egypt</span>
+                <div style="margin-bottom: 20px;">
+                    <textarea name="message" placeholder="Message" rows="5" style="width:100%; padding:15px; border-radius:12px; background:rgba(0,0,0,0.2); border:1px solid var(--border); color:white;" required></textarea>
                 </div>
-            </div>
-            
-            <form id="contact-form" class="contact-form" action="https://formspree.io/f/mblqopwn" method="POST">
-                <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" class="form-control" rows="5" placeholder="Tell me about your project..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message <i class="fas fa-paper-plane"></i></button>
+                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Message</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Tarek343" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://wa.me/201060440658" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
         <p style="color: var(--text-muted); font-size: 14px;">&copy; 2026 Tarek Nageh. All rights reserved.</p>
     </footer>
 
     <script>
-        // 1. Scroll Progress & Nav Active State
+        // Scroll Progress & Active Nav
         window.onscroll = () => {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-
+            
             const sections = document.querySelectorAll("section");
             const navLinks = document.querySelectorAll(".nav-link");
             let current = "";
@@ -325,39 +267,34 @@
                 link.classList.remove("active");
                 if (link.getAttribute("href").includes(current)) link.classList.add("active");
             });
+
+            // Reveal Animation
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
         };
 
-        // 2. Typewriter Effect
-        const textEl = document.getElementById('typewriter');
-        const phrases = ['Data Analyst', 'Power BI Expert', 'Microsoft Fabric Specialist', 'Dashboard Designer'];
-        let pIdx = 0, cIdx = 0, isDeleting = false;
+        // Typewriter Effect
+        const phrases = ['Data Analyst', 'Power BI Expert', 'Fabric Specialist', 'Dashboard Designer'];
+        let p=0, c=0, del=false;
         function type() {
-            const current = phrases[pIdx];
-            textEl.textContent = isDeleting ? current.substring(0, cIdx - 1) : current.substring(0, cIdx + 1);
-            cIdx = isDeleting ? cIdx - 1 : cIdx + 1;
-            let speed = isDeleting ? 50 : 150;
-            if (!isDeleting && cIdx === current.length) { isDeleting = true; speed = 2500; }
-            else if (isDeleting && cIdx === 0) { isDeleting = false; pIdx = (pIdx + 1) % phrases.length; speed = 500; }
-            setTimeout(type, speed);
+            const curr = phrases[p];
+            document.getElementById('typewriter').textContent = del ? curr.substring(0, c-1) : curr.substring(0, c+1);
+            c = del ? c-1 : c+1;
+            if(!del && c === curr.length) { del=true; setTimeout(type, 2000); }
+            else if(del && c === 0) { del=false; p=(p+1)%phrases.length; setTimeout(type, 500); }
+            else setTimeout(type, del ? 50 : 150);
         }
         type();
 
-        // 3. Reveal Animation
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // 4. Filtering Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.project-card');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
+        // Filter Logic
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
                 btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                cards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
+                const f = btn.dataset.filter;
+                document.querySelectorAll('.project-card').forEach(card => {
+                    if (f === 'all' || card.dataset.category === f) {
                         card.style.display = 'flex';
                         setTimeout(() => card.style.opacity = '1', 10);
                     } else {
@@ -365,8 +302,23 @@
                         setTimeout(() => card.style.display = 'none', 300);
                     }
                 });
-            });
+            };
         });
+
+        // Contact Form + Success Message
+        const form = document.getElementById('contact-form');
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const response = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+            
+            if (response.ok) {
+                const notif = document.getElementById('notification');
+                notif.classList.add('show');
+                form.reset();
+                setTimeout(() => notif.classList.remove('show'), 4000);
+            }
+        };
     </script>
 </body>
 </html>
