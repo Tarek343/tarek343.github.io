@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarek Nageh | Data Analyst & Power BI Expert</title>
+    <title>Tarek Nageh | Data Analyst Portfolio</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -16,92 +16,59 @@
             --bg-card: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --glass: rgba(30, 41, 59, 0.8);
+            --glass: rgba(30, 41, 59, 0.85);
             --border: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
 
-        /* Progress Bar */
-        #progress-bar {
-            position: fixed; top: 0; left: 0; height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            z-index: 10000; width: 0%;
-        }
+        #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(to right, var(--primary), var(--secondary)); z-index: 10000; width: 0%; }
 
-        /* Navigation */
         nav {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
             width: 90%; max-width: 550px; background: var(--glass);
             backdrop-filter: blur(12px); padding: 12px 25px; border-radius: 50px;
             border: 1px solid var(--border); display: flex;
             justify-content: space-between; align-items: center; z-index: 9999;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
         @media (min-width: 1024px) { nav { top: 20px; bottom: auto; } }
 
-        .nav-link {
-            color: var(--text-muted); text-decoration: none; font-size: 12px;
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
-            font-weight: 600;
-        }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-weight: 600; }
         .nav-link.active { color: var(--primary); }
 
-        /* Hero Section - FIXED WITH IMAGE */
-        .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 20px;
-        }
-
-        .hero-img-container {
-            width: 180px; height: 180px; border-radius: 50%;
-            padding: 5px; background: linear-gradient(45deg, var(--primary), var(--secondary));
-            margin-bottom: 25px; animation: float 6s ease-in-out infinite;
-        }
-
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .hero-img-container { width: 180px; height: 180px; border-radius: 50%; padding: 5px; background: linear-gradient(45deg, var(--primary), var(--secondary)); margin-bottom: 25px; animation: float 6s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-
         .hero-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-dark); }
 
-        .hero h1 { font-size: clamp(35px, 7vw, 65px); font-weight: 800; }
-        .typing-text { color: var(--secondary); font-size: 20px; margin-bottom: 30px; min-height: 30px; }
+        .hero h1 { font-size: clamp(35px, 7vw, 65px); font-weight: 800; margin-bottom: 10px; }
+        .typing-text { color: var(--secondary); font-size: 20px; margin-bottom: 30px; min-height: 30px; font-weight: 600; }
 
-        /* About Section - RESTORED */
+        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .btn { padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-outline { border: 1px solid var(--border); color: white; background: transparent; }
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
         .section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
-        .about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
-        @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1.5fr; } }
-
-        .skill-tag { background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 15px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-block; margin: 5px; }
-
-        /* Projects - RESTORED & FIXED */
         .filter-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
-        .filter-btn { padding: 8px 20px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; }
+        .filter-btn { padding: 8px 20px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; font-weight: 600; }
         .filter-btn.active { background: var(--primary); color: white; }
 
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .project-card { background: var(--bg-card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: 0.3s; }
-        .project-card:hover { transform: translateY(-10px); }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .project-img { width: 100%; height: 200px; object-fit: cover; }
         .project-content { padding: 20px; }
 
-        /* Notification Box */
-        #notification {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
-            background: #10b981; color: white; padding: 15px 30px; border-radius: 50px;
-            font-weight: 700; z-index: 10001; transition: 0.5s;
-        }
+        #notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: #10b981; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 700; z-index: 10001; transition: 0.5s; }
         #notification.show { transform: translateX(-50%) translateY(0); }
 
-        .btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
-        .btn-primary { background: var(--primary); color: white; }
+        footer { text-align: center; padding: 60px 20px 120px; border-top: 1px solid var(--border); margin-top: 50px; }
+        .social-icons { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; }
+        .social-icons a { color: var(--text-muted); font-size: 24px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--primary); transform: translateY(-5px); }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -125,34 +92,27 @@
         </div>
         <h1>Tarek Nageh</h1>
         <div class="typing-text" id="typewriter"></div>
-        <a href="#portfolio" class="btn btn-primary">Explore Portfolio</a>
+        <div class="btn-group">
+            <a href="#portfolio" class="btn btn-primary">View Projects</a>
+            <a href="Tarek_CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+        </div>
     </section>
 
     <section id="about" class="section reveal">
-        <div class="about-grid">
-            <div>
-                <h2 style="font-size: 32px; margin-bottom: 20px;">About <span style="color: var(--primary);">Me</span></h2>
-                <p style="color: var(--text-muted); font-size: 16px;">
-                    I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards. My work focuses on making data-driven decisions through compelling visual stories using Power BI, Microsoft Fabric, and Excel.
-                </p>
-            </div>
-            <div>
-                <h3 style="margin-bottom: 15px;">Technical Skills</h3>
-                <div class="skills-container">
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">Microsoft Fabric</span>
-                    <span class="skill-tag">DAX & M Query</span>
-                    <span class="skill-tag">SQL Server</span>
-                    <span class="skill-tag">Excel Dashboarding</span>
-                    <span class="skill-tag">Python (Pandas)</span>
-                </div>
-            </div>
+        <h2 style="font-size: 32px; margin-bottom: 20px; text-align: center;">About <span style="color: var(--primary);">Me</span></h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; color: var(--text-muted);">
+            Data analyst and designer with extensive experience crafting interactive dashboards. Helping businesses make data-driven decisions through compelling visual stories.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+            <span style="background:rgba(99,102,241,0.1); color:var(--primary); padding:6px 15px; border-radius:50px; font-size:13px; font-weight:600;">Power BI</span>
+            <span style="background:rgba(99,102,241,0.1); color:var(--primary); padding:6px 15px; border-radius:50px; font-size:13px; font-weight:600;">Excel</span>
+            <span style="background:rgba(99,102,241,0.1); color:var(--primary); padding:6px 15px; border-radius:50px; font-size:13px; font-weight:600;">SQL</span>
+            <span style="background:rgba(99,102,241,0.1); color:var(--primary); padding:6px 15px; border-radius:50px; font-size:13px; font-weight:600;">Python</span>
         </div>
     </section>
 
     <section id="portfolio" class="section">
         <h2 style="text-align: center; margin-bottom: 40px; font-size: 32px;">Featured Projects</h2>
-        
         <div class="filter-group">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="powerbi">Power BI</button>
@@ -163,85 +123,54 @@
             <div class="project-card reveal" data-category="powerbi">
                 <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img">
                 <div class="project-content">
-                    <span style="color: var(--primary); font-size: 12px; font-weight: 800;">POWER BI</span>
-                    <h3>Sales Performance</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Comprehensive sales analysis with 9.9M total profit.</p>
-                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" style="color: var(--secondary); text-decoration: none; font-weight: 700;">Live Demo</a>
+                    <h3 style="margin-bottom:10px;">Sales Performance</h3>
+                    <p style="color:var(--text-muted); font-size:14px; margin-bottom:15px;">9.9M Profit analysis with advanced DAX.</p>
+                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" style="color:var(--secondary); text-decoration:none; font-weight:700;">Live Demo</a>
                 </div>
             </div>
-
-            <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img">
-                <div class="project-content">
-                    <span style="color: var(--primary); font-size: 12px; font-weight: 800;">POWER BI</span>
-                    <h3>HR Analytics</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Workforce management dashboard for 689 employees.</p>
-                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" style="color: var(--secondary); text-decoration: none; font-weight: 700;">Live Demo</a>
-                </div>
-            </div>
-
-            <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/cCSL2SRz/unnamed-(2).png" class="project-img">
-                <div class="project-content">
-                    <span style="color: var(--primary); font-size: 12px; font-weight: 800;">POWER BI</span>
-                    <h3>Retail COGS</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Financial profitability tracking and distribution.</p>
-                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" style="color: var(--secondary); text-decoration: none; font-weight: 700;">Live Demo</a>
-                </div>
-            </div>
-
-            <div class="project-card reveal" data-category="excel">
-                <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img">
-                <div class="project-content">
-                    <span style="color: var(--primary); font-size: 12px; font-weight: 800;">EXCEL</span>
-                    <h3>Excel Sales Tracker</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Dynamic branch analysis for Egypt sales data.</p>
-                    <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" style="color: var(--secondary); text-decoration: none; font-weight: 700;">View File</a>
-                </div>
-            </div>
-
             <div class="project-card reveal" data-category="powerbi">
                 <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img">
                 <div class="project-content">
-                    <span style="color: var(--primary); font-size: 12px; font-weight: 800;">POWER BI</span>
-                    <h3>Platforms Performance</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Student engagement analysis for 303 courses.</p>
-                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" style="color: var(--secondary); text-decoration: none; font-weight: 700;">Live Demo</a>
+                    <h3 style="margin-bottom:10px;">Platforms Performance</h3>
+                    <p style="color:var(--text-muted); font-size:14px; margin-bottom:15px;">Engagement analysis across 303 courses.</p>
+                    <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" style="color:var(--secondary); text-decoration:none; font-weight:700;">Live Demo</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contact" class="section reveal">
-        <h2 style="text-align: center; margin-bottom: 40px;">Contact Me</h2>
-        <div style="max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 30px; border-radius: 20px;">
-            <form id="contact-form" action="https://formspree.io/f/mblqopwn" method="POST">
-                <input type="text" name="name" placeholder="Full Name" style="width:100%; padding:12px; border-radius:8px; background:rgba(0,0,0,0.2); border:1px solid var(--border); color:white; margin-bottom:15px;" required>
-                <input type="email" name="email" placeholder="Email Address" style="width:100%; padding:12px; border-radius:8px; background:rgba(0,0,0,0.2); border:1px solid var(--border); color:white; margin-bottom:15px;" required>
-                <textarea name="message" placeholder="Your Message" rows="5" style="width:100%; padding:12px; border-radius:8px; background:rgba(0,0,0,0.2); border:1px solid var(--border); color:white; margin-bottom:20px;" required></textarea>
-                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send via Telegram / Email</button>
-            </form>
-        </div>
+        <h2 style="text-align: center; margin-bottom: 30px;">Get In Touch</h2>
+        <form id="contact-form" action="https://formspree.io/f/mblqopwn" method="POST" style="max-width:600px; margin:0 auto; background:var(--bg-card); padding:30px; border-radius:20px;">
+            <input type="text" name="name" placeholder="Name" style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white;" required>
+            <input type="email" name="email" placeholder="Email" style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white;" required>
+            <textarea name="message" placeholder="Message" rows="5" style="width:100%; padding:12px; margin-bottom:20px; border-radius:8px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white;" required></textarea>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Message</button>
+        </form>
     </section>
 
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--border);">
-        <p style="color: var(--text-muted);">&copy; 2026 Tarek Nageh. All rights reserved.</p>
+    <footer>
+        <div class="social-icons">
+            <a href="https://github.com/Tarek343" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/201060440658" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 14px;">&copy; 2026 Tarek Nageh. All rights reserved.</p>
     </footer>
 
     <script>
-        // Progress Bar & Reveal
+        // Progress & Reveal
         window.onscroll = () => {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-
             document.querySelectorAll('.reveal').forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
             });
         };
 
         // Typewriter
-        const phrases = ['Data Analyst', 'Power BI Specialist', 'Microsoft Fabric Expert'];
+        const phrases = ['Data Analyst', 'Power BI Expert', 'Fabric Specialist'];
         let p=0, c=0, del=false;
         function type() {
             const curr = phrases[p];
@@ -253,28 +182,11 @@
         }
         type();
 
-        // Filter
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.onclick = () => {
-                document.querySelector('.filter-btn.active').classList.remove('active');
-                btn.classList.add('active');
-                const f = btn.dataset.filter;
-                document.querySelectorAll('.project-card').forEach(card => {
-                    card.style.display = (f === 'all' || card.dataset.category === f) ? 'block' : 'none';
-                });
-            };
-        });
-
-        // Contact Form Submission (English Success Message)
+        // Contact Success Message
         const form = document.getElementById('contact-form');
         form.onsubmit = async (e) => {
             e.preventDefault();
-            const data = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
+            const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
             if (response.ok) {
                 const notif = document.getElementById('notification');
                 notif.classList.add('show');
