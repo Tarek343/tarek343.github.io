@@ -3,214 +3,740 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarek Nageh | Data Analyst Portfolio</title>
     
-    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Tarek Nageh | Data Analyst & Power BI Expert</title>
+    <meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
+    <meta name="keywords" content="Tarek Nageh, Data Analyst, Power BI, Fabric, SQL, Dashboard Design">
+    <meta name="author" content="Tarek Nageh">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="atrHQANNw6hrtgDbG2M-xIDSobKQJBaB2hyGCMDL0sE">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
+    <meta property="og:description" content="Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
+    <meta property="og:image" content="https://tarek343.github.io/profile.jpg">
+    <meta property="og:url" content="https://tarek343.github.io/">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://tarek343.github.io/">
 
+    <!-- ✅ Favicon مميزة -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-glow: rgba(99, 102, 241, 0.4);
             --secondary: #0ea5e9;
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --glass: rgba(30, 41, 59, 0.85);
+            --dark: #0f172a;
+            --darker: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --card-bg: #1e293b;
+            --glass: rgba(30, 41, 59, 0.75);
             --border: rgba(255, 255, 255, 0.1);
+            --success: #10b981;
+            --error: #ef4444;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-
-        /* Progress Bar */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(to right, var(--primary), var(--secondary)); z-index: 10000; width: 0%; }
-
-        /* Custom Notification */
-        #notification { 
-            position: fixed; top: 25px; left: 50%; transform: translateX(-50%) translateY(-120px); 
-            background: #10b981; color: white; padding: 15px 35px; border-radius: 50px; 
-            font-weight: 700; z-index: 10001; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        
+        html {
+            scroll-behavior: smooth;
         }
-        #notification.show { transform: translateX(-50%) translateY(0); }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-        /* Navigation */
+        /* ✅ 1. Scroll Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: 10000;
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* ✅ 2. Glassmorphism Floating Capsule Nav */
         nav {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 550px; background: var(--glass);
-            backdrop-filter: blur(12px); padding: 12px 25px; border-radius: 50px;
-            border: 1px solid var(--border); display: flex;
-            justify-content: space-between; align-items: center; z-index: 9999;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: var(--transition);
         }
-        @media (min-width: 1024px) { nav { top: 20px; bottom: auto; } }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-weight: 600; transition: 0.3s; }
-        .nav-link.active { color: var(--primary); }
+
+        @media (min-width: 1024px) {
+            nav {
+                top: 20px;
+                bottom: auto;
+                max-width: 600px;
+            }
+        }
+
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 25px;
+        }
+        
+        .nav-link i {
+            font-size: 18px;
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .nav-link:hover {
+            color: var(--light);
+            background: rgba(255,255,255,0.05);
+        }
 
         /* Hero Section */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .hero-img-container { width: 180px; height: 180px; border-radius: 50%; padding: 5px; background: linear-gradient(45deg, var(--primary), var(--secondary)); margin-bottom: 25px; animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .hero-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-dark); }
-        .hero h1 { font-size: clamp(35px, 7vw, 65px); font-weight: 800; margin-bottom: 10px; }
-        .typing-text { color: var(--secondary); font-size: 20px; min-height: 30px; margin-bottom: 30px; font-weight: 600; }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent),
+                radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.1), transparent),
+                linear-gradient(135deg, var(--dark) 0%, #1a2332 100%);
+            padding: 20px;
+            position: relative;
+        }
 
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .btn { padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; transition: 0.3s; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-outline { border: 1px solid var(--border); color: white; background: transparent; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 75px);
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        /* Sections */
-        .section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 36px; margin-bottom: 50px; }
-        .section-title span { color: var(--primary); }
+        /* ✅ 3. Typewriter Effect */
+        .typing-text {
+            font-size: clamp(18px, 3vw, 28px);
+            color: var(--secondary);
+            font-weight: 600;
+            min-height: 40px;
+            margin-bottom: 35px;
+        }
 
-        /* Projects */
-        .filter-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
-        .filter-btn { padding: 10px 25px; border-radius: 25px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .btn {
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--primary-glow);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.05);
+        }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .project-card { background: var(--bg-card); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: 0.4s; display: flex; flex-direction: column; }
-        .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .project-img { width: 100%; height: 220px; object-fit: cover; }
-        .project-content { padding: 25px; flex: 1; display: flex; flex-direction: column; }
-        .project-tag { color: var(--primary); font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
-        .project-links { margin-top: auto; display: flex; gap: 15px; padding-top: 20px; }
-        .project-links a { color: var(--secondary); text-decoration: none; font-weight: 700; font-size: 14px; }
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary);
+        }
 
-        /* Contact */
-        .contact-container { max-width: 700px; margin: 0 auto; background: var(--bg-card); padding: 40px; border-radius: 24px; border: 1px solid var(--border); }
-        .form-group { margin-bottom: 20px; }
-        .form-control { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border); background: rgba(0,0,0,0.2); color: white; font-family: inherit; }
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .about-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+        
+        .skills-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: var(--transition);
+        }
+        
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ✅ 4. Project Filter System */
+        .filter-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 28px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+        
+        .filter-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.05);
+            color: var(--light);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        
+        .project-card.hidden {
+            display: none;
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tag-row {
+            margin-bottom: 15px;
+        }
+        
+        .tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .project-links {
+            margin-top: auto;
+            display: flex;
+            gap: 15px;
+            padding-top: 20px;
+        }
+        
+        .project-links a {
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .view-link {
+            color: var(--secondary);
+            background: rgba(14, 165, 233, 0.1);
+        }
+        
+        .view-link:hover {
+            color: white;
+            background: var(--secondary);
+        }
+        
+        .repo-link {
+            color: var(--gray);
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .repo-link:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+        
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1.5fr;
+            }
+        }
+        
+        .contact-form {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+        
+        .form-control::placeholder {
+            color: var(--gray);
+        }
+
+        /* Form Messages */
+        .form-message {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .form-message.show {
+            display: flex;
+        }
+        
+        .form-message.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+        
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
         /* Footer */
-        footer { text-align: center; padding: 60px 20px 120px; border-top: 1px solid var(--border); }
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; }
-        .social-links a { color: var(--text-muted); font-size: 28px; transition: 0.3s; }
-        .social-links a:hover { color: var(--primary); transform: translateY(-5px); }
+        footer {
+            text-align: center;
+            padding: 60px 20px 120px;
+            border-top: 1px solid var(--border);
+            margin-top: 50px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            color: var(--gray);
+            font-size: 24px;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-5px);
+        }
 
         /* Reveal Animation */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s all ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
     </style>
 </head>
 <body>
 
+    <!-- ✅ Progress Bar -->
     <div id="progress-bar"></div>
-    <div id="notification">Thank you! Your message has been sent successfully.</div>
 
-    <nav>
-        <a href="#home" class="nav-link active"><i class="fas fa-home"></i><span>Home</span></a>
-        <a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a>
-        <a href="#portfolio" class="nav-link"><i class="fas fa-chart-bar"></i><span>Projects</span></a>
-        <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
+    <!-- ✅ Glassmorphism Floating Nav -->
+    <nav aria-label="Main Navigation">
+        <a href="#home" class="nav-link active"><i class="fas fa-home"></i>Home</a>
+        <a href="#about" class="nav-link"><i class="fas fa-user"></i>About</a>
+        <a href="#portfolio" class="nav-link"><i class="fas fa-chart-pie"></i>Projects</a>
+        <a href="#contact" class="nav-link"><i class="fas fa-paper-plane"></i>Contact</a>
     </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-img-container">
-            <img src="profile.jpg" alt="Tarek Nageh" class="hero-img">
-        </div>
         <h1>Tarek Nageh</h1>
+        <!-- ✅ Typewriter Effect -->
         <div class="typing-text" id="typewriter"></div>
-        <div class="btn-group">
-            <a href="#portfolio" class="btn btn-primary">My Work</a>
-            <a href="Tarek_CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <a href="#portfolio" class="btn btn-primary"><i class="fas fa-eye"></i> Explore My Work</a>
+            <a href="Tarek_Analyst_CV.pdf" download class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
         </div>
     </section>
 
-    <section id="about" class="section reveal">
-        <h2 class="section-title">About <span>Me</span></h2>
-        <p style="text-align: center; max-width: 850px; margin: 0 auto 40px; color: var(--text-muted); font-size: 18px;">
-            Data analyst with a passion for turning complex data into clear, actionable insights. Expert in creating high-impact dashboards using Power BI, Excel, and Microsoft Fabric.
-        </p>
-        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;">
-            <span style="background: rgba(99,102,241,0.1); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-weight: 700;">Power BI</span>
-            <span style="background: rgba(99,102,241,0.1); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-weight: 700;">Excel</span>
-            <span style="background: rgba(99,102,241,0.1); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-weight: 700;">SQL</span>
-            <span style="background: rgba(99,102,241,0.1); color: var(--primary); padding: 10px 25px; border-radius: 50px; font-weight: 700;">Fabric</span>
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <div class="section-header">
+            <h2>About <span>Me</span></h2>
+        </div>
+        <div class="about-container">
+            <div>
+                <img src="profile.jpg" alt="Tarek Nageh" class="about-img" loading="lazy">
+            </div>
+            <div>
+                <h3 style="font-size: 28px; margin-bottom: 20px; color: var(--primary);">Passionate Professional</h3>
+                <p style="color: var(--gray); font-size: 17px; margin-bottom: 25px; line-height: 1.8;">
+                    I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization, helping businesses make data-driven decisions through compelling visual stories.
+                </p>
+                <div class="skills-flex">
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Power BI / Fabric</span>
+                    <span class="skill-tag">SQL Server</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">Dashboard Design</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">ETL Processes</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="portfolio" class="section">
-        <h2 class="section-title">My <span>Projects</span></h2>
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="section-header">
+            <h2>Featured <span>Projects</span></h2>
+        </div>
         
+        <!-- ✅ Filter System -->
         <div class="filter-group">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="powerbi">Power BI</button>
-            <button class="filter-btn" data-filter="excel">Excel</button>
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="powerbi">Power BI / Fabric</button>
+            <button class="filter-btn" data-filter="excel">Excel Analysis</button>
+            <button class="filter-btn" data-filter="sql">SQL Projects</button>
         </div>
 
         <div class="projects-grid">
+            <!-- Project 1: Sales Performance -->
             <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img">
+                <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Performance" loading="lazy">
                 <div class="project-content">
-                    <span class="project-tag">Power BI</span>
-                    <h3>Sales Performance</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Advanced QoQ analysis tracking 9.9M Profit.</p>
+                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <h3>Sales Performance Dashboard</h3>
+                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
+                        Advanced QoQ analysis tracking <strong>9.9M Profit</strong> from <strong>20M Sales</strong> with 49.9% profitability. Features dynamic time-intelligence calculations and interactive regional filters.
+                    </p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 2: HR Analytics -->
             <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img">
+                <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics" loading="lazy">
                 <div class="project-content">
-                    <span class="project-tag">Power BI</span>
-                    <h3>HR Analytics</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Workforce management for 689 employees.</p>
+                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <h3>HR Analytics Dashboard</h3>
+                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
+                        Workforce analysis for <strong>689 employees</strong> with 1.4M total salary. Departmental distribution, gender ratios (65% male), and geographical headcount planning.
+                    </p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 3: Retail COGS -->
             <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/cCSL2SRz/unnamed-(2).png" class="project-img">
+                <img src="https://i.postimg.cc/cCSL2SRz/unnamed-(2).png" class="project-img" alt="Retail Analysis" loading="lazy">
                 <div class="project-content">
-                    <span class="project-tag">Power BI</span>
-                    <h3>Retail COGS</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Profitability and financial health tracking.</p>
+                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <h3>Retail COGS Analysis</h3>
+                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
+                        Financial health tracking of <strong>15.38K sales</strong>, avg COGS 307.59. Payment distribution analysis (Cash 34.4%) and gender-based purchasing patterns.
+                    </p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/Tarek343/Profitability-and-COGS-Analysis" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Project 4: Excel Sales Tracker -->
             <div class="project-card reveal" data-category="excel">
-                <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img">
+                <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Dashboard" loading="lazy">
                 <div class="project-content">
-                    <span class="project-tag">Excel</span>
-                    <h3>Sales Tracker</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Dynamic Egypt branch sales dashboard.</p>
+                    <div class="tag-row"><span class="tag">Excel</span></div>
+                    <h3>Excel Sales Tracker</h3>
+                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
+                        Dynamic dashboards for Egyptian branches using <strong>Pivot Tables</strong> and advanced filtering. Tracks $62.7K sales with $3.1K max profit across 3 interconnected dashboards.
+                    </p>
                     <div class="project-links">
-                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank">View File →</a>
+                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" class="view-link"><i class="fas fa-file-excel"></i> View File</a>
+                        <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
                     </div>
                 </div>
             </div>
 
+            <!-- ✅ Project 5: Platforms Performance (تم التغيير هنا) -->
             <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img">
+                <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance" loading="lazy">
                 <div class="project-content">
-                    <span class="project-tag">Power BI</span>
+                    <div class="tag-row"><span class="tag">Power BI</span></div>
                     <h3>Platforms Performance</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin: 10px 0;">Engagement analysis for 303 courses globally.</p>
+                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
+                        Engagement analysis for <strong>1,000+ students</strong> across <strong>10 countries</strong> and <strong>303 courses</strong>. 34.6% completion rate with 49.84% avg progress tracking.
+                    </p>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo →</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section reveal">
-        <h2 class="section-title">Get In <span>Touch</span></h2>
-        <div class="contact-container">
-            <form id="contact-form" action="https://formspree.io/f/mblqopwn" method="POST">
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+        <div class="section-header">
+            <h2>Get In <span>Touch</span></h2>
+        </div>
+        <div class="contact-grid">
+            <div>
+                <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary);">Let's Create Something Amazing</h3>
+                <p style="color: var(--gray); margin-bottom: 30px; line-height: 1.8;">
+                    Ready to bring your vision to life? Contact me to discuss your project and how we can work together to transform your data into actionable insights.
+                </p>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <i class="fas fa-envelope" style="color: var(--primary); font-size: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(99, 102, 241, 0.1); border-radius: 50%;"></i>
+                    <span>Tareknageh343@gmail.com</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <i class="fas fa-phone" style="color: var(--primary); font-size: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(99, 102, 241, 0.1); border-radius: 50%;"></i>
+                    <span>+20 1060440658</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--primary); font-size: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(99, 102, 241, 0.1); border-radius: 50%;"></i>
+                    <span>Cairo, Egypt</span>
+                </div>
+            </div>
+            
+            <!-- ✅ Contact Form with Telegram Integration -->
+            <form id="contact-form" class="contact-form">
+                <!-- Success/Error Message -->
+                <div id="form-message" class="form-message">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="message-text"></span>
+                </div>
+
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                 </div>
@@ -218,75 +744,233 @@
                     <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                    <input type="text" name="subject" class="form-control" placeholder="Subject" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send via Telegram / Email</button>
+                <div class="form-group">
+                    <textarea name="message" class="form-control" rows="5" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" id="submit-btn">
+                    <span>Send Message</span> <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="https://github.com/Tarek343" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://wa.me/201060440658" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Tarek343" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://wa.me/201060440658" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:Tareknageh343@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="color: var(--text-muted); font-size: 14px;">&copy; 2026 Tarek Nageh. All rights reserved.</p>
+        <p style="color: var(--gray); font-size: 14px;">&copy; 2025 Tarek Nageh. All rights reserved.</p>
     </footer>
 
     <script>
-        // Progress Bar & Scroll Animation
-        window.onscroll = () => {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        // ✅ 1. Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
-        };
-
-        // Typewriter
-        const phrases = ['Data Analyst', 'Power BI Specialist', 'Microsoft Fabric Expert'];
-        let p=0, c=0, del=false;
-        function type() {
-            const curr = phrases[p];
-            document.getElementById('typewriter').textContent = del ? curr.substring(0, c-1) : curr.substring(0, c+1);
-            c = del ? c-1 : c+1;
-            if(!del && c === curr.length) { del=true; setTimeout(type, 2000); }
-            else if(del && c === 0) { del=false; p=(p+1)%phrases.length; setTimeout(type, 500); }
-            else setTimeout(type, del ? 50 : 150);
-        }
-        type();
-
-        // Project Filtering
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.onclick = () => {
-                document.querySelector('.filter-btn.active').classList.remove('active');
-                btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                document.querySelectorAll('.project-card').forEach(card => {
-                    card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'flex' : 'none';
-                });
-            };
         });
 
-        // Form Handling (English Success Message)
-        const form = document.getElementById('contact-form');
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-                const notif = document.getElementById('notification');
-                notif.classList.add('show');
-                form.reset();
-                setTimeout(() => notif.classList.remove('show'), 4000);
+        // ✅ 2. Typewriter Effect
+        const textEl = document.getElementById('typewriter');
+        const phrases = [
+            'Data Analyst',
+            'Power BI Expert', 
+            'Microsoft Fabric Specialist',
+            'Dashboard Designer',
+            'SQL Developer',
+            'Python Data Engineer'
+        ];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false;
+
+        function type() {
+            const current = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textEl.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textEl.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
             }
-        };
+
+            let speed = isDeleting ? 50 : 150;
+
+            if (!isDeleting && charIndex === current.length) {
+                speed = 2500;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                speed = 500;
+            }
+
+            setTimeout(type, speed);
+        }
+        
+        // Start typewriter when page loads
+        document.addEventListener('DOMContentLoaded', type);
+
+        // ✅ 3. Active Navigation on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ✅ 4. Smooth Scroll for Nav Links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // ✅ 5. Reveal Animation on Scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ✅ 6. Project Filter System
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // ✅ 7. Contact Form with Telegram + Formspree
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formMessage = document.getElementById('form-message');
+        const messageText = document.getElementById('message-text');
+
+        // 🔧 ضع هنا بيانات Telegram Bot
+        const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // ← التوكن هنا
+        const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';     // ← الـ Chat ID هنا
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Show loading
+            submitBtn.disabled = true;
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+
+            try {
+                // 1. Send to Formspree
+                const formspreeResponse = await fetch('https://formspree.io/f/mblqopwn', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                // 2. Send to Telegram
+                const telegramMessage = `
+📨 <b>New Message from Portfolio</b>
+
+👤 <b>Name:</b> ${name}
+📧 <b>Email:</b> ${email}
+📌 <b>Subject:</b> ${subject}
+💬 <b>Message:</b>
+${message}
+
+🕐 <b>Time:</b> ${new Date().toLocaleString()}
+🌐 <b>From:</b> tarek343.github.io
+                `;
+
+                const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                
+                // Only send to Telegram if token is configured
+                if (TELEGRAM_BOT_TOKEN !== 'YOUR_BOT_TOKEN') {
+                    await fetch(telegramUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: telegramMessage,
+                            parse_mode: 'HTML'
+                        })
+                    });
+                }
+
+                // ✅ Show success message (English)
+                formMessage.className = 'form-message success show';
+                messageText.textContent = 'Thank you! Your message has been sent successfully. I will get back to you soon.';
+                
+                // Reset form
+                contactForm.reset();
+
+            } catch (error) {
+                // ❌ Show error message (English)
+                formMessage.className = 'form-message error show';
+                messageText.textContent = 'Oops! Something went wrong. Please try again or contact me directly via email.';
+                console.error('Error:', error);
+            } finally {
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalContent;
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.classList.remove('show');
+                }, 5000);
+            }
+        });
     </script>
 </body>
 </html>
