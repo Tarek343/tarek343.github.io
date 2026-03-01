@@ -20,7 +20,7 @@
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://tarek343.github.io/">
 
-    <!-- ✅ Favicon مميزة -->
+    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -58,7 +58,7 @@
             line-height: 1.6;
         }
 
-        /* ✅ 1. Scroll Progress Bar */
+        /* Progress Bar */
         #progress-bar {
             position: fixed;
             top: 0;
@@ -70,7 +70,7 @@
             transition: width 0.1s;
         }
 
-        /* ✅ 2. Glassmorphism Floating Capsule Nav */
+        /* Glassmorphism Floating Nav */
         nav {
             position: fixed;
             bottom: 20px;
@@ -153,7 +153,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* ✅ 3. Typewriter Effect */
+        /* Typewriter Effect */
         .typing-text {
             font-size: clamp(18px, 3vw, 28px);
             color: var(--secondary);
@@ -195,6 +195,46 @@
         
         .btn-outline:hover {
             background: rgba(255,255,255,0.05);
+        }
+
+        /* Read More Button */
+        .read-more-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 15px 0;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .read-more-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Extended Content */
+        .extended-content {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .extended-content.show {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Section Styles */
@@ -266,7 +306,7 @@
             transform: translateY(-2px);
         }
 
-        /* ✅ 4. Project Filter System */
+        /* Project Filter System */
         .filter-group {
             display: flex;
             justify-content: center;
@@ -302,7 +342,7 @@
         /* Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
         
@@ -373,8 +413,8 @@
             transition: 0.3s;
             flex: 1;
             text-align: center;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 10px;
         }
         
         .view-link {
@@ -557,10 +597,10 @@
 </head>
 <body>
 
-    <!-- ✅ Progress Bar -->
+    <!-- Progress Bar -->
     <div id="progress-bar"></div>
 
-    <!-- ✅ Glassmorphism Floating Nav -->
+    <!-- Glassmorphism Floating Nav -->
     <nav aria-label="Main Navigation">
         <a href="#home" class="nav-link active"><i class="fas fa-home"></i>Home</a>
         <a href="#about" class="nav-link"><i class="fas fa-user"></i>About</a>
@@ -571,7 +611,6 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <h1>Tarek Nageh</h1>
-        <!-- ✅ Typewriter Effect -->
         <div class="typing-text" id="typewriter"></div>
         <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
             <a href="#portfolio" class="btn btn-primary"><i class="fas fa-eye"></i> Explore My Work</a>
@@ -613,7 +652,7 @@
             <h2>Featured <span>Projects</span></h2>
         </div>
         
-        <!-- ✅ Filter System -->
+        <!-- Filter System -->
         <div class="filter-group">
             <button class="filter-btn active" data-filter="all">All Projects</button>
             <button class="filter-btn" data-filter="powerbi">Power BI / Fabric</button>
@@ -622,15 +661,28 @@
         </div>
 
         <div class="projects-grid">
-            <!-- Project 1: Sales Performance -->
+            
+            <!-- ✅ Project 1: Sales Performance -->
             <div class="project-card reveal" data-category="powerbi">
                 <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Performance" loading="lazy">
                 <div class="project-content">
                     <div class="tag-row"><span class="tag">Power BI</span></div>
                     <h3>Sales Performance Dashboard</h3>
                     <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Advanced QoQ analysis tracking <strong>9.9M Profit</strong> from <strong>20M Sales</strong> with 49.9% profitability. Features dynamic time-intelligence calculations and interactive regional filters.
+                        Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track <strong>9.9M Total Profit</strong> from <strong>20M Total Sales</strong>, achieving <strong>49.9% profitability</strong>.
                     </p>
+                    
+                    <!-- ✅ Extended Content -->
+                    <div class="extended-content" id="content-1">
+                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
+                            The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized <strong>DAX functions</strong> to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth. This comprehensive Sales Analysis Dashboard turns raw transaction data into clear, actionable insights for executive teams.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" onclick="toggleContent('content-1', this)">
+                        Read More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
                     <div class="project-links">
                         <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
@@ -638,15 +690,26 @@
                 </div>
             </div>
 
-            <!-- Project 2: HR Analytics -->
+            <!-- ✅ Project 2: HR Analytics -->
             <div class="project-card reveal" data-category="powerbi">
                 <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics" loading="lazy">
                 <div class="project-content">
                     <div class="tag-row"><span class="tag">Power BI</span></div>
                     <h3>HR Analytics Dashboard</h3>
                     <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Workforce analysis for <strong>689 employees</strong> with 1.4M total salary. Departmental distribution, gender ratios (65% male), and geographical headcount planning.
+                        Case Study: HR Workforce Analysis and Headcount Planning. This Power BI Dashboard provides a detailed overview of the organization's Human Resources data, covering <strong>689 employees</strong> and a total salary of <strong>1.4M</strong>.
                     </p>
+                    
+                    <div class="extended-content" id="content-2">
+                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
+                            The data analysis focuses on departmental distribution (<strong>Manufacturing is largest</strong>), gender ratios (<strong>mostly male, 65%</strong>), and geographical distribution (<strong>Main center has the largest headcount of 251</strong>). I employed advanced filtering and data visualization to highlight the peak headcount period in 2019, enabling HR leaders to better understand employee trends, plan recruitment strategies, and manage compensation and workforce efficiency effectively. The dashboard includes interactive slicers for dynamic filtering by department, location, and time period.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" onclick="toggleContent('content-2', this)">
+                        Read More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
                     <div class="project-links">
                         <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
@@ -654,31 +717,26 @@
                 </div>
             </div>
 
-            <!-- Project 3: Retail COGS -->
-            <div class="project-card reveal" data-category="powerbi">
-                <img src="https://i.postimg.cc/cCSL2SRz/unnamed-(2).png" class="project-img" alt="Retail Analysis" loading="lazy">
-                <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
-                    <h3>Retail COGS Analysis</h3>
-                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Financial health tracking of <strong>15.38K sales</strong>, avg COGS 307.59. Payment distribution analysis (Cash 34.4%) and gender-based purchasing patterns.
-                    </p>
-                    <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiYjE5NmZmNzUtN2UyMC00NDFjLWIxN2UtMjdjYTExOWJjNDEyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://github.com/Tarek343/Profitability-and-COGS-Analysis" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4: Excel Sales Tracker -->
+            <!-- ✅ Project 3: Excel Sales Tracker (تم تغيير الترتيب) -->
             <div class="project-card reveal" data-category="excel">
                 <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Dashboard" loading="lazy">
                 <div class="project-content">
                     <div class="tag-row"><span class="tag">Excel</span></div>
                     <h3>Excel Sales Tracker</h3>
                     <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Dynamic dashboards for Egyptian branches using <strong>Pivot Tables</strong> and advanced filtering. Tracks $62.7K sales with $3.1K max profit across 3 interconnected dashboards.
+                        Case Study: Comprehensive Sales and Profitability Tracking for Retail. This advanced Excel Dashboard offers a dynamic view of sales metrics, profit margins, and detailed geographical/product distribution across various Egyptian branches.
                     </p>
+                    
+                    <div class="extended-content" id="content-3">
+                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
+                            The analysis integrates Sales, Profit, and Detailed Item Metrics across <strong>three interconnected dashboards</strong> (Sales, Profit, and Details). Key features include: tracking high sales (<strong>$62.7K</strong>), maximum profit (<strong>$3.1K</strong>), dynamic filters by Branch and Geographic Segment, and a deep-dive table showing profitability by product category (Smartphones/Tablets) in each branch. The use of Excel's power features including <strong>Pivot Tables, Power Query, and advanced formulas</strong> ensures real-time, actionable insights for strategic decision-making and performance monitoring.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" onclick="toggleContent('content-3', this)">
+                        Read More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
                     <div class="project-links">
                         <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" class="view-link"><i class="fas fa-file-excel"></i> View File</a>
                         <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
@@ -686,21 +744,60 @@
                 </div>
             </div>
 
-            <!-- ✅ Project 5: Platforms Performance (تم التغيير هنا) -->
+            <!-- ✅ Project 4: Platforms Performance (تم التغيير) -->
             <div class="project-card reveal" data-category="powerbi">
                 <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance" loading="lazy">
                 <div class="project-content">
                     <div class="tag-row"><span class="tag">Power BI</span></div>
                     <h3>Platforms Performance</h3>
                     <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Engagement analysis for <strong>1,000+ students</strong> across <strong>10 countries</strong> and <strong>303 courses</strong>. 34.6% completion rate with 49.84% avg progress tracking.
+                        Case Study: Comprehensive analysis of <strong>1,000+ students</strong> across <strong>10 countries</strong> and <strong>303 courses</strong>. This Power BI Dashboard tracks student engagement metrics with <strong>34.6% course completion rate</strong> and <strong>49.84% average progress</strong>.
                     </p>
+                    
+                    <div class="extended-content" id="content-4">
+                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
+                            The dashboard analyzes <strong>512 passed students</strong> with detailed breakdowns by 5 major courses: Literature Survey (209 students), Computer Science 101 (208), History of Art (202), Statistics for Beginners (194), and Introduction to Biology (187). Category analysis reveals Fiction leads with 231 students (23.1%), followed by Science Fiction 206 (20.6%), Mystery 202 (20.2%), Romance 183 (18.3%), and Non-fiction 178 (17.8%). Geographic distribution covers USA, Canada, Brazil, UK, France, Germany, Spain, Italy, India, Japan, and Australia. The system tracks 2.50 average rating with YOY growth analysis from 2010-2021.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" onclick="toggleContent('content-4', this)">
+                        Read More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
                     <div class="project-links">
                         <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank" class="repo-link"><i class="fab fa-github"></i> Repository</a>
                     </div>
                 </div>
             </div>
+
+            <!-- ✅ Project 5: SQL Retail Sales (جديد) -->
+            <div class="project-card reveal" data-category="sql">
+                <img src="https://i.postimg.cc/5y7X7QZ0/sql-retail.png" class="project-img" alt="SQL Retail Sales" loading="lazy" 
+                     onerror="this.src='https://via.placeholder.com/600x400/1e293b/6366f1?text=SQL+Retail+Sales'">
+                <div class="project-content">
+                    <div class="tag-row"><span class="tag">SQL</span></div>
+                    <h3>SQL Retail Sales Analysis</h3>
+                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
+                        Case Study: Comprehensive SQL-based analysis of retail sales data focusing on revenue trends, customer behavior, and product performance using advanced querying techniques.
+                    </p>
+                    
+                    <div class="extended-content" id="content-5">
+                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
+                            Developed comprehensive SQL queries to analyze retail sales data, focusing on <strong>revenue trends, customer behavior, and product performance</strong>. Created complex joins, aggregations, and window functions to derive actionable insights from transactional data. Implemented data cleaning and transformation techniques to ensure data quality and consistency. Generated key performance indicators (KPIs) including <strong>monthly sales growth, customer retention rates, and product category rankings</strong>. The project demonstrates proficiency in SQL Server, MySQL, and database optimization techniques for large-scale data analysis.
+                        </p>
+                    </div>
+                    
+                    <button class="read-more-btn" onclick="toggleContent('content-5', this)">
+                        Read More <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/Tarek343/SQL_RetailSales_Project" target="_blank" class="repo-link" style="flex: 1;"><i class="fab fa-github"></i> View Repository</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -729,9 +826,8 @@
                 </div>
             </div>
             
-            <!-- ✅ Contact Form with Telegram Integration -->
+            <!-- Contact Form with Telegram -->
             <form id="contact-form" class="contact-form">
-                <!-- Success/Error Message -->
                 <div id="form-message" class="form-message">
                     <i class="fas fa-check-circle"></i>
                     <span id="message-text"></span>
@@ -768,14 +864,14 @@
     </footer>
 
     <script>
-        // ✅ 1. Scroll Progress Bar
+        // Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
         });
 
-        // ✅ 2. Typewriter Effect
+        // Typewriter Effect
         const textEl = document.getElementById('typewriter');
         const phrases = [
             'Data Analyst',
@@ -812,10 +908,9 @@
             setTimeout(type, speed);
         }
         
-        // Start typewriter when page loads
         document.addEventListener('DOMContentLoaded', type);
 
-        // ✅ 3. Active Navigation on Scroll
+        // Active Navigation
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
 
@@ -836,7 +931,7 @@
             });
         });
 
-        // ✅ 4. Smooth Scroll for Nav Links
+        // Smooth Scroll
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -845,7 +940,7 @@
             });
         });
 
-        // ✅ 5. Reveal Animation on Scroll
+        // Reveal Animation
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -856,15 +951,27 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // ✅ 6. Project Filter System
+        // ✅ Read More / Read Less Function
+        function toggleContent(contentId, btn) {
+            const content = document.getElementById(contentId);
+            const isHidden = !content.classList.contains('show');
+            
+            if (isHidden) {
+                content.classList.add('show');
+                btn.innerHTML = 'Read Less <i class="fas fa-chevron-up"></i>';
+            } else {
+                content.classList.remove('show');
+                btn.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
+            }
+        }
+
+        // Project Filter
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active from all
                 filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active to clicked
                 btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
@@ -887,15 +994,15 @@
             });
         });
 
-        // ✅ 7. Contact Form with Telegram + Formspree
+        // Contact Form with Telegram
         const contactForm = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
         const formMessage = document.getElementById('form-message');
         const messageText = document.getElementById('message-text');
 
-        // 🔧 ضع هنا بيانات Telegram Bot
-        const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // ← التوكن هنا
-        const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';     // ← الـ Chat ID هنا
+        // Telegram Config
+        const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN';
+        const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -906,21 +1013,21 @@
             const subject = formData.get('subject');
             const message = formData.get('message');
             
-            // Show loading
             submitBtn.disabled = true;
             const originalContent = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
 
             try {
-                // 1. Send to Formspree
-                const formspreeResponse = await fetch('https://formspree.io/f/mblqopwn', {
+                // Send to Formspree
+                await fetch('https://formspree.io/f/mblqopwn', {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
 
-                // 2. Send to Telegram
-                const telegramMessage = `
+                // Send to Telegram
+                if (TELEGRAM_BOT_TOKEN !== 'YOUR_BOT_TOKEN') {
+                    const telegramMessage = `
 📨 <b>New Message from Portfolio</b>
 
 👤 <b>Name:</b> ${name}
@@ -931,13 +1038,9 @@ ${message}
 
 🕐 <b>Time:</b> ${new Date().toLocaleString()}
 🌐 <b>From:</b> tarek343.github.io
-                `;
+                    `;
 
-                const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                
-                // Only send to Telegram if token is configured
-                if (TELEGRAM_BOT_TOKEN !== 'YOUR_BOT_TOKEN') {
-                    await fetch(telegramUrl, {
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -948,27 +1051,17 @@ ${message}
                     });
                 }
 
-                // ✅ Show success message (English)
                 formMessage.className = 'form-message success show';
                 messageText.textContent = 'Thank you! Your message has been sent successfully. I will get back to you soon.';
-                
-                // Reset form
                 contactForm.reset();
 
             } catch (error) {
-                // ❌ Show error message (English)
                 formMessage.className = 'form-message error show';
                 messageText.textContent = 'Oops! Something went wrong. Please try again or contact me directly via email.';
-                console.error('Error:', error);
             } finally {
-                // Reset button
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalContent;
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.classList.remove('show');
-                }, 5000);
+                setTimeout(() => formMessage.classList.remove('show'), 5000);
             }
         });
     </script>
