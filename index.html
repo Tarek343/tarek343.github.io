@@ -6,719 +6,776 @@
     
     <title>Tarek Nageh | Data Analyst & Power BI Expert</title>
     <meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
-    <meta name="keywords" content="Tarek Nageh, Data Analyst, Power BI, Fabric, SQL, Dashboard Design">
-    <meta name="author" content="Tarek Nageh">
-    <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="atrHQANNw6hrtgDbG2M-xIDSobKQJBaB2hyGCMDL0sE">
-    <meta name="theme-color" content="#6366f1">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
-    <meta property="og:description" content="Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
-    <meta property="og:image" content="https://tarek343.github.io/profile.jpg">
-    <meta property="og:url" content="https://tarek343.github.io/">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://tarek343.github.io/">
-
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
         :root {
+            --bg-color: #faf9f6;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-dark: #161616;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --primary: #111111;
+            --glass-glow: rgba(0, 0, 0, 0.05);
+            --success-green: #10b981;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.85);
+            --card-dark: #0f172a;
+            --border-color: rgba(255, 255, 255, 0.1);
             --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-glow: rgba(99, 102, 241, 0.4);
-            --secondary: #0ea5e9;
-            --dark: #0f172a;
-            --darker: #1e293b;
-            --light: #f8fafc;
-            --gray: #94a3b8;
-            --card-bg: #1e293b;
-            --glass: rgba(30, 41, 59, 0.75);
-            --border: rgba(255, 255, 255, 0.1);
-            --success: #10b981;
-            --error: #ef4444;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-glow: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
+            transition: background-color 0.4s, color 0.4s;
+            position: relative;
         }
 
-        /* Progress Bar */
+        #dotCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         #progress-bar {
             position: fixed;
             top: 0;
             left: 0;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            height: 3px;
+            background: var(--text-main);
             z-index: 10000;
             width: 0%;
-            transition: width 0.1s;
         }
 
-        /* Theme Toggle */
-        .theme-toggle {
+        /* Toast Notification System */
+        #toast-container {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            color: var(--light);
-            cursor: pointer;
+            top: 25px;
+            right: 25px;
             z-index: 10001;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--card-bg);
+            color: var(--text-main);
+            padding: 14px 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast.show { transform: translateX(0); }
+        .toast i { font-size: 18px; color: var(--success-green); }
+
+        /* Modal Popup System for Read More */
+        #project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 20000;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: var(--primary);
+        #project-modal.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        /* Light Theme Variables */
-        body.light-mode {
-            --dark: #f8fafc;
-            --darker: #e2e8f0;
-            --light: #0f172a;
-            --gray: #64748b;
-            --card-bg: #ffffff;
-            --glass: rgba(255, 255, 255, 0.85);
-            --border: rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-mode .hero {
-            background: 
-                radial-gradient(circle at top right, rgba(99, 102, 241, 0.1), transparent),
-                radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.08), transparent),
-                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-        }
-
-        body.light-mode .project-card,
-        body.light-mode .contact-form {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Glassmorphism Floating Nav */
-        nav {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             width: 90%;
-            max-width: 500px;
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 12px 25px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
+            max-width: 600px;
+            padding: 35px;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+        }
+
+        #project-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--border-color);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .modal-body {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 9999;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: var(--transition);
+            padding: 20px 5%;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        @media (min-width: 1024px) {
-            nav {
-                top: 20px;
-                bottom: auto;
-                max-width: 600px;
-            }
-        }
-
-        @media (max-height: 500px) {
-            nav { display: none; }
-        }
-
-        .nav-link {
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 13px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            transition: var(--transition);
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 25px;
-        }
-        
-        .nav-link i {
+        .logo {
+            font-weight: 800;
             font-size: 18px;
+            letter-spacing: -0.5px;
+            background: var(--text-main);
+            color: var(--bg-color);
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
         }
-        
-        .nav-link.active {
-            color: var(--primary);
-            background: rgba(99, 102, 241, 0.1);
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
         }
-        
-        .nav-link:hover {
-            color: var(--light);
-            background: rgba(255,255,255,0.05);
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover { color: var(--text-main); }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .get-in-touch-btn {
+            background: var(--text-main);
+            color: var(--bg-color);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--success-green);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success-green);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            background: 
-                radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent),
-                radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.1), transparent),
-                linear-gradient(135deg, var(--dark) 0%, #1a2332 100%);
-            padding: 20px;
-            position: relative;
+            justify-content: space-between;
+            padding: 120px 8% 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+            gap: 40px;
         }
+
+        .hero-content { flex: 1; }
 
         .hero h1 {
-            font-size: clamp(40px, 8vw, 75px);
+            font-size: clamp(45px, 6vw, 75px);
             font-weight: 800;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, var(--light), var(--gray));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
-        /* Typewriter Effect */
-        .typing-text {
-            font-size: clamp(18px, 3vw, 28px);
-            color: var(--secondary);
-            font-weight: 600;
-            min-height: 40px;
+        .hero-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 500px;
             margin-bottom: 35px;
+            line-height: 1.7;
         }
 
         .btn {
-            padding: 14px 35px;
-            border-radius: 50px;
+            padding: 14px 28px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
+            font-size: 14px;
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
             border: none;
-            font-family: inherit;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 15px var(--primary-glow);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px var(--primary-glow);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--light);
-        }
-        
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.05);
         }
 
-        /* Read More Button */
-        .read-more-btn {
-            background: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            margin: 15px 0;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .read-more-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
+        .btn-dark { background: var(--text-main); color: var(--bg-color); }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
 
-        /* Extended Content */
-        .extended-content {
-            display: none;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .extended-content.show {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Section Styles */
-        section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-header h2 {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--light);
-        }
-        
-        .section-header h2 span {
-            color: var(--primary);
-        }
-
-        /* About Section */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        @media (min-width: 768px) {
-            .about-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        .about-img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 50%;
-            border: 5px solid var(--primary);
-            margin: 0 auto;
-            display: block;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-            object-fit: cover;
-            aspect-ratio: 1;
-        }
-        
-        .skills-flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .skill-tag {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            transition: var(--transition);
-        }
-        
-        .skill-tag:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Project Filter System */
-        .filter-group {
+        /* Double Circular Profile Visual */
+        .hero-visual {
+            flex: 1;
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 45px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            padding: 12px 28px;
-            border-radius: 25px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--gray);
+            position: relative;
             cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 4px 15px var(--primary-glow);
-        }
-        
-        .filter-btn:hover:not(.active) {
-            background: rgba(255,255,255,0.05);
-            color: var(--light);
         }
 
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 20px;
+        .profile-card-main {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
             overflow: hidden;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        
-        .project-card.hidden {
-            display: none;
-        }
-        
-        .project-img-container {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
+            background: transparent;
             position: relative;
-            background: linear-gradient(110deg, #1e293b 8%, #334155 18%, #1e293b 33%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s linear infinite;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 4px solid var(--card-bg);
+            transition: transform 0.4s ease, border-color 0.4s ease;
         }
-        
-        @keyframes shimmer {
-            to { background-position-x: -200%; }
+
+        .hero-visual:hover .profile-card-main {
+            transform: scale(1.02);
+            border-color: var(--text-main);
         }
-        
-        .project-img {
+
+        .profile-card-main img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
+            object-position: center top;
+            display: block;
+        }
+
+        /* Hover-Triggered Floating Pill Badge */
+        .profile-card-floating {
             position: absolute;
-            top: 0;
-            left: 0;
+            bottom: -5px;
+            right: 0px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 8px 18px 8px 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
         }
-        
-        .project-img.loaded {
-            animation: none;
+
+        /* Show Floating Badge on Hover / Touch */
+        .hero-visual:hover .profile-card-floating,
+        .hero-visual:active .profile-card-floating {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
         }
-        
-        .project-card:hover .project-img {
-            transform: scale(1.05);
+
+        .profile-card-floating img {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 50%;
+            border: 2px solid var(--text-main);
         }
-        
-        .project-content {
-            padding: 25px;
-            flex: 1;
+
+        .floating-info {
             display: flex;
             flex-direction: column;
         }
-        
-        .tag-row {
-            margin-bottom: 15px;
+
+        .floating-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.2px;
+            line-height: 1.2;
         }
-        
-        .tag {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--primary);
-            padding: 4px 12px;
+
+        .floating-role {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Metrics Counter Section */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            padding: 25px;
             border-radius: 20px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+        }
+
+        .metric-number-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1;
+        }
+
+        .metric-unit { font-size: 32px; font-weight: 800; color: var(--text-main); }
+        .metric-label { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-top: 10px; }
+
+        /* Sections General */
+        section { padding: 80px 8%; max-width: 1300px; margin: 0 auto; }
+        .section-header { margin-bottom: 40px; text-align: center; }
+        .section-header h2 { font-size: 32px; font-weight: 800; }
+
+        /* About & Core Capabilities Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+        }
+
+        .about-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: var(--bg-color);
+            padding: 22px 18px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-4px);
+            border-color: var(--text-main);
+        }
+
+        .stat-box i {
+            font-size: 26px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .stat-box h4 {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .stat-box p {
             font-size: 12px;
+            color: var(--text-muted);
             font-weight: 600;
         }
-        
-        .project-links {
-            margin-top: auto;
-            display: flex;
-            gap: 15px;
-            padding-top: 20px;
-        }
-        
-        .project-links a {
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            transition: 0.3s;
-            flex: 1;
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
-        }
-        
-        .view-link {
-            color: var(--secondary);
-            background: rgba(14, 165, 233, 0.1);
-        }
-        
-        .view-link:hover {
-            color: white;
-            background: var(--secondary);
-        }
-        
-        .repo-link {
-            color: var(--gray);
-            background: rgba(255,255,255,0.05);
-        }
-        
-        .repo-link:hover {
-            color: white;
-            background: rgba(255,255,255,0.1);
-        }
 
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 50px;
-        }
-        
-        @media (min-width: 1024px) {
-            .contact-grid {
-                grid-template-columns: 1fr 1.5fr;
-            }
-        }
-        
-        .contact-form {
-            background: var(--card-bg);
-            padding: 30px;
+        .kpi-widget {
+            background: var(--bg-color);
+            padding: 20px;
             border-radius: 20px;
-            border: 1px solid var(--border);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-control {
-            width: 100%;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border);
-            padding: 15px;
-            border-radius: 12px;
-            color: var(--light);
-            font-family: inherit;
-            transition: var(--transition);
-            font-size: 16px;
-        }
-        
-        body.light-mode .form-control {
-            background: rgba(255,255,255,0.8);
-            color: #0f172a;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-        }
-        
-        .form-control::placeholder {
-            color: var(--gray);
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
+            grid-column: span 2;
         }
 
-        /* Form Messages */
-        .form-message {
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            animation: slideDown 0.3s ease;
-        }
+        .kpi-controls { display: flex; gap: 8px; margin-bottom: 15px; }
+        .kpi-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; }
+        .kpi-btn.active { background: var(--text-main); color: var(--bg-color); }
+
+        .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .skill-tag { background: var(--border-color); color: var(--text-main); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; }
+
+        /* Search & Filter System */
+        .search-box-container { max-width: 500px; margin: 0 auto 25px; position: relative; }
+        .search-input { width: 100%; padding: 14px 20px 14px 45px; border-radius: 30px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-family: inherit; font-size: 14px; backdrop-filter: blur(12px); outline: none; transition: var(--transition); }
+        .search-input:focus { border-color: var(--text-main); box-shadow: 0 0 15px var(--glass-glow); }
+        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; }
+
+        .filter-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 22px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 13px; }
+        .filter-btn.active, .filter-btn:hover { background: var(--text-main); color: var(--bg-color); border-color: var(--text-main); }
+
+        /* 3D Tilt Project Cards Style */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; perspective: 1000px; }
         
-        .form-message.show {
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
             display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(12px);
+            transform-style: preserve-3d;
         }
-        
-        .form-message.success {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--success);
-            color: var(--success);
+
+        .project-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
-        
-        .form-message.error {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid var(--error);
-            color: var(--error);
+
+        .project-img-container { width: 100%; height: 200px; overflow: hidden; background: var(--border-color); }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .project-card:hover .project-img { transform: scale(1.05); }
+        .project-content { padding: 25px; flex: 1; display: flex; flex-direction: column; transform: translateZ(20px); }
+        .tag { background: var(--border-color); color: var(--text-main); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 12px; }
+        .project-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+        .project-content p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+        .read-more-btn { background: none; border: none; color: var(--text-main); cursor: pointer; font-size: 13px; font-weight: 700; margin-bottom: 15px; text-align: left; }
+        .project-links { margin-top: auto; display: flex; gap: 10px; }
+        .project-links a { flex: 1; text-align: center; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; background: var(--border-color); color: var(--text-main); transition: var(--transition); }
+        .project-links a:hover { background: var(--text-main); color: var(--bg-color); }
+
+        /* Progressive Multi-step Form */
+        .contact-container {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
         }
+
+        .form-step { display: none; }
+        .form-step.active { display: block; animation: fadeIn 0.4s ease; }
         
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Loading Spinner */
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .step-indicator { display: flex; gap: 8px; margin-bottom: 25px; }
+        .step-dot { flex: 1; height: 4px; background: var(--border-color); border-radius: 2px; transition: var(--transition); }
+        .step-dot.active { background: var(--text-main); }
+
+        .form-control {
+            width: 100%;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            border-radius: 12px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            font-family: inherit;
+            font-size: 15px;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 60px 20px 120px;
-            border-top: 1px solid var(--border);
-            margin-top: 50px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .social-links a {
-            color: var(--gray);
-            font-size: 24px;
-            transition: var(--transition);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-        }
-        
-        .social-links a:hover {
-            color: var(--primary);
-            background: rgba(99, 102, 241, 0.1);
-            transform: translateY(-5px);
-        }
+        .form-control:focus { outline: none; border-color: var(--text-main); }
 
-        /* Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 0.8s all ease;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Interactive Magnification Dock */
+        .dock-wrapper { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999; }
+        .dock { display: flex; align-items: center; gap: 12px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .dock-item { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 18px; text-decoration: none; background: var(--bg-color); border: 1px solid var(--border-color); transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1); }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
+        footer { text-align: center; padding: 40px 20px 100px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border-color); margin-top: 60px; }
+
+        @media (max-width: 900px) {
+            .hero, .about-container, .contact-container { flex-direction: column; grid-template-columns: 1fr; text-align: center; }
+            .hero { padding-top: 100px; }
+            .nav-menu { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Progress Bar -->
+    <!-- Project Details Modal Popup -->
+    <div id="project-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProjectModal()"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title" id="modal-project-title"></h3>
+            <div class="modal-body" id="modal-project-text"></div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <canvas id="dotCanvas"></canvas>
     <div id="progress-bar"></div>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark/Light Mode">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- Glassmorphism Floating Nav -->
-    <nav aria-label="Main Navigation" role="navigation">
-        <a href="#home" class="nav-link active" aria-label="Go to Home section"><i class="fas fa-home"></i>Home</a>
-        <a href="#about" class="nav-link" aria-label="Go to About section"><i class="fas fa-user"></i>About</a>
-        <a href="#portfolio" class="nav-link" aria-label="Go to Projects section"><i class="fas fa-chart-pie"></i>Projects</a>
-        <a href="#contact" class="nav-link" aria-label="Go to Contact section"><i class="fas fa-paper-plane"></i>Contact</a>
-    </nav>
+    <!-- Header / Navbar -->
+    <header>
+        <a href="#home" class="logo smooth-scroll">TN</a>
+        <ul class="nav-menu">
+            <li><a href="#home" class="smooth-scroll">Home</a></li>
+            <li><a href="#about" class="smooth-scroll">About</a></li>
+            <li><a href="#portfolio" class="smooth-scroll">Projects</a></li>
+            <li><a href="#contact" class="smooth-scroll">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <a href="#contact" class="get-in-touch-btn smooth-scroll">Get In Touch</a>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <h1>Tarek Nageh</h1>
-        <div class="typing-text" id="typewriter"></div>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <a href="#portfolio" class="btn btn-primary" aria-label="Explore my portfolio work"><i class="fas fa-eye"></i> Explore My Work</a>
-            <a href="Tarek Nageh.pdf" download class="btn btn-outline" aria-label="Download my CV"><i class="fas fa-download"></i> Download CV</a>
+        <div class="hero-content">
+            <div class="status-badge">
+                <span class="status-dot"></span> Available for Data Analyst Roles
+            </div>
+
+            <div class="hero-title">Data Analyst & Power BI Expert</div>
+            <h1>Tarek<br>Nageh</h1>
+            <p class="hero-desc">
+                I build interactive dashboards, perform comprehensive data analysis, and transform complex metrics into clear, actionable business insights.
+            </p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="#portfolio" class="btn btn-dark smooth-scroll"><i class="fas fa-eye"></i> Explore Projects</a>
+                <a href="Tarek Nageh.pdf" download="Tarek_Nageh_CV.pdf" onclick="downloadCV(event)" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+            </div>
+        </div>
+        <div class="hero-visual" id="heroVisual">
+            <div class="profile-card-main">
+                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh">
+            </div>
+            <!-- Interactive Floating Pill Badge with Name & Title (Shown on Hover / Touch) -->
+            <div class="profile-card-floating">
+                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh">
+                <div class="floating-info">
+                    <span class="floating-name">Tarek Nageh</span>
+                    <span class="floating-role">Data Analyst</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="reveal">
+    <!-- Metrics Counter Section -->
+    <section id="metrics">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-number-wrapper">
+                    <span class="metric-number" data-target="20">0</span>
+                    <span class="metric-unit">M+</span>
+                </div>
+                <div class="metric-label">Total Sales Analyzed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number-wrapper">
+                    <span class="metric-number" data-target="9.9">0</span>
+                    <span class="metric-unit">M+</span>
+                </div>
+                <div class="metric-label">Total Profit Tracked</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number-wrapper">
+                    <span class="metric-number" data-target="1000">0</span>
+                    <span class="metric-unit">+</span>
+                </div>
+                <div class="metric-label">Students Analyzed</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number-wrapper">
+                    <span class="metric-number" data-target="100">0</span>
+                    <span class="metric-unit">%</span>
+                </div>
+                <div class="metric-label">Data Accuracy & Value</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Core Capabilities Section -->
+    <section id="about">
         <div class="section-header">
             <h2>About <span>Me</span></h2>
         </div>
         <div class="about-container">
-            <div>
-                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh - Data Analyst and Power BI Expert" class="about-img" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=Tarek+Nageh&background=6366f1&color=fff&size=300'">
+            <!-- Core Analytical Capabilities Grid -->
+            <div class="about-stats-grid">
+                <div class="stat-box">
+                    <i class="fas fa-chart-pie"></i>
+                    <h4>Data Visualization</h4>
+                    <p>Power BI & Fabric</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-cubes"></i>
+                    <h4>Complex Modeling</h4>
+                    <p>DAX & SQL Queries</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Business Strategy</h4>
+                    <p>Actionable Insights</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-cogs"></i>
+                    <h4>ETL & Automation</h4>
+                    <p>Power Query & Python</p>
+                </div>
+
+                <div class="kpi-widget">
+                    <div class="kpi-controls">
+                        <button class="kpi-btn active" onclick="updateKPI('profit', this)">Profit</button>
+                        <button class="kpi-btn" onclick="updateKPI('sales', this)">Sales</button>
+                        <button class="kpi-btn" onclick="updateKPI('accuracy', this)">Accuracy</button>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 13px; color: var(--text-muted);" id="kpi-label">Tracked Profit Growth</span>
+                        <span style="font-size: 20px; font-weight: 800;" id="kpi-value">49.9%</span>
+                    </div>
+                </div>
             </div>
+
             <div>
-                <h3 style="font-size: 28px; margin-bottom: 20px; color: var(--primary);">Passionate Professional</h3>
-                <p style="color: var(--gray); font-size: 17px; margin-bottom: 25px; line-height: 1.8;">
-                    I'm Tarek Nageh, a data analyst and designer with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization, helping businesses make data-driven decisions through compelling visual stories.
+                <h3 style="font-size: 24px; margin-bottom: 15px;">Passionate Professional</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 15px; line-height: 1.8;">
+                    I'm Tarek Nageh, a data analyst with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization, helping businesses make data-driven decisions through compelling visual stories.
                 </p>
                 <div class="skills-flex">
                     <span class="skill-tag">Data Analysis</span>
@@ -727,8 +784,8 @@
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">Excel</span>
                     <span class="skill-tag">Dashboard Design</span>
-                    <span class="skill-tag">Data Visualization</span>
-                    <span class="skill-tag">ETL Processes</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Premiere Pro</span>
                 </div>
             </div>
         </div>
@@ -739,8 +796,12 @@
         <div class="section-header">
             <h2>Featured <span>Projects</span></h2>
         </div>
+
+        <div class="search-box-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="project-search" class="search-input" placeholder="Search projects by name, technology, or topic...">
+        </div>
         
-        <!-- Filter System -->
         <div class="filter-group">
             <button class="filter-btn active" data-filter="all">All Projects</button>
             <button class="filter-btn" data-filter="powerbi">Power BI / Fabric</button>
@@ -748,411 +809,425 @@
             <button class="filter-btn" data-filter="sql">SQL Projects</button>
         </div>
 
-        <div class="projects-grid">
-            
-            <!-- Project 1: Sales Performance -->
-            <div class="project-card reveal" data-category="powerbi">
+        <div class="projects-grid" id="projects-grid">
+            <div class="project-card" data-category="powerbi" data-keywords="sales performance power bi fabric dax profit analysis">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Performance Dashboard showing quarterly analysis" loading="lazy" onload="this.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Dashboard">
                 </div>
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <span class="tag">Power BI</span>
                     <h3>Sales Performance Dashboard</h3>
-                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track <strong>9.9M Total Profit</strong> from <strong>20M Total Sales</strong>, achieving <strong>49.9% profitability</strong>.
-                    </p>
-                    
-                    <div class="extended-content" id="content-1">
-                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
-                            The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized <strong>DAX functions</strong> to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth. This comprehensive Sales Analysis Dashboard turns raw transaction data into clear, actionable insights for executive teams.
-                        </p>
+                    <p>Advanced Sales Performance Analysis (QoQ) tracking <strong>9.9M Total Profit</strong> from <strong>20M Total Sales</strong>.</p>
+                    <div class="full-project-desc" style="display:none;">
+                        Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track <strong>9.9M Total Profit</strong> from <strong>20M Total Sales</strong>, achieving <strong>49.9% profitability</strong>.<br><br>
+                        The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized <strong>DAX functions</strong> to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth.
                     </div>
-                    
-                    <button class="read-more-btn" onclick="toggleContent('content-1', this)" aria-label="Read more about Sales Performance Dashboard">
-                        Read More <i class="fas fa-chevron-down"></i>
-                    </button>
-                    
+                    <button class="read-more-btn" onclick="openProjectModal('Sales Performance Dashboard', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link" aria-label="View Sales Dashboard live demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" class="repo-link" aria-label="View Sales Dashboard repository"><i class="fab fa-github"></i> Repository</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo</a>
+                        <a href="https://github.com/Tarek343/Sales-Overview" target="_blank">Repository</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2: HR Analytics -->
-            <div class="project-card reveal" data-category="powerbi">
+            <div class="project-card" data-category="powerbi" data-keywords="hr analytics employees headcount workforce salary power bi">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics Dashboard showing workforce metrics" loading="lazy" onload="this.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics">
                 </div>
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <span class="tag">Power BI</span>
                     <h3>HR Analytics Dashboard</h3>
-                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Case Study: HR Workforce Analysis and Headcount Planning. This Power BI Dashboard provides a detailed overview of the organization's Human Resources data, covering <strong>689 employees</strong> and a total salary of <strong>1.4M</strong>.
-                    </p>
-                    
-                    <div class="extended-content" id="content-2">
-                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
-                            The data analysis focuses on departmental distribution (<strong>Manufacturing is largest</strong>), gender ratios (<strong>mostly male, 65%</strong>), and geographical distribution (<strong>Main center has the largest headcount of 251</strong>). I employed advanced filtering and data visualization to highlight the peak headcount period in 2019, enabling HR leaders to better understand employee trends, plan recruitment strategies, and manage compensation and workforce efficiency effectively. The dashboard includes interactive slicers for dynamic filtering by department, location, and time period.
-                        </p>
+                    <p>Detailed overview of Human Resources data covering <strong>689 employees</strong> and workforce planning.</p>
+                    <div class="full-project-desc" style="display:none;">
+                        Case Study: HR Workforce Analysis and Headcount Planning. This Power BI Dashboard provides a detailed overview of the organization's Human Resources data, covering <strong>689 employees</strong> and a total salary of <strong>1.4M</strong>.<br><br>
+                        The data analysis focuses on departmental distribution (<strong>Manufacturing is largest</strong>), gender ratios (<strong>mostly male, 65%</strong>), and geographical distribution. I employed advanced filtering and data visualization to highlight the peak headcount period in 2019, enabling HR leaders to better understand employee trends, plan recruitment strategies, and manage compensation effectively.
                     </div>
-                    
-                    <button class="read-more-btn" onclick="toggleContent('content-2', this)" aria-label="Read more about HR Analytics Dashboard">
-                        Read More <i class="fas fa-chevron-down"></i>
-                    </button>
-                    
+                    <button class="read-more-btn" onclick="openProjectModal('HR Analytics Dashboard', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImciOjl9" target="_blank" class="view-link" aria-label="View HR Dashboard live demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" class="repo-link" aria-label="View HR Dashboard repository"><i class="fab fa-github"></i> Repository</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImgiOjl9" target="_blank">Live Demo</a>
+                        <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank">Repository</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3: Excel Sales Tracker -->
-            <div class="project-card reveal" data-category="excel">
+            <div class="project-card" data-category="excel" data-keywords="excel sales tracker pivot tables power query formulas retail">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker Dashboard" loading="lazy" onload="this.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker">
                 </div>
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Excel</span></div>
+                    <span class="tag">Excel</span>
                     <h3>Excel Sales Tracker</h3>
-                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Case Study: Comprehensive Sales and Profitability Tracking for Retail. This advanced Excel Dashboard offers a dynamic view of sales metrics, profit margins, and detailed geographical/product distribution across various Egyptian branches.
-                    </p>
-                    
-                    <div class="extended-content" id="content-3">
-                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
-                            The analysis integrates Sales, Profit, and Detailed Item Metrics across <strong>three interconnected dashboards</strong> (Sales, Profit, and Details). Key features include: tracking high sales (<strong>$62.7K</strong>), maximum profit (<strong>$3.1K</strong>), dynamic filters by Branch and Geographic Segment, and a deep-dive table showing profitability by product category (Smartphones/Tablets) in each branch. The use of Excel's power features including <strong>Pivot Tables, Power Query, and advanced formulas</strong> ensures real-time, actionable insights for strategic decision-making and performance monitoring.
-                        </p>
+                    <p>Comprehensive Sales and Profitability Tracking using Pivot Tables, Power Query, and Advanced Formulas.</p>
+                    <div class="full-project-desc" style="display:none;">
+                        Case Study: Comprehensive Sales and Profitability Tracking for Retail. This advanced Excel Dashboard offers a dynamic view of sales metrics, profit margins, and detailed geographical/product distribution across various Egyptian branches.<br><br>
+                        The analysis integrates Sales, Profit, and Detailed Item Metrics across <strong>three interconnected dashboards</strong> (Sales, Profit, and Details). Key features include tracking high sales (<strong>$62.7K</strong>), maximum profit (<strong>$3.1K</strong>), dynamic filters by Branch and Geographic Segment, utilizing <strong>Pivot Tables, Power Query, and advanced formulas</strong>.
                     </div>
-                    
-                    <button class="read-more-btn" onclick="toggleContent('content-3', this)" aria-label="Read more about Excel Sales Tracker">
-                        Read More <i class="fas fa-chevron-down"></i>
-                    </button>
-                    
+                    <button class="read-more-btn" onclick="openProjectModal('Excel Sales Tracker', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" class="view-link" aria-label="View Excel file"><i class="fas fa-file-excel"></i> View File</a>
-                        <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" class="repo-link" aria-label="View Excel project repository"><i class="fab fa-github"></i> Repository</a>
+                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank">View File</a>
+                        <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank">Repository</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 4: Platforms Performance -->
-            <div class="project-card reveal" data-category="powerbi">
+            <div class="project-card" data-category="powerbi" data-keywords="platforms performance students course completion power bi education analytics">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance Dashboard for student analytics" loading="lazy" onload="this.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance">
                 </div>
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">Power BI</span></div>
+                    <span class="tag">Power BI</span>
                     <h3>Platforms Performance</h3>
-                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Case Study: Comprehensive analysis of <strong>1,000+ students</strong> across <strong>10 countries</strong> and <strong>303 courses</strong>. This Power BI Dashboard tracks student engagement metrics with <strong>34.6% course completion rate</strong> and <strong>49.84% average progress</strong>.
-                    </p>
-                    
-                    <div class="extended-content" id="content-4">
-                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
-                            The dashboard analyzes <strong>512 passed students</strong> with detailed breakdowns by 5 major courses: Literature Survey (209 students), Computer Science 101 (208), History of Art (202), Statistics for Beginners (194), and Introduction to Biology (187). Category analysis reveals Fiction leads with 231 students (23.1%), followed by Science Fiction 206 (20.6%), Mystery 202 (20.2%), Romance 183 (18.3%), and Non-fiction 178 (17.8%). Geographic distribution covers USA, Canada, Brazil, UK, France, Germany, Spain, Italy, India, Japan, and Australia. The system tracks 2.50 average rating with YOY growth analysis from 2010-2021.
-                        </p>
+                    <p>Comprehensive analysis of <strong>1,000+ students</strong> across 10 countries and 303 courses.</p>
+                    <div class="full-project-desc" style="display:none;">
+                        Case Study: Comprehensive analysis of <strong>1,000+ students</strong> across <strong>10 countries</strong> and <strong>303 courses</strong>. This Power BI Dashboard tracks student engagement metrics with <strong>34.6% course completion rate</strong> and <strong>49.84% average progress</strong>.<br><br>
+                        The dashboard analyzes <strong>512 passed students</strong> with detailed breakdowns by major courses. Category analysis reveals Fiction leads with 231 students, followed by Science Fiction, Mystery, Romance, and Non-fiction. Geographic distribution covers USA, Canada, Brazil, UK, France, Germany, Spain, Italy, India, Japan, and Australia.
                     </div>
-                    
-                    <button class="read-more-btn" onclick="toggleContent('content-4', this)" aria-label="Read more about Platforms Performance Dashboard">
-                        Read More <i class="fas fa-chevron-down"></i>
-                    </button>
-                    
+                    <button class="read-more-btn" onclick="openProjectModal('Platforms Performance', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" class="view-link" aria-label="View Platforms Performance live demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank" class="repo-link" aria-label="View Platforms Performance repository"><i class="fab fa-github"></i> Repository</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo</a>
+                        <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank">Repository</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 5: SQL Retail Sales -->
-            <div class="project-card reveal" data-category="sql">
+            <div class="project-card" data-category="sql" data-keywords="sql retail sales analysis joins aggregations database queries">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis project" loading="lazy" onload="this.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis">
                 </div>
                 <div class="project-content">
-                    <div class="tag-row"><span class="tag">SQL</span></div>
+                    <span class="tag">SQL</span>
                     <h3>SQL Retail Sales Analysis</h3>
-                    <p style="color: var(--gray); font-size: 14px; margin-top: 10px; line-height: 1.6;">
-                        Case Study: Comprehensive SQL-based analysis of retail sales data focusing on revenue trends, customer behavior, and product performance using advanced querying techniques.
-                    </p>
-                    
-                    <div class="extended-content" id="content-5">
-                        <p style="color: var(--gray); font-size: 14px; line-height: 1.8;">
-                            Developed comprehensive SQL queries to analyze retail sales data, focusing on <strong>revenue trends, customer behavior, and product performance</strong>. Created complex joins, aggregations, and window functions to derive actionable insights from transactional data. Implemented data cleaning and transformation techniques to ensure data quality and consistency. Generated key performance indicators (KPIs) including <strong>monthly sales growth, customer retention rates, and product category rankings</strong>. The project demonstrates proficiency in SQL Server, MySQL, and database optimization techniques for large-scale data analysis.
-                        </p>
+                    <p>Comprehensive SQL-based analysis of retail sales data focusing on revenue trends and customer behavior.</p>
+                    <div class="full-project-desc" style="display:none;">
+                        Case Study: Comprehensive SQL-based analysis of retail sales data focusing on revenue trends, customer behavior, and product performance using advanced querying techniques.<br><br>
+                        Developed comprehensive SQL queries to analyze retail sales data, focusing on <strong>revenue trends, customer behavior, and product performance</strong>. Created complex joins, aggregations, and window functions to derive actionable insights, generating key performance indicators (KPIs) including monthly sales growth and customer retention rates.
                     </div>
-                    
-                    <button class="read-more-btn" onclick="toggleContent('content-5', this)" aria-label="Read more about SQL Retail Sales project">
-                        Read More <i class="fas fa-chevron-down"></i>
-                    </button>
-                    
+                    <button class="read-more-btn" onclick="openProjectModal('SQL Retail Sales Analysis', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://github.com/Tarek343/SQL_RetailSales_Project" target="_blank" class="repo-link" style="flex: 1;" aria-label="View SQL Retail Sales repository"><i class="fab fa-github"></i> View Repository</a>
+                        <a href="https://github.com/Tarek343/SQL_RetailSales_Project" target="_blank" style="flex: 1;">Repository</a>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="reveal">
+    <!-- Progressive Multi-step Contact Form Section -->
+    <section id="contact">
         <div class="section-header">
             <h2>Get In <span>Touch</span></h2>
         </div>
-        <div class="contact-grid">
+        <div class="contact-container">
             <div>
-                <h3 style="font-size: 24px; margin-bottom: 15px; color: var(--primary);">Let's Create Something Amazing</h3>
-                <p style="color: var(--gray); margin-bottom: 30px; line-height: 1.8;">
-                    Ready to bring your vision to life? Contact me to discuss your project and how we can work together to transform your data into actionable insights.
+                <h3 style="font-size: 24px; margin-bottom: 15px;">Let's Work Together</h3>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">
+                    Ready to transform your data into actionable insights? Complete the form step-by-step to get in touch.
                 </p>
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <i class="fas fa-envelope" style="color: var(--primary); font-size: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(99, 102, 241, 0.1); border-radius: 50%;"></i>
-                    <span>Tareknageh343@gmail.com</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                    <i class="fas fa-phone" style="color: var(--primary); font-size: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(99, 102, 241, 0.1); border-radius: 50%;"></i>
-                    <span>+20 1060440658</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <i class="fas fa-map-marker-alt" style="color: var(--primary); font-size: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(99, 102, 241, 0.1); border-radius: 50%;"></i>
-                    <span>Cairo, Egypt</span>
-                </div>
+                <div style="margin-bottom: 10px;"><i class="fas fa-envelope"></i> Tareknageh343@gmail.com</div>
+                <div><i class="fas fa-phone"></i> +20 1060440658</div>
             </div>
             
-            <!-- Contact Form -->
-            <form id="contact-form" class="contact-form" aria-label="Contact form">
-                <div id="form-message" class="form-message" role="alert">
-                    <i class="fas fa-check-circle"></i>
-                    <span id="message-text"></span>
+            <div>
+                <div class="step-indicator">
+                    <div class="step-dot active" id="dot-1"></div>
+                    <div class="step-dot" id="dot-2"></div>
+                    <div class="step-dot" id="dot-3"></div>
                 </div>
 
-                <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required aria-label="Your name">
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Your Email" required aria-label="Your email">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="subject" class="form-control" placeholder="Subject" required aria-label="Message subject">
-                </div>
-                <div class="form-group">
-                    <textarea name="message" class="form-control" rows="5" placeholder="Tell me about your project..." required aria-label="Your message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;" id="submit-btn">
-                    <span>Send Message</span> <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
+                <form id="multi-step-form" action="https://formspree.io/f/mblqopwn" method="POST">
+                    <div class="form-step active" id="step-1">
+                        <label style="display:block; margin-bottom:8px; font-weight:600;">What's your name?</label>
+                        <input type="text" name="name" id="name-input" class="form-control" placeholder="Enter your full name" required>
+                        <button type="button" class="btn btn-dark" style="width:100%;" onclick="nextStep(1)">Next Step <i class="fas fa-arrow-right"></i></button>
+                    </div>
+
+                    <div class="form-step" id="step-2">
+                        <label style="display:block; margin-bottom:8px; font-weight:600;">Your email address?</label>
+                        <input type="email" name="email" id="email-input" class="form-control" placeholder="example@domain.com" required>
+                        <div style="display:flex; gap:10px;">
+                            <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(2)">Back</button>
+                            <button type="button" class="btn btn-dark" style="flex:1;" onclick="nextStep(2)">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step-3">
+                        <label style="display:block; margin-bottom:8px; font-weight:600;">Your message / project details?</label>
+                        <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                        <textarea name="message" class="form-control" rows="3" placeholder="Tell me more..." required></textarea>
+                        <div style="display:flex; gap:10px;">
+                            <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(3)">Back</button>
+                            <button type="submit" class="btn btn-dark" style="flex:1;" id="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" aria-label="Visit my LinkedIn profile"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Tarek343" target="_blank" aria-label="Visit my GitHub profile"><i class="fab fa-github"></i></a>
-            <a href="https://wa.me/201060440658" target="_blank" aria-label="Contact me on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:Tareknageh343@gmail.com" aria-label="Send me an email"><i class="fas fa-envelope"></i></a>
+    <!-- Social Media Interactive Dock -->
+    <div class="dock-wrapper">
+        <div class="dock">
+            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" class="dock-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Tarek343" target="_blank" class="dock-item" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://wa.me/201060440658" target="_blank" class="dock-item" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:Tareknageh343@gmail.com" class="dock-item" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="color: var(--gray); font-size: 14px;">&copy; 2025 Tarek Nageh. All rights reserved.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Tarek Nageh. All rights reserved.</p>
     </footer>
 
     <script>
-        // Progress Bar
+        // --- Modal Popup Logic for Read More ---
+        function openProjectModal(title, btn) {
+            const desc = btn.previousElementSibling.innerHTML;
+            document.getElementById('modal-project-title').innerText = title;
+            document.getElementById('modal-project-text').innerHTML = desc;
+            document.getElementById('project-modal').classList.add('active');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.remove('active');
+        }
+
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('project-modal');
+            if (e.target === modal) { closeProjectModal(); }
+        });
+
+        // --- Touch support for Floating Profile Badge on mobile devices ---
+        const heroVisual = document.getElementById('heroVisual');
+        if (heroVisual) {
+            heroVisual.addEventListener('touchstart', function() {
+                this.classList.toggle('active-touch');
+            }, { passive: true });
+        }
+
+        // --- 3D Tilt Effect on Project Cards ---
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `rotateY(${x / 20}deg) rotateX(${-y / 20}deg) translateY(-5px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0px)';
+            });
+        });
+
+        // --- Interactive Micro KPI Update ---
+        function updateKPI(type, btn) {
+            document.querySelectorAll('.kpi-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const label = document.getElementById('kpi-label');
+            const value = document.getElementById('kpi-value');
+
+            if (type === 'profit') { label.innerText = 'Tracked Profit Growth'; value.innerText = '49.9%'; }
+            else if (type === 'sales') { label.innerText = 'Analyzed Sales Volume'; value.innerText = '20M+'; }
+            else if (type === 'accuracy') { label.innerText = 'Data Accuracy Score'; value.innerText = '100%'; }
+        }
+
+        // --- Toast Notification System ---
+        function showToast(message, icon = 'fa-check-circle') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        // --- Smooth Scroll Script ---
+        document.querySelectorAll('a.smooth-scroll, a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // --- CV Download Function ---
+        function downloadCV(e) {
+            showToast('Downloading CV file...');
+            const link = document.createElement('a');
+            link.href = 'Tarek Nageh.pdf';
+            link.download = 'Tarek_Nageh_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- Interactive Canvas for Dot Grid Background ---
+        const canvas = document.getElementById('dotCanvas');
+        const ctx = canvas.getContext('2d');
+        let dots = [], mouse = { x: null, y: null, radius: 100 };
+
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initDots(); }
+        function initDots() {
+            dots = [];
+            const spacing = 30;
+            for (let x = 0; x < canvas.width; x += spacing) {
+                for (let y = 0; y < canvas.height; y += spacing) { dots.push({ x, y, baseRadius: 1.5, radius: 1.5 }); }
+            }
+        }
+
+        function drawDots() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isDark = document.body.classList.contains('dark-mode');
+            ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
+            dots.forEach(dot => {
+                let dx = mouse.x - dot.x; let dy = mouse.y - dot.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                dot.radius = (dist < mouse.radius) ? dot.baseRadius + (mouse.radius - dist) / 15 : dot.baseRadius;
+                ctx.beginPath(); ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2); ctx.fill();
+            });
+            requestAnimationFrame(drawDots);
+        }
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); drawDots();
+
+        // --- Magnification Dock Effect ---
+        const dockItems = document.querySelectorAll('.dock-item');
+        dockItems.forEach((item, index) => {
+            item.addEventListener('mousemove', (e) => {
+                dockItems.forEach((otherItem, otherIndex) => {
+                    const distance = Math.abs(index - otherIndex);
+                    let scale = (distance === 0) ? 1.4 : (distance === 1) ? 1.2 : 1;
+                    otherItem.style.transform = `scale(${scale}) translateY(-5px)`;
+                });
+            });
+        });
+        document.querySelector('.dock').addEventListener('mouseleave', () => {
+            dockItems.forEach(item => item.style.transform = 'scale(1) translateY(0)');
+        });
+
+        // --- Multi-step Form Logic ---
+        function nextStep(currentStep) {
+            if (currentStep === 1 && !document.getElementById('name-input').value.trim()) { alert('Please enter your name.'); return; }
+            if (currentStep === 2 && (!document.getElementById('email-input').value.trim() || !document.getElementById('email-input').value.includes('@'))) { alert('Please enter a valid email address.'); return; }
+
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-${currentStep + 1}`).classList.add('active');
+            document.getElementById(`dot-${currentStep + 1}`).classList.add('active');
+        }
+
+        function prevStep(currentStep) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-${currentStep - 1}`).classList.add('active');
+            document.getElementById(`dot-${currentStep}`).classList.remove('active');
+        }
+
+        document.getElementById('multi-step-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+
+            try {
+                const response = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
+                if (response.ok) {
+                    showToast('Message sent successfully! I will reply soon.');
+                    this.reset(); prevStep(3); prevStep(2);
+                } else { throw new Error(); }
+            } catch {
+                showToast('Failed to send message. Try again later.', 'fa-exclamation-circle');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+            }
+        });
+
+        // --- Search and Filter Logic ---
+        const searchInput = document.getElementById('project-search');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        function filterProjects() {
+            const query = searchInput.value.toLowerCase().trim();
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const keywords = (card.getAttribute('data-keywords') + ' ' + card.innerText).toLowerCase();
+                const matchesFilter = (activeFilter === 'all' || category === activeFilter);
+                const matchesSearch = (!query || keywords.includes(query));
+
+                card.style.display = (matchesFilter && matchesSearch) ? 'flex' : 'none';
+            });
+        }
+
+        searchInput.addEventListener('input', filterProjects);
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active'); filterProjects();
+            });
+        });
+
+        // --- Dynamic Metrics Animated Counter (Resets on every scroll view) ---
+        let animated = false;
         window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const metricsSection = document.getElementById('metrics');
+            if (metricsSection) {
+                const rect = metricsSection.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
+
+                if (isInView && !animated) {
+                    animated = true;
+                    document.querySelectorAll('.metric-number').forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        let count = 0; const speed = target / 40;
+                        const updateCount = () => {
+                            count += speed;
+                            if (count < target) {
+                                counter.innerText = count.toFixed(target % 1 !== 0 ? 1 : 0);
+                                setTimeout(updateCount, 25);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
+                } else if (!isInView) {
+                    animated = false;
+                    document.querySelectorAll('.metric-number').forEach(counter => {
+                        counter.innerText = '0';
+                    });
+                }
+            }
+        });
+
+        // --- Theme Toggle & Scroll Progress ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
         });
 
-        // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        // Check for saved theme preference
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('light-mode');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-
+        const themeIcon = document.getElementById('theme-icon');
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            
-            if (document.body.classList.contains('light-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'dark');
-            }
+            document.body.classList.toggle('dark-mode');
+            themeIcon.classList.toggle('fa-sun');
+            themeIcon.classList.toggle('fa-moon');
         });
 
-        // Typewriter Effect
-        const textEl = document.getElementById('typewriter');
-        const phrases = [
-            'Data Analyst',
-            'Power BI Expert', 
-            'Microsoft Fabric Specialist',
-            'Dashboard Designer',
-            'SQL Developer',
-            'Python Data Engineer'
-        ];
-        let phraseIndex = 0, charIndex = 0, isDeleting = false;
-
-        function type() {
-            const current = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                textEl.textContent = current.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                textEl.textContent = current.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let speed = isDeleting ? 50 : 150;
-
-            if (!isDeleting && charIndex === current.length) {
-                speed = 2500;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                speed = 500;
-            }
-
-            setTimeout(type, speed);
-        }
-        
-        document.addEventListener('DOMContentLoaded', type);
-
-        // Active Navigation
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth Scroll
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Reveal Animation
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // Read More / Read Less Function
-        function toggleContent(contentId, btn) {
-            const content = document.getElementById(contentId);
-            const isHidden = !content.classList.contains('show');
-            
-            if (isHidden) {
-                content.classList.add('show');
-                btn.innerHTML = 'Read Less <i class="fas fa-chevron-up"></i>';
-            } else {
-                content.classList.remove('show');
-                btn.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
-            }
-        }
-
-        // Project Filter
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.getAttribute('data-filter');
-
-                projectCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'flex';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        }, 10);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.9)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
-        });
-
-        // Contact Form - Formspree Only (Removed Telegram for security)
-        const contactForm = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const formMessage = document.getElementById('form-message');
-        const messageText = document.getElementById('message-text');
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            
-            submitBtn.disabled = true;
-            const originalContent = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
-
-            try {
-                const response = await fetch('https://formspree.io/f/mblqopwn', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    formMessage.className = 'form-message success show';
-                    messageText.textContent = 'Thank you! Your message has been sent successfully. I will get back to you soon.';
-                    contactForm.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
-
-            } catch (error) {
-                formMessage.className = 'form-message error show';
-                messageText.textContent = 'Oops! Something went wrong. Please try again or contact me directly via email.';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalContent;
-                setTimeout(() => formMessage.classList.remove('show'), 5000);
-            }
+        // Intro GSAP Animation
+        window.addEventListener('DOMContentLoaded', () => {
+            gsap.from(".hero h1", { opacity: 0, y: 30, duration: 1, delay: 0.2 });
+            gsap.from(".hero-desc", { opacity: 0, y: 20, duration: 1, delay: 0.4 });
+            gsap.from(".hero-visual", { opacity: 0, scale: 0.9, duration: 1, delay: 0.5 });
         });
     </script>
 </body>
