@@ -7,7 +7,6 @@
     <title>Tarek Nageh | Data Analyst & Power BI Expert</title>
     <meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
     
-    <!-- Open Graph for SEO -->
     <meta property="og:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
     <meta property="og:description" content="Interactive dashboards & data analysis portfolio">
     <meta property="og:image" content="https://i.postimg.cc/FKVH321F/1772370579715.png">
@@ -56,7 +55,6 @@
             position: relative;
         }
 
-        /* Accessibility: Focus outline */
         *:focus-visible {
             outline: 2px solid var(--text-main);
             outline-offset: 3px;
@@ -83,7 +81,6 @@
             width: 0%;
         }
 
-        /* Back to Top Button (NEW) */
         #back-to-top {
             position: fixed;
             bottom: 100px;
@@ -118,7 +115,6 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.25);
         }
 
-        /* Toast Notification System */
         #toast-container {
             position: fixed;
             top: 25px;
@@ -149,7 +145,7 @@
         .toast.show { transform: translateX(0); }
         .toast i { font-size: 18px; color: var(--success-green); }
 
-        /* Modal Popup System for Read More */
+        /* Modal - Floating separate page */
         #project-modal {
             position: fixed;
             top: 0;
@@ -228,7 +224,6 @@
             overflow-y: auto;
         }
 
-        /* Header / Navbar */
         header {
             position: fixed;
             top: 0;
@@ -304,7 +299,6 @@
             transition: var(--transition);
         }
 
-        /* Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -334,7 +328,6 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-        /* Hero Section */
         .hero {
             padding: 130px 8% 40px;
             display: flex;
@@ -393,7 +386,6 @@
         .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         .btn-outline:hover { background: var(--text-main); color: var(--bg-color); }
 
-        /* Double Circular Profile Visual */
         .hero-visual {
             flex: 1;
             display: flex;
@@ -474,7 +466,6 @@
         .floating-name { font-size: 13px; font-weight: 800; color: var(--text-main); line-height: 1.2; }
         .floating-role { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
 
-        /* Metrics Counter Section */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -509,12 +500,10 @@
         .metric-unit { font-size: 32px; font-weight: 800; color: var(--text-main); }
         .metric-label { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-top: 10px; }
 
-        /* Sections General */
         section { padding: 50px 8%; max-width: 1300px; margin: 0 auto; }
         .section-header { margin-bottom: 35px; text-align: center; }
         .section-header h2 { font-size: 32px; font-weight: 800; }
 
-        /* About Section */
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -563,7 +552,6 @@
         .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
         .skill-tag { background: var(--border-color); color: var(--text-main); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; }
 
-        /* Certificates Section */
         .certificates-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -627,7 +615,6 @@
             color: var(--bg-color);
         }
 
-        /* Search & Filter System */
         .search-box-container { max-width: 500px; margin: 0 auto 25px; position: relative; }
         .search-input { width: 100%; padding: 14px 20px 14px 45px; border-radius: 30px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-family: inherit; font-size: 14px; backdrop-filter: blur(12px); outline: none; transition: var(--transition); }
         .search-input:focus { border-color: var(--text-main); box-shadow: 0 0 15px var(--glass-glow); }
@@ -637,7 +624,6 @@
         .filter-btn { padding: 10px 22px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 13px; }
         .filter-btn.active, .filter-btn:hover { background: var(--text-main); color: var(--bg-color); border-color: var(--text-main); }
 
-        /* Project Cards */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; perspective: 1000px; }
         
         .project-card {
@@ -706,7 +692,6 @@
         .project-links a { flex: 1; text-align: center; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; background: var(--border-color); color: var(--text-main); transition: var(--transition); }
         .project-links a:hover { background: var(--text-main); color: var(--bg-color); }
 
-        /* Progressive Multi-step Form */
         .contact-container {
             background: var(--card-bg);
             border-radius: 30px;
@@ -744,14 +729,12 @@
 
         .form-control:focus { outline: none; border-color: var(--text-main); }
 
-        /* Interactive Magnification Dock */
         .dock-wrapper { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999; }
         .dock { display: flex; align-items: center; gap: 12px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
         .dock-item { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 18px; text-decoration: none; background: var(--bg-color); border: 1px solid var(--border-color); transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1); cursor: pointer; }
 
         footer { text-align: center; padding: 30px 20px 100px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border-color); margin-top: 40px; }
 
-        /* ===================== RESPONSIVE ===================== */
         @media (max-width: 900px) {
             .hero, .about-container, .contact-container {
                 flex-direction: column;
@@ -765,7 +748,6 @@
             .contact-container { padding: 30px 20px; }
             .about-container { padding: 25px 20px; }
 
-            /* Show floating badge on mobile via touch */
             .profile-card-floating {
                 right: 50%;
                 transform: translateX(50%) translateY(20px) scale(0.9);
@@ -787,7 +769,6 @@
             .section-header h2 { font-size: 24px; }
         }
 
-        /* Reduce motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -799,7 +780,7 @@
 </head>
 <body>
 
-    <!-- Project Details Modal Popup -->
+    <!-- Project Details Modal Popup (Floating separate page) -->
     <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
         <div class="modal-content">
             <button class="modal-close" onclick="closeProjectModal()" aria-label="Close modal"><i class="fas fa-times"></i></button>
@@ -812,10 +793,8 @@
     <canvas id="dotCanvas"></canvas>
     <div id="progress-bar"></div>
 
-    <!-- Back to Top Button (NEW) -->
     <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- Header / Navbar -->
     <header>
         <a href="#home" class="logo smooth-scroll" aria-label="Home">TN</a>
         <nav>
@@ -833,7 +812,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="status-badge">
@@ -847,7 +825,7 @@
             </p>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: inherit;">
                 <a href="#portfolio" class="btn btn-dark smooth-scroll"><i class="fas fa-eye"></i> Explore Projects</a>
-                <!-- ✅ CV FIXED: المسار الصحيح على GitHub Pages -->
+                <!-- ✅ CV: بيحمل مباشرة بدون أي تحويل -->
                 <a href="https://tarek343.github.io/Tarek_Nageh.pdf" download="Tarek_Nageh_CV.pdf" onclick="downloadCV(event)" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
             </div>
         </div>
@@ -865,7 +843,6 @@
         </div>
     </section>
 
-    <!-- Metrics Counter Section -->
     <section id="metrics">
         <div class="metrics-grid">
             <div class="metric-card">
@@ -899,7 +876,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="section-header">
             <h2>About <span>Me</span></h2>
@@ -957,7 +933,6 @@
         </div>
     </section>
 
-    <!-- Certificates Section -->
     <section id="certificates">
         <div class="section-header">
             <h2>Certificates & <span>Credentials</span></h2>
@@ -1001,7 +976,6 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
     <section id="portfolio">
         <div class="section-header">
             <h2>Featured <span>Projects</span></h2>
@@ -1121,7 +1095,6 @@
         </div>
     </section>
 
-    <!-- Progressive Multi-step Contact Form Section -->
     <section id="contact">
         <div class="section-header">
             <h2>Get In <span>Touch</span></h2>
@@ -1173,7 +1146,6 @@
         </div>
     </section>
 
-    <!-- Social Media Interactive Dock with Quick Actions -->
     <div class="dock-wrapper">
         <div class="dock">
             <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" rel="noopener" class="dock-item" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in"></i></a>
@@ -1189,37 +1161,17 @@
 
     <script>
         /* ============================================================
-           ✅ CV Download with Fallback (FIXED)
-           لو الملف مش موجود بيحاول يفتح لينك بديل
+           ✅ CV Download - بيحمل مباشرة بدون أي تحويل
         ============================================================ */
         function downloadCV(e) {
-            showToast('Preparing your CV download...', 'fa-download');
-            // الـ browser هيتعامل مع التحميل من الـ href تلقائي
-            // الـ fallback ده بس في حالة إن الملف مش موجود
-            const link = e.currentTarget;
-            const href = link.href;
-            
-            fetch(href, { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        // الملف مش موجود - افتح جوجل درايف أو رابط بديل
-                        e.preventDefault();
-                        showToast('CV is being updated. Please contact me directly.', 'fa-info-circle');
-                        setTimeout(() => {
-                            window.open('https://wa.me/201060440658?text=Hi%20Tarek,%20could%20you%20send%20me%20your%20CV?', '_blank');
-                        }, 800);
-                    } else {
-                        showToast('Downloading your CV...', 'fa-check-circle');
-                    }
-                })
-                .catch(() => {
-                    // CORS issue - نكمل التحميل عادي
-                    showToast('Downloading your CV...', 'fa-check-circle');
-                });
+            // منع أي سلوك افتراضي غريب وسيب المتصفح يحمل الملف مباشرة
+            // الـ download attribute في الـ <a> بيتكفل بالتحميل
+            showToast('Downloading CV...', 'fa-download');
+            // سيبه يكمل التحميل طبيعي - مفيش أي redirect
         }
 
         /* ============================================================
-           Copy Email Quick Action
+           Copy Email
         ============================================================ */
         function copyEmail() {
             navigator.clipboard.writeText('Tareknageh343@gmail.com')
@@ -1228,7 +1180,7 @@
         }
 
         /* ============================================================
-           Modal Popup Logic for Read More
+           Modal Popup for Read More (صفحة عائمة منفصلة)
         ============================================================ */
         function openProjectModal(title, btn) {
             const desc = btn.previousElementSibling.innerHTML;
@@ -1253,7 +1205,7 @@
         });
 
         /* ============================================================
-           Touch support for Floating Profile Badge
+           Touch Support for Floating Profile Badge
         ============================================================ */
         const heroVisual = document.getElementById('heroVisual');
         if (heroVisual) {
@@ -1263,12 +1215,14 @@
         }
 
         /* ============================================================
-           3D Tilt Effect on Project Cards (desktop only)
+           3D Tilt Effect on Project Cards (Desktop only)
         ============================================================ */
         const isTouchDevice = window.matchMedia('(hover: none)').matches;
         if (!isTouchDevice) {
             document.querySelectorAll('.project-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
+                    // تجاهل الكروت المخفية
+                    if (card.classList.contains('hidden')) return;
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width / 2;
                     const y = e.clientY - rect.top - rect.height / 2;
@@ -1317,7 +1271,7 @@
         }
 
         /* ============================================================
-           Smooth Scroll Script
+           Smooth Scroll
         ============================================================ */
         document.querySelectorAll('a.smooth-scroll, a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1457,7 +1411,7 @@
         });
 
         /* ============================================================
-           Smooth Filter + Search (class toggle, no display change)
+           Smooth Filter + Search
         ============================================================ */
         const searchInput = document.getElementById('project-search');
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -1491,52 +1445,62 @@
         });
 
         /* ============================================================
-           Metrics Counter - Auto-Trigger + Intersection Observer
-           (Runs only once per page load)
+           ✅ Metrics Counter - يشتغل كل مرة الكاونتر يظهر في الشاشة
+           (زي الكود القديم بالظبط - سكرول فوق وتحت يشتغل تاني)
         ============================================================ */
-        let countersRan = false;
+        function animateCounter(counter) {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const isDecimal = target % 1 !== 0;
+            const duration = 1500; // مدة الحركة بالمللي ثانية
+            const startTime = performance.now();
 
-        function runCounters() {
-            if (countersRan) return;
-            countersRan = true;
+            function updateCount(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // easing function (easeOutQuad) لحركة ناعمة
+                const eased = 1 - (1 - progress) * (1 - progress);
+                const currentValue = target * eased;
 
-            document.querySelectorAll('.metric-number').forEach(counter => {
-                const target = parseFloat(counter.getAttribute('data-target'));
-                let count = 0;
-                const isDecimal = target % 1 !== 0;
-                const speed = target / 40;
-
-                const updateCount = () => {
-                    count += speed;
-                    if (count < target) {
-                        counter.innerText = isDecimal ? count.toFixed(1) : Math.floor(count);
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.innerText = isDecimal ? target.toFixed(1) : target;
-                    }
-                };
-                requestAnimationFrame(updateCount);
-            });
+                if (progress < 1) {
+                    counter.innerText = isDecimal ? currentValue.toFixed(1) : Math.floor(currentValue);
+                    requestAnimationFrame(updateCount);
+                } else {
+                    counter.innerText = isDecimal ? target.toFixed(1) : target;
+                }
+            }
+            requestAnimationFrame(updateCount);
         }
 
-        // Auto-trigger on load (زي الكود القديم)
-        window.addEventListener('load', runCounters);
+        function resetCounter(counter) {
+            counter.innerText = '0';
+        }
 
-        // And re-trigger via IntersectionObserver (احتياطي)
-        const metricsSection = document.getElementById('metrics');
-        if (metricsSection && 'IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
+        // نراقب كل كارت لوحده عشان يشتغل لما يظهر ويرجع لـ 0 لما يختفي
+        const metricCards = document.querySelectorAll('.metric-card');
+        if ('IntersectionObserver' in window) {
+            const counterObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    const counter = entry.target.querySelector('.metric-number');
+                    if (!counter) return;
+
                     if (entry.isIntersecting) {
-                        runCounters();
+                        // العنصر ظهر - اشتغل من الأول
+                        animateCounter(counter);
+                    } else {
+                        // العنصر اختفى - رجّعه لـ 0 عشان لما يظهر تاني يشتغل
+                        resetCounter(counter);
                     }
                 });
             }, { threshold: 0.3 });
-            observer.observe(metricsSection);
+
+            metricCards.forEach(card => counterObserver.observe(card));
+        } else {
+            // Fallback: شغل مرة واحدة
+            document.querySelectorAll('.metric-number').forEach(animateCounter);
         }
 
         /* ============================================================
-           Progress Bar + Back to Top Button
+           Progress Bar + Back to Top
         ============================================================ */
         const backToTop = document.getElementById('back-to-top');
 
@@ -1544,12 +1508,10 @@
             const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-            // Guard against division by zero on short pages
             if (height > 0) {
                 document.getElementById('progress-bar').style.width = (winScroll / height) * 100 + '%';
             }
 
-            // Back to top visibility
             if (winScroll > 400) {
                 backToTop.classList.add('show');
             } else {
@@ -1562,24 +1524,17 @@
         });
 
         /* ============================================================
-           Theme Toggle (with localStorage persistence)
+           ✅ Theme Toggle - الوضع الافتراضي نهاري دايماً
+           (مفيش localStorage - كل مرة الصفحة تفتح تبدأ نهاري)
         ============================================================ */
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
 
-        // Restore preference
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-
+        // مفيش استرجاع من localStorage - الحالة الافتراضية نهاري دايماً
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeIcon.classList.toggle('fa-sun');
             themeIcon.classList.toggle('fa-moon');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
         /* ============================================================
@@ -1594,4 +1549,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
