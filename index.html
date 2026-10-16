@@ -286,7 +286,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-        /* Hero Section - Optimized Spacing */
+        /* Hero Section */
         .hero {
             padding: 130px 8% 40px;
             display: flex;
@@ -382,7 +382,6 @@
             display: block;
         }
 
-        /* Hover-Triggered Floating Pill Badge */
         .profile-card-floating {
             position: absolute;
             bottom: -5px;
@@ -403,7 +402,6 @@
             pointer-events: none;
         }
 
-        /* Show Floating Badge on Hover / Touch */
         .hero-visual:hover .profile-card-floating,
         .hero-visual:active .profile-card-floating {
             opacity: 1;
@@ -420,26 +418,9 @@
             border: 2px solid var(--text-main);
         }
 
-        .floating-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .floating-name {
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: -0.2px;
-            line-height: 1.2;
-        }
-
-        .floating-role {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .floating-info { display: flex; flex-direction: column; }
+        .floating-name { font-size: 13px; font-weight: 800; color: var(--text-main); line-height: 1.2; }
+        .floating-role { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
 
         /* Metrics Counter Section */
         .metrics-grid {
@@ -460,9 +441,7 @@
             transition: transform 0.3s ease;
         }
 
-        .metric-card:hover {
-            transform: translateY(-5px);
-        }
+        .metric-card:hover { transform: translateY(-5px); }
 
         .metric-number-wrapper {
             display: flex;
@@ -483,7 +462,7 @@
         .section-header { margin-bottom: 35px; text-align: center; }
         .section-header h2 { font-size: 32px; font-weight: 800; }
 
-        /* About & Core Capabilities Section */
+        /* About Section */
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -511,29 +490,10 @@
             transition: var(--transition);
         }
 
-        .stat-box:hover {
-            transform: translateY(-4px);
-            border-color: var(--text-main);
-        }
-
-        .stat-box i {
-            font-size: 26px;
-            color: var(--text-main);
-            margin-bottom: 12px;
-        }
-
-        .stat-box h4 {
-            font-size: 15px;
-            font-weight: 800;
-            margin-bottom: 4px;
-            color: var(--text-main);
-        }
-
-        .stat-box p {
-            font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
+        .stat-box:hover { transform: translateY(-4px); border-color: var(--text-main); }
+        .stat-box i { font-size: 26px; color: var(--text-main); margin-bottom: 12px; }
+        .stat-box h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
+        .stat-box p { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
         .kpi-widget {
             background: var(--bg-color);
@@ -551,6 +511,70 @@
         .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
         .skill-tag { background: var(--border-color); color: var(--text-main); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; }
 
+        /* Certificates Section */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .cert-icon {
+            font-size: 28px;
+            color: var(--success-green);
+            margin-bottom: 15px;
+        }
+
+        .cert-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .cert-issuer {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            background: var(--border-color);
+            padding: 8px 16px;
+            border-radius: 12px;
+            align-self: flex-start;
+            transition: var(--transition);
+        }
+
+        .cert-link:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+        }
+
         /* Search & Filter System */
         .search-box-container { max-width: 500px; margin: 0 auto 25px; position: relative; }
         .search-input { width: 100%; padding: 14px 20px 14px 45px; border-radius: 30px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-family: inherit; font-size: 14px; backdrop-filter: blur(12px); outline: none; transition: var(--transition); }
@@ -561,7 +585,7 @@
         .filter-btn { padding: 10px 22px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 13px; }
         .filter-btn.active, .filter-btn:hover { background: var(--text-main); color: var(--bg-color); border-color: var(--text-main); }
 
-        /* 3D Tilt Project Cards Style */
+        /* Project Cards - With Smooth Transition Filter & Image Skeleton */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; perspective: 1000px; }
         
         .project-card {
@@ -569,19 +593,48 @@
             border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             backdrop-filter: blur(12px);
             transform-style: preserve-3d;
+            opacity: 1;
         }
 
-        .project-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        .project-card.fade-out {
+            opacity: 0;
+            transform: scale(0.9) translateY(10px) !important;
+            pointer-events: none;
         }
 
-        .project-img-container { width: 100%; height: 200px; overflow: hidden; background: var(--border-color); }
-        .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .project-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+
+        .project-img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* Image Placeholder Skeleton */
+        .project-img-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: skeletonLoading 1.5s infinite;
+            z-index: 1;
+        }
+
+        .project-img-container.loaded::before { display: none; }
+
+        @keyframes skeletonLoading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; position: relative; z-index: 2; }
         .project-card:hover .project-img { transform: scale(1.05); }
         .project-content { padding: 25px; flex: 1; display: flex; flex-direction: column; transform: translateZ(20px); }
         .tag { background: var(--border-color); color: var(--text-main); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 12px; }
@@ -633,7 +686,7 @@
         /* Interactive Magnification Dock */
         .dock-wrapper { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999; }
         .dock { display: flex; align-items: center; gap: 12px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .dock-item { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 18px; text-decoration: none; background: var(--bg-color); border: 1px solid var(--border-color); transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1); }
+        .dock-item { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 18px; text-decoration: none; background: var(--bg-color); border: 1px solid var(--border-color); transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1); cursor: pointer; }
 
         footer { text-align: center; padding: 30px 20px 100px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border-color); margin-top: 40px; }
 
@@ -665,6 +718,7 @@
         <ul class="nav-menu">
             <li><a href="#home" class="smooth-scroll">Home</a></li>
             <li><a href="#about" class="smooth-scroll">About</a></li>
+            <li><a href="#certificates" class="smooth-scroll">Certificates</a></li>
             <li><a href="#portfolio" class="smooth-scroll">Projects</a></li>
             <li><a href="#contact" class="smooth-scroll">Contact</a></li>
         </ul>
@@ -693,9 +747,8 @@
         </div>
         <div class="hero-visual" id="heroVisual">
             <div class="profile-card-main">
-                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh">
+                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh" onload="this.parentElement.parentElement.classList.add('loaded')">
             </div>
-            <!-- Interactive Floating Pill Badge with Name & Title (Shown on Hover / Touch) -->
             <div class="profile-card-floating">
                 <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh">
                 <div class="floating-info">
@@ -740,13 +793,12 @@
         </div>
     </section>
 
-    <!-- About & Core Capabilities Section -->
+    <!-- About Section -->
     <section id="about">
         <div class="section-header">
             <h2>About <span>Me</span></h2>
         </div>
         <div class="about-container">
-            <!-- Core Analytical Capabilities Grid -->
             <div class="about-stats-grid">
                 <div class="stat-box">
                     <i class="fas fa-chart-pie"></i>
@@ -785,7 +837,7 @@
             <div>
                 <h3 style="font-size: 24px; margin-bottom: 15px;">Passionate Professional</h3>
                 <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 15px; line-height: 1.8;">
-                    I'm Tarek Nageh, a data analyst with extensive experience crafting interactive dashboards and digital experiences. My work spans analytics and visualization, helping businesses make data-driven decisions through compelling visual stories.
+                    I'm Tarek Nageh, a data analyst with extensive experience crafting interactive dashboards and data solutions. My work spans analytics and visualization, helping businesses make data-driven decisions through compelling visual stories.
                 </p>
                 <div class="skills-flex">
                     <span class="skill-tag">Data Analysis</span>
@@ -794,9 +846,51 @@
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">Excel</span>
                     <span class="skill-tag">Dashboard Design</span>
-                    <span class="skill-tag">Video Editing</span>
-                    <span class="skill-tag">Premiere Pro</span>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <div class="section-header">
+            <h2>Certificates & <span>Credentials</span></h2>
+        </div>
+        <div class="certificates-grid">
+            <div class="cert-card">
+                <div>
+                    <div class="cert-icon"><i class="fas fa-award"></i></div>
+                    <h3 class="cert-title">Programming & Development Training</h3>
+                    <p class="cert-issuer">Harmash Academy</p>
+                </div>
+                <a href="https://harmash.com/certificate/tutorials/29632" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="cert-card">
+                <div>
+                    <div class="cert-icon"><i class="fas fa-award"></i></div>
+                    <h3 class="cert-title">Virtual Experience Program</h3>
+                    <p class="cert-issuer">The Forage</p>
+                </div>
+                <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_68e025ca2541ecaba4478a17_1764706735935_completion_certificate.pdf" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="cert-card">
+                <div>
+                    <div class="cert-icon"><i class="fas fa-award"></i></div>
+                    <h3 class="cert-title">Data Analytics Simulation</h3>
+                    <p class="cert-issuer">The Forage</p>
+                </div>
+                <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_68e025ca2541ecaba4478a17_1759609037988_completion_certificate.pdf" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <div class="cert-card">
+                <div>
+                    <div class="cert-icon"><i class="fas fa-award"></i></div>
+                    <h3 class="cert-title">Advanced Programming & Tech Course</h3>
+                    <p class="cert-issuer">Harmash Academy</p>
+                </div>
+                <a href="https://harmash.com/certificate/tutorials/38318" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
     </section>
@@ -822,7 +916,7 @@
         <div class="projects-grid" id="projects-grid">
             <div class="project-card" data-category="powerbi" data-keywords="sales performance power bi fabric dax profit analysis">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Dashboard">
+                    <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Dashboard" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Power BI</span>
@@ -842,7 +936,7 @@
 
             <div class="project-card" data-category="powerbi" data-keywords="hr analytics employees headcount workforce salary power bi">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics">
+                    <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Power BI</span>
@@ -862,7 +956,7 @@
 
             <div class="project-card" data-category="excel" data-keywords="excel sales tracker pivot tables power query formulas retail">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker">
+                    <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Excel</span>
@@ -882,7 +976,7 @@
 
             <div class="project-card" data-category="powerbi" data-keywords="platforms performance students course completion power bi education analytics">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance">
+                    <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Power BI</span>
@@ -902,7 +996,7 @@
 
             <div class="project-card" data-category="sql" data-keywords="sql retail sales analysis joins aggregations database queries">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis">
+                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">SQL</span>
@@ -932,7 +1026,7 @@
                 <p style="color: var(--text-muted); margin-bottom: 30px;">
                     Ready to transform your data into actionable insights? Complete the form step-by-step to get in touch.
                 </p>
-                <div style="margin-bottom: 10px;"><i class="fas fa-envelope"></i> Tareknageh343@gmail.com</div>
+                <div style="margin-bottom: 10px; cursor: pointer;" onclick="copyEmail()"><i class="fas fa-envelope"></i> Tareknageh343@gmail.com</div>
                 <div><i class="fas fa-phone"></i> +20 1060440658</div>
             </div>
             
@@ -973,13 +1067,13 @@
         </div>
     </section>
 
-    <!-- Social Media Interactive Dock -->
+    <!-- Social Media Interactive Dock with Quick Actions -->
     <div class="dock-wrapper">
         <div class="dock">
             <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" class="dock-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://github.com/Tarek343" target="_blank" class="dock-item" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://wa.me/201060440658" target="_blank" class="dock-item" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:Tareknageh343@gmail.com" class="dock-item" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/201060440658?text=Hi%20Tarek,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20data%20analysis%20opportunity!" target="_blank" class="dock-item" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <span onclick="copyEmail()" class="dock-item" aria-label="Copy Email"><i class="fas fa-envelope"></i></span>
         </div>
     </div>
 
@@ -988,6 +1082,12 @@
     </footer>
 
     <script>
+        // --- Copy Email Quick Action ---
+        function copyEmail() {
+            navigator.clipboard.writeText('Tareknageh343@gmail.com');
+            showToast('Email address copied to clipboard!');
+        }
+
         // --- Modal Popup Logic for Read More ---
         function openProjectModal(title, btn) {
             const desc = btn.previousElementSibling.innerHTML;
@@ -1005,7 +1105,7 @@
             if (e.target === modal) { closeProjectModal(); }
         });
 
-        // --- Touch support for Floating Profile Badge on mobile devices ---
+        // --- Touch support for Floating Profile Badge ---
         const heroVisual = document.getElementById('heroVisual');
         if (heroVisual) {
             heroVisual.addEventListener('touchstart', function() {
@@ -1134,7 +1234,6 @@
 
         function prevStep(currentStep) {
             document.getElementById(`step-${currentStep}`).classList.remove('active');
-            document.getElementById(`step-${currentStep - 1}`).classList.active;
             document.getElementById(`step-${currentStep - 1}`).classList.add('active');
             document.getElementById(`dot-${currentStep}`).classList.remove('active');
         }
@@ -1159,7 +1258,7 @@
             }
         });
 
-        // --- Search and Filter Logic ---
+        // --- Smooth Transition Search & Filter Logic ---
         const searchInput = document.getElementById('project-search');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
@@ -1174,7 +1273,13 @@
                 const matchesFilter = (activeFilter === 'all' || category === activeFilter);
                 const matchesSearch = (!query || keywords.includes(query));
 
-                card.style.display = (matchesFilter && matchesSearch) ? 'flex' : 'none';
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'flex';
+                    setTimeout(() => card.classList.remove('fade-out'), 50);
+                } else {
+                    card.classList.add('fade-out');
+                    setTimeout(() => { if (card.classList.contains('fade-out')) card.style.display = 'none'; }, 300);
+                }
             });
         }
 
@@ -1205,19 +1310,13 @@
             });
         }
 
-        // Run immediately on page load
-        window.addEventListener('load', () => {
-            runCounters();
-        });
+        window.addEventListener('load', () => { runCounters(); });
 
-        // Re-trigger via Intersection Observer when in view
         const metricsSection = document.getElementById('metrics');
         if (metricsSection && 'IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        runCounters();
-                    }
+                    if (entry.isIntersecting) { runCounters(); }
                 });
             }, { threshold: 0.3 });
             observer.observe(metricsSection);
