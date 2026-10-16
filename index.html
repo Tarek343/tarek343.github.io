@@ -6,11 +6,17 @@
     
     <title>Tarek Nageh | Data Analyst & Power BI Expert</title>
     <meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
+    
+    <!-- Open Graph for SEO -->
+    <meta property="og:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
+    <meta property="og:description" content="Interactive dashboards & data analysis portfolio">
+    <meta property="og:image" content="https://i.postimg.cc/FKVH321F/1772370579715.png">
+    <meta property="og:type" content="website">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- GSAP Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 
     <style>
         :root {
@@ -50,6 +56,13 @@
             position: relative;
         }
 
+        /* Accessibility: Focus outline */
+        *:focus-visible {
+            outline: 2px solid var(--text-main);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
         #dotCanvas {
             position: fixed;
             top: 0;
@@ -68,6 +81,41 @@
             background: var(--text-main);
             z-index: 10000;
             width: 0%;
+        }
+
+        /* Back to Top Button (NEW) */
+        #back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--text-main);
+            color: var(--bg-color);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
         }
 
         /* Toast Notification System */
@@ -342,6 +390,9 @@
         .btn-dark { background: var(--text-main); color: var(--bg-color); }
         .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
 
+        .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .btn-outline:hover { background: var(--text-main); color: var(--bg-color); }
+
         /* Double Circular Profile Visual */
         .hero-visual {
             flex: 1;
@@ -369,7 +420,8 @@
             50% { transform: translateY(-8px); }
         }
 
-        .hero-visual:hover .profile-card-main {
+        .hero-visual:hover .profile-card-main,
+        .hero-visual.active-touch .profile-card-main {
             transform: scale(1.02);
             border-color: var(--text-main);
         }
@@ -403,7 +455,7 @@
         }
 
         .hero-visual:hover .profile-card-floating,
-        .hero-visual:active .profile-card-floating {
+        .hero-visual.active-touch .profile-card-floating {
             opacity: 1;
             visibility: visible;
             transform: translateY(0) scale(1);
@@ -492,7 +544,7 @@
 
         .stat-box:hover { transform: translateY(-4px); border-color: var(--text-main); }
         .stat-box i { font-size: 26px; color: var(--text-main); margin-bottom: 12px; }
-        .stat-box h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
+        .stat-box h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
         .stat-box p { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
         .kpi-widget {
@@ -505,7 +557,7 @@
         }
 
         .kpi-controls { display: flex; gap: 8px; margin-bottom: 15px; }
-        .kpi-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; }
+        .kpi-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); }
         .kpi-btn.active { background: var(--text-main); color: var(--bg-color); }
 
         .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -579,7 +631,7 @@
         .search-box-container { max-width: 500px; margin: 0 auto 25px; position: relative; }
         .search-input { width: 100%; padding: 14px 20px 14px 45px; border-radius: 30px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-family: inherit; font-size: 14px; backdrop-filter: blur(12px); outline: none; transition: var(--transition); }
         .search-input:focus { border-color: var(--text-main); box-shadow: 0 0 15px var(--glass-glow); }
-        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; }
+        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; pointer-events: none; }
 
         .filter-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; }
         .filter-btn { padding: 10px 22px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 13px; }
@@ -593,25 +645,34 @@
             border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.4s ease,
+                        box-shadow 0.3s ease,
+                        max-height 0.4s ease;
             display: flex;
             flex-direction: column;
             backdrop-filter: blur(12px);
             transform-style: preserve-3d;
             opacity: 1;
+            max-height: 900px;
         }
 
-        .project-card.fade-out {
+        .project-card.hidden {
             opacity: 0;
             transform: scale(0.9) translateY(10px) !important;
             pointer-events: none;
+            max-height: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
         }
 
         .project-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
 
         .project-img-container {
             width: 100%;
-            height: 200px;
+            aspect-ratio: 16 / 10;
             overflow: hidden;
             background: rgba(0,0,0,0.05);
             position: relative;
@@ -636,10 +697,11 @@
         .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; position: relative; z-index: 2; }
         .project-card:hover .project-img { transform: scale(1.05); }
         .project-content { padding: 25px; flex: 1; display: flex; flex-direction: column; transform: translateZ(20px); }
-        .tag { background: var(--border-color); color: var(--text-main); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 12px; }
+        .tag { background: var(--border-color); color: var(--text-main); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 12px; align-self: flex-start; }
         .project-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
         .project-content p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
-        .read-more-btn { background: none; border: none; color: var(--text-main); cursor: pointer; font-size: 13px; font-weight: 700; margin-bottom: 15px; text-align: left; }
+        .read-more-btn { background: none; border: none; color: var(--text-main); cursor: pointer; font-size: 13px; font-weight: 700; margin-bottom: 15px; text-align: left; padding: 0; }
+        .read-more-btn:hover { text-decoration: underline; }
         .project-links { margin-top: auto; display: flex; gap: 10px; }
         .project-links a { flex: 1; text-align: center; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; background: var(--border-color); color: var(--text-main); transition: var(--transition); }
         .project-links a:hover { background: var(--text-main); color: var(--bg-color); }
@@ -689,40 +751,84 @@
 
         footer { text-align: center; padding: 30px 20px 100px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border-color); margin-top: 40px; }
 
+        /* ===================== RESPONSIVE ===================== */
         @media (max-width: 900px) {
-            .hero, .about-container, .contact-container { flex-direction: column; grid-template-columns: 1fr; text-align: center; }
-            .hero { padding-top: 100px; }
+            .hero, .about-container, .contact-container {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero { padding-top: 100px; gap: 50px; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
             .nav-menu { display: none; }
+            .get-in-touch-btn { padding: 8px 16px; font-size: 13px; }
+            .contact-container { padding: 30px 20px; }
+            .about-container { padding: 25px 20px; }
+
+            /* Show floating badge on mobile via touch */
+            .profile-card-floating {
+                right: 50%;
+                transform: translateX(50%) translateY(20px) scale(0.9);
+            }
+            .hero-visual.active-touch .profile-card-floating {
+                transform: translateX(50%) translateY(0) scale(1);
+            }
+
+            #back-to-top { bottom: 90px; right: 20px; width: 40px; height: 40px; }
+            .dock { padding: 8px 15px; gap: 8px; }
+            .dock-item { width: 38px; height: 38px; font-size: 16px; }
+        }
+
+        @media (max-width: 500px) {
+            .metrics-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .metric-number-wrapper { font-size: 32px; }
+            .metric-unit { font-size: 24px; }
+            .metric-label { font-size: 11px; }
+            .section-header h2 { font-size: 24px; }
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- Project Details Modal Popup -->
-    <div id="project-modal">
+    <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeProjectModal()"><i class="fas fa-times"></i></button>
+            <button class="modal-close" onclick="closeProjectModal()" aria-label="Close modal"><i class="fas fa-times"></i></button>
             <h3 class="modal-title" id="modal-project-title"></h3>
             <div class="modal-body" id="modal-project-text"></div>
         </div>
     </div>
 
-    <div id="toast-container"></div>
+    <div id="toast-container" aria-live="polite"></div>
     <canvas id="dotCanvas"></canvas>
     <div id="progress-bar"></div>
 
+    <!-- Back to Top Button (NEW) -->
+    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
     <!-- Header / Navbar -->
     <header>
-        <a href="#home" class="logo smooth-scroll">TN</a>
-        <ul class="nav-menu">
-            <li><a href="#home" class="smooth-scroll">Home</a></li>
-            <li><a href="#about" class="smooth-scroll">About</a></li>
-            <li><a href="#certificates" class="smooth-scroll">Certificates</a></li>
-            <li><a href="#portfolio" class="smooth-scroll">Projects</a></li>
-            <li><a href="#contact" class="smooth-scroll">Contact</a></li>
-        </ul>
+        <a href="#home" class="logo smooth-scroll" aria-label="Home">TN</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home" class="smooth-scroll">Home</a></li>
+                <li><a href="#about" class="smooth-scroll">About</a></li>
+                <li><a href="#certificates" class="smooth-scroll">Certificates</a></li>
+                <li><a href="#portfolio" class="smooth-scroll">Projects</a></li>
+                <li><a href="#contact" class="smooth-scroll">Contact</a></li>
+            </ul>
+        </nav>
         <div class="nav-actions">
-            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon" id="theme-icon"></i></button>
             <a href="#contact" class="get-in-touch-btn smooth-scroll">Get In Touch</a>
         </div>
     </header>
@@ -739,17 +845,18 @@
             <p class="hero-desc">
                 I build interactive dashboards, perform comprehensive data analysis, and transform complex metrics into clear, actionable business insights.
             </p>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: inherit;">
                 <a href="#portfolio" class="btn btn-dark smooth-scroll"><i class="fas fa-eye"></i> Explore Projects</a>
-                <a href="Tarek Nageh.pdf" download="Tarek_Nageh_CV.pdf" onclick="downloadCV(event)" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+                <!-- ✅ CV FIXED: المسار الصحيح على GitHub Pages -->
+                <a href="https://tarek343.github.io/Tarek_Nageh.pdf" download="Tarek_Nageh_CV.pdf" onclick="downloadCV(event)" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
             </div>
         </div>
         <div class="hero-visual" id="heroVisual">
             <div class="profile-card-main">
-                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh" onload="this.parentElement.parentElement.classList.add('loaded')">
+                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Portrait of Tarek Nageh, Data Analyst">
             </div>
             <div class="profile-card-floating">
-                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh">
+                <img src="https://i.postimg.cc/FKVH321F/1772370579715.png" alt="Tarek Nageh avatar">
                 <div class="floating-info">
                     <span class="floating-name">Tarek Nageh</span>
                     <span class="floating-role">Data Analyst</span>
@@ -801,22 +908,22 @@
             <div class="about-stats-grid">
                 <div class="stat-box">
                     <i class="fas fa-chart-pie"></i>
-                    <h4>Data Visualization</h4>
+                    <h3>Data Visualization</h3>
                     <p>Power BI & Fabric</p>
                 </div>
                 <div class="stat-box">
                     <i class="fas fa-cubes"></i>
-                    <h4>Complex Modeling</h4>
+                    <h3>Complex Modeling</h3>
                     <p>DAX & SQL Queries</p>
                 </div>
                 <div class="stat-box">
                     <i class="fas fa-lightbulb"></i>
-                    <h4>Business Strategy</h4>
+                    <h3>Business Strategy</h3>
                     <p>Actionable Insights</p>
                 </div>
                 <div class="stat-box">
                     <i class="fas fa-cogs"></i>
-                    <h4>ETL & Automation</h4>
+                    <h3>ETL & Automation</h3>
                     <p>Power Query & Python</p>
                 </div>
 
@@ -862,7 +969,7 @@
                     <h3 class="cert-title">Programming & Development Training</h3>
                     <p class="cert-issuer">Harmash Academy</p>
                 </div>
-                <a href="https://harmash.com/certificate/tutorials/29632" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
+                <a href="https://harmash.com/certificate/tutorials/29632" target="_blank" rel="noopener" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
             </div>
 
             <div class="cert-card">
@@ -871,7 +978,7 @@
                     <h3 class="cert-title">Virtual Experience Program</h3>
                     <p class="cert-issuer">The Forage</p>
                 </div>
-                <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_68e025ca2541ecaba4478a17_1764706735935_completion_certificate.pdf" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
+                <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_68e025ca2541ecaba4478a17_1764706735935_completion_certificate.pdf" target="_blank" rel="noopener" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
             </div>
 
             <div class="cert-card">
@@ -880,7 +987,7 @@
                     <h3 class="cert-title">Data Analytics Simulation</h3>
                     <p class="cert-issuer">The Forage</p>
                 </div>
-                <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_68e025ca2541ecaba4478a17_1759609037988_completion_certificate.pdf" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
+                <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_68e025ca2541ecaba4478a17_1759609037988_completion_certificate.pdf" target="_blank" rel="noopener" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
             </div>
 
             <div class="cert-card">
@@ -889,7 +996,7 @@
                     <h3 class="cert-title">Advanced Programming & Tech Course</h3>
                     <p class="cert-issuer">Harmash Academy</p>
                 </div>
-                <a href="https://harmash.com/certificate/tutorials/38318" target="_blank" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
+                <a href="https://harmash.com/certificate/tutorials/38318" target="_blank" rel="noopener" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
             </div>
         </div>
     </section>
@@ -902,10 +1009,10 @@
 
         <div class="search-box-container">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" id="project-search" class="search-input" placeholder="Search projects by name, technology, or topic...">
+            <input type="text" id="project-search" class="search-input" placeholder="Search projects by name, technology, or topic..." aria-label="Search projects">
         </div>
         
-        <div class="filter-group">
+        <div class="filter-group" role="tablist">
             <button class="filter-btn active" data-filter="all">All Projects</button>
             <button class="filter-btn" data-filter="powerbi">Power BI / Fabric</button>
             <button class="filter-btn" data-filter="excel">Excel Analysis</button>
@@ -915,7 +1022,7 @@
         <div class="projects-grid" id="projects-grid">
             <div class="project-card" data-category="powerbi" data-keywords="sales performance power bi fabric dax profit analysis">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Dashboard" onload="this.parentElement.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Performance Dashboard" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Power BI</span>
@@ -927,15 +1034,15 @@
                     </div>
                     <button class="read-more-btn" onclick="openProjectModal('Sales Performance Dashboard', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo</a>
-                        <a href="https://github.com/Tarek343/Sales-Overview" target="_blank">Repository</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiODAyOGYwZDEtZDc4Ny00NGYxLWExMTItOTM0NTg0MzkyNDg1IiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" rel="noopener">Live Demo</a>
+                        <a href="https://github.com/Tarek343/Sales-Overview" target="_blank" rel="noopener">Repository</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card" data-category="powerbi" data-keywords="hr analytics employees headcount workforce salary power bi">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics" onload="this.parentElement.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics Dashboard" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Power BI</span>
@@ -947,15 +1054,15 @@
                     </div>
                     <button class="read-more-btn" onclick="openProjectModal('HR Analytics Dashboard', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImgiOjl9" target="_blank">Live Demo</a>
-                        <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank">Repository</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiZjQ3Mzg5Y2ItMTVkMy00MTgwLTljNWItYTU1YjA4Zjk2MTQwIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImgiOjl9" target="_blank" rel="noopener">Live Demo</a>
+                        <a href="https://github.com/Tarek343/Employees_Overview_Dashboard" target="_blank" rel="noopener">Repository</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card" data-category="excel" data-keywords="excel sales tracker pivot tables power query formulas retail">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker" onload="this.parentElement.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Excel</span>
@@ -967,15 +1074,15 @@
                     </div>
                     <button class="read-more-btn" onclick="openProjectModal('Excel Sales Tracker', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank">View File</a>
-                        <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank">Repository</a>
+                        <a href="https://1drv.ms/x/c/e282ab2d6badad2c/Ec5r_Fz4TPBDtFBD6tX9X98BjsJBszV87qVTU6688g7dyg?e=00MOfl" target="_blank" rel="noopener">View File</a>
+                        <a href="https://github.com/Tarek343/Sales-and-Profit-Analysis-" target="_blank" rel="noopener">Repository</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card" data-category="powerbi" data-keywords="platforms performance students course completion power bi education analytics">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance" onload="this.parentElement.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance Dashboard" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">Power BI</span>
@@ -987,15 +1094,15 @@
                     </div>
                     <button class="read-more-btn" onclick="openProjectModal('Platforms Performance', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank">Live Demo</a>
-                        <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank">Repository</a>
+                        <a href="https://app.fabric.microsoft.com/view?r=eyJrIjoiOGJlNTZkMjQtODhjZS00ZWJiLTkyMjAtYzUwZjBiZGE1YzQyIiwidCI6IjJiYjZlNWJjLWMxMDktNDdmYi05NDMzLWMxYzZmNGZhMzNmZiIsImMiOjl9" target="_blank" rel="noopener">Live Demo</a>
+                        <a href="https://github.com/Tarek343/Financial-Performance-Dashboard" target="_blank" rel="noopener">Repository</a>
                     </div>
                 </div>
             </div>
 
             <div class="project-card" data-category="sql" data-keywords="sql retail sales analysis joins aggregations database queries">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis" onload="this.parentElement.classList.add('loaded')">
+                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
                     <span class="tag">SQL</span>
@@ -1007,7 +1114,7 @@
                     </div>
                     <button class="read-more-btn" onclick="openProjectModal('SQL Retail Sales Analysis', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
-                        <a href="https://github.com/Tarek343/SQL_RetailSales_Project" target="_blank" style="flex: 1;">Repository</a>
+                        <a href="https://github.com/Tarek343/SQL_RetailSales_Project" target="_blank" rel="noopener" style="flex: 1;">Repository</a>
                     </div>
                 </div>
             </div>
@@ -1030,7 +1137,7 @@
             </div>
             
             <div>
-                <div class="step-indicator">
+                <div class="step-indicator" aria-hidden="true">
                     <div class="step-dot active" id="dot-1"></div>
                     <div class="step-dot" id="dot-2"></div>
                     <div class="step-dot" id="dot-3"></div>
@@ -1038,13 +1145,13 @@
 
                 <form id="multi-step-form" action="https://formspree.io/f/mblqopwn" method="POST">
                     <div class="form-step active" id="step-1">
-                        <label style="display:block; margin-bottom:8px; font-weight:600;">What's your name?</label>
+                        <label for="name-input" style="display:block; margin-bottom:8px; font-weight:600;">What's your name?</label>
                         <input type="text" name="name" id="name-input" class="form-control" placeholder="Enter your full name" required>
                         <button type="button" class="btn btn-dark" style="width:100%;" onclick="nextStep(1)">Next Step <i class="fas fa-arrow-right"></i></button>
                     </div>
 
                     <div class="form-step" id="step-2">
-                        <label style="display:block; margin-bottom:8px; font-weight:600;">Your email address?</label>
+                        <label for="email-input" style="display:block; margin-bottom:8px; font-weight:600;">Your email address?</label>
                         <input type="email" name="email" id="email-input" class="form-control" placeholder="example@domain.com" required>
                         <div style="display:flex; gap:10px;">
                             <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(2)">Back</button>
@@ -1053,8 +1160,8 @@
                     </div>
 
                     <div class="form-step" id="step-3">
-                        <label style="display:block; margin-bottom:8px; font-weight:600;">Your message / project details?</label>
-                        <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                        <label for="subject-input" style="display:block; margin-bottom:8px; font-weight:600;">Your message / project details?</label>
+                        <input type="text" name="subject" id="subject-input" class="form-control" placeholder="Subject" required>
                         <textarea name="message" class="form-control" rows="3" placeholder="Tell me more..." required></textarea>
                         <div style="display:flex; gap:10px;">
                             <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(3)">Back</button>
@@ -1069,10 +1176,10 @@
     <!-- Social Media Interactive Dock with Quick Actions -->
     <div class="dock-wrapper">
         <div class="dock">
-            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" class="dock-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/Tarek343" target="_blank" class="dock-item" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://wa.me/201060440658?text=Hi%20Tarek,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20data%20analysis%20opportunity!" target="_blank" class="dock-item" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <span onclick="copyEmail()" class="dock-item" aria-label="Copy Email"><i class="fas fa-envelope"></i></span>
+            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" rel="noopener" class="dock-item" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Tarek343" target="_blank" rel="noopener" class="dock-item" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
+            <a href="https://wa.me/201060440658?text=Hi%20Tarek,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20data%20analysis%20opportunity!" target="_blank" rel="noopener" class="dock-item" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <button onclick="copyEmail()" class="dock-item" aria-label="Copy email" style="padding:0;"><i class="fas fa-envelope"></i></button>
         </div>
     </div>
 
@@ -1081,22 +1188,59 @@
     </footer>
 
     <script>
-        // --- Copy Email Quick Action ---
-        function copyEmail() {
-            navigator.clipboard.writeText('Tareknageh343@gmail.com');
-            showToast('Email address copied to clipboard!');
+        /* ============================================================
+           ✅ CV Download with Fallback (FIXED)
+           لو الملف مش موجود بيحاول يفتح لينك بديل
+        ============================================================ */
+        function downloadCV(e) {
+            showToast('Preparing your CV download...', 'fa-download');
+            // الـ browser هيتعامل مع التحميل من الـ href تلقائي
+            // الـ fallback ده بس في حالة إن الملف مش موجود
+            const link = e.currentTarget;
+            const href = link.href;
+            
+            fetch(href, { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) {
+                        // الملف مش موجود - افتح جوجل درايف أو رابط بديل
+                        e.preventDefault();
+                        showToast('CV is being updated. Please contact me directly.', 'fa-info-circle');
+                        setTimeout(() => {
+                            window.open('https://wa.me/201060440658?text=Hi%20Tarek,%20could%20you%20send%20me%20your%20CV?', '_blank');
+                        }, 800);
+                    } else {
+                        showToast('Downloading your CV...', 'fa-check-circle');
+                    }
+                })
+                .catch(() => {
+                    // CORS issue - نكمل التحميل عادي
+                    showToast('Downloading your CV...', 'fa-check-circle');
+                });
         }
 
-        // --- Modal Popup Logic for Read More ---
+        /* ============================================================
+           Copy Email Quick Action
+        ============================================================ */
+        function copyEmail() {
+            navigator.clipboard.writeText('Tareknageh343@gmail.com')
+                .then(() => showToast('Email address copied to clipboard!'))
+                .catch(() => showToast('Could not copy email', 'fa-exclamation-circle'));
+        }
+
+        /* ============================================================
+           Modal Popup Logic for Read More
+        ============================================================ */
         function openProjectModal(title, btn) {
             const desc = btn.previousElementSibling.innerHTML;
             document.getElementById('modal-project-title').innerText = title;
             document.getElementById('modal-project-text').innerHTML = desc;
             document.getElementById('project-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeProjectModal() {
             document.getElementById('project-modal').classList.remove('active');
+            document.body.style.overflow = '';
         }
 
         window.addEventListener('click', (e) => {
@@ -1104,7 +1248,13 @@
             if (e.target === modal) { closeProjectModal(); }
         });
 
-        // --- Touch support for Floating Profile Badge ---
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProjectModal();
+        });
+
+        /* ============================================================
+           Touch support for Floating Profile Badge
+        ============================================================ */
         const heroVisual = document.getElementById('heroVisual');
         if (heroVisual) {
             heroVisual.addEventListener('touchstart', function() {
@@ -1112,32 +1262,47 @@
             }, { passive: true });
         }
 
-        // --- 3D Tilt Effect on Project Cards ---
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                card.style.transform = `rotateY(${x / 20}deg) rotateX(${-y / 20}deg) translateY(-5px)`;
+        /* ============================================================
+           3D Tilt Effect on Project Cards (desktop only)
+        ============================================================ */
+        const isTouchDevice = window.matchMedia('(hover: none)').matches;
+        if (!isTouchDevice) {
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    card.style.transform = `rotateY(${x / 20}deg) rotateX(${-y / 20}deg) translateY(-5px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0px)';
+                });
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0px)';
-            });
-        });
+        }
 
-        // --- Interactive Micro KPI Update ---
+        /* ============================================================
+           Interactive Micro KPI Update
+        ============================================================ */
         function updateKPI(type, btn) {
             document.querySelectorAll('.kpi-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const label = document.getElementById('kpi-label');
             const value = document.getElementById('kpi-value');
 
-            if (type === 'profit') { label.innerText = 'Tracked Profit Growth'; value.innerText = '49.9%'; }
-            else if (type === 'sales') { label.innerText = 'Analyzed Sales Volume'; value.innerText = '20M+'; }
-            else if (type === 'accuracy') { label.innerText = 'Data Accuracy Score'; value.innerText = '100%'; }
+            const map = {
+                profit:   { label: 'Tracked Profit Growth', value: '49.9%' },
+                sales:    { label: 'Analyzed Sales Volume', value: '20M+' },
+                accuracy: { label: 'Data Accuracy Score', value: '100%' }
+            };
+            if (map[type]) {
+                label.innerText = map[type].label;
+                value.innerText = map[type].value;
+            }
         }
 
-        // --- Toast Notification System ---
+        /* ============================================================
+           Toast Notification System
+        ============================================================ */
         function showToast(message, icon = 'fa-check-circle') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
@@ -1151,11 +1316,13 @@
             }, 4000);
         }
 
-        // --- Smooth Scroll Script ---
+        /* ============================================================
+           Smooth Scroll Script
+        ============================================================ */
         document.querySelectorAll('a.smooth-scroll, a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
-                if (targetId.startsWith('#')) {
+                if (targetId && targetId.startsWith('#')) {
                     e.preventDefault();
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
@@ -1165,22 +1332,27 @@
             });
         });
 
-        // --- CV Download Function ---
-        function downloadCV(e) {
-            showToast('Downloading CV file...');
-        }
-
-        // --- Interactive Canvas for Dot Grid Background ---
+        /* ============================================================
+           Interactive Canvas for Dot Grid Background
+        ============================================================ */
         const canvas = document.getElementById('dotCanvas');
         const ctx = canvas.getContext('2d');
-        let dots = [], mouse = { x: null, y: null, radius: 100 };
+        let dots = [];
+        const mouse = { x: null, y: null, radius: 100 };
 
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initDots(); }
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initDots();
+        }
+
         function initDots() {
             dots = [];
             const spacing = 30;
             for (let x = 0; x < canvas.width; x += spacing) {
-                for (let y = 0; y < canvas.height; y += spacing) { dots.push({ x, y, baseRadius: 1.5, radius: 1.5 }); }
+                for (let y = 0; y < canvas.height; y += spacing) {
+                    dots.push({ x, y, baseRadius: 1.5, radius: 1.5 });
+                }
             }
         }
 
@@ -1189,36 +1361,61 @@
             const isDark = document.body.classList.contains('dark-mode');
             ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
             dots.forEach(dot => {
-                let dx = mouse.x - dot.x; let dy = mouse.y - dot.y;
-                let dist = Math.sqrt(dx * dx + dy * dy);
-                dot.radius = (dist < mouse.radius) ? dot.baseRadius + (mouse.radius - dist) / 15 : dot.baseRadius;
-                ctx.beginPath(); ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2); ctx.fill();
+                const dx = mouse.x - dot.x;
+                const dy = mouse.y - dot.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                dot.radius = (dist < mouse.radius)
+                    ? dot.baseRadius + (mouse.radius - dist) / 15
+                    : dot.baseRadius;
+                ctx.beginPath();
+                ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+                ctx.fill();
             });
             requestAnimationFrame(drawDots);
         }
-        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas(); drawDots();
 
-        // --- Magnification Dock Effect ---
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        drawDots();
+
+        /* ============================================================
+           Magnification Dock Effect
+        ============================================================ */
         const dockItems = document.querySelectorAll('.dock-item');
         dockItems.forEach((item, index) => {
-            item.addEventListener('mousemove', (e) => {
+            item.addEventListener('mousemove', () => {
                 dockItems.forEach((otherItem, otherIndex) => {
                     const distance = Math.abs(index - otherIndex);
-                    let scale = (distance === 0) ? 1.4 : (distance === 1) ? 1.2 : 1;
+                    const scale = (distance === 0) ? 1.4 : (distance === 1) ? 1.2 : 1;
                     otherItem.style.transform = `scale(${scale}) translateY(-5px)`;
                 });
             });
         });
-        document.querySelector('.dock').addEventListener('mouseleave', () => {
-            dockItems.forEach(item => item.style.transform = 'scale(1) translateY(0)');
-        });
+        const dockEl = document.querySelector('.dock');
+        if (dockEl) {
+            dockEl.addEventListener('mouseleave', () => {
+                dockItems.forEach(item => item.style.transform = 'scale(1) translateY(0)');
+            });
+        }
 
-        // --- Multi-step Form Logic ---
+        /* ============================================================
+           Multi-step Form Logic
+        ============================================================ */
         function nextStep(currentStep) {
-            if (currentStep === 1 && !document.getElementById('name-input').value.trim()) { alert('Please enter your name.'); return; }
-            if (currentStep === 2 && (!document.getElementById('email-input').value.trim() || !document.getElementById('email-input').value.includes('@'))) { alert('Please enter a valid email address.'); return; }
+            if (currentStep === 1 && !document.getElementById('name-input').value.trim()) {
+                showToast('Please enter your name.', 'fa-exclamation-circle');
+                return;
+            }
+            if (currentStep === 2) {
+                const email = document.getElementById('email-input').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showToast('Please enter a valid email.', 'fa-exclamation-circle');
+                    return;
+                }
+            }
 
             document.getElementById(`step-${currentStep}`).classList.remove('active');
             document.getElementById(`step-${currentStep + 1}`).classList.add('active');
@@ -1238,11 +1435,19 @@
             submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
 
             try {
-                const response = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: { 'Accept': 'application/json' }
+                });
                 if (response.ok) {
                     showToast('Message sent successfully! I will reply soon.');
-                    this.reset(); prevStep(3); prevStep(2);
-                } else { throw new Error(); }
+                    this.reset();
+                    prevStep(3);
+                    prevStep(2);
+                } else {
+                    throw new Error();
+                }
             } catch {
                 showToast('Failed to send message. Try again later.', 'fa-exclamation-circle');
             } finally {
@@ -1251,7 +1456,9 @@
             }
         });
 
-        // --- Smooth Transition Search & Filter Logic ---
+        /* ============================================================
+           Smooth Filter + Search (class toggle, no display change)
+        ============================================================ */
         const searchInput = document.getElementById('project-search');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
@@ -1267,11 +1474,9 @@
                 const matchesSearch = (!query || keywords.includes(query));
 
                 if (matchesFilter && matchesSearch) {
-                    card.style.display = 'flex';
-                    setTimeout(() => card.classList.remove('fade-out'), 50);
+                    card.classList.remove('hidden');
                 } else {
-                    card.classList.add('fade-out');
-                    setTimeout(() => { if (card.classList.contains('fade-out')) card.style.display = 'none'; }, 300);
+                    card.classList.add('hidden');
                 }
             });
         }
@@ -1280,62 +1485,113 @@
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active'); filterProjects();
+                btn.classList.add('active');
+                filterProjects();
             });
         });
 
-        // --- Auto-Trigger & Intersection Observer Metrics Animated Counter ---
+        /* ============================================================
+           Metrics Counter - Auto-Trigger + Intersection Observer
+           (Runs only once per page load)
+        ============================================================ */
+        let countersRan = false;
+
         function runCounters() {
+            if (countersRan) return;
+            countersRan = true;
+
             document.querySelectorAll('.metric-number').forEach(counter => {
-                const target = +counter.getAttribute('data-target');
+                const target = parseFloat(counter.getAttribute('data-target'));
                 let count = 0;
+                const isDecimal = target % 1 !== 0;
                 const speed = target / 40;
+
                 const updateCount = () => {
                     count += speed;
                     if (count < target) {
-                        counter.innerText = count.toFixed(target % 1 !== 0 ? 1 : 0);
-                        setTimeout(updateCount, 25);
+                        counter.innerText = isDecimal ? count.toFixed(1) : Math.floor(count);
+                        requestAnimationFrame(updateCount);
                     } else {
-                        counter.innerText = target;
+                        counter.innerText = isDecimal ? target.toFixed(1) : target;
                     }
                 };
-                updateCount();
+                requestAnimationFrame(updateCount);
             });
         }
 
-        window.addEventListener('load', () => { runCounters(); });
+        // Auto-trigger on load (زي الكود القديم)
+        window.addEventListener('load', runCounters);
 
+        // And re-trigger via IntersectionObserver (احتياطي)
         const metricsSection = document.getElementById('metrics');
         if (metricsSection && 'IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) { runCounters(); }
+                    if (entry.isIntersecting) {
+                        runCounters();
+                    }
                 });
             }, { threshold: 0.3 });
             observer.observe(metricsSection);
         }
 
-        // --- Theme Toggle & Scroll Progress ---
+        /* ============================================================
+           Progress Bar + Back to Top Button
+        ============================================================ */
+        const backToTop = document.getElementById('back-to-top');
+
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
+
+            // Guard against division by zero on short pages
+            if (height > 0) {
+                document.getElementById('progress-bar').style.width = (winScroll / height) * 100 + '%';
+            }
+
+            // Back to top visibility
+            if (winScroll > 400) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
         });
 
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ============================================================
+           Theme Toggle (with localStorage persistence)
+        ============================================================ */
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
+
+        // Restore preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeIcon.classList.toggle('fa-sun');
             themeIcon.classList.toggle('fa-moon');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
-        // Intro GSAP Animation
+        /* ============================================================
+           GSAP Intro Animation
+        ============================================================ */
         window.addEventListener('DOMContentLoaded', () => {
-            gsap.from(".hero h1", { opacity: 0, y: 30, duration: 1, delay: 0.2 });
-            gsap.from(".hero-desc", { opacity: 0, y: 20, duration: 1, delay: 0.4 });
-            gsap.from(".hero-visual", { opacity: 0, scale: 0.9, duration: 1, delay: 0.5 });
+            if (window.gsap) {
+                gsap.from(".hero h1", { opacity: 0, y: 30, duration: 1, delay: 0.2 });
+                gsap.from(".hero-desc", { opacity: 0, y: 20, duration: 1, delay: 0.4 });
+                gsap.from(".hero-visual", { opacity: 0, scale: 0.9, duration: 1, delay: 0.5 });
+            }
         });
     </script>
 </body>
-</html>
+    </html>
