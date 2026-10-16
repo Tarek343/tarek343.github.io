@@ -585,7 +585,7 @@
         .filter-btn { padding: 10px 22px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 13px; }
         .filter-btn.active, .filter-btn:hover { background: var(--text-main); color: var(--bg-color); border-color: var(--text-main); }
 
-        /* Project Cards - With Smooth Transition Filter & Image Skeleton */
+        /* Project Cards */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; perspective: 1000px; }
         
         .project-card {
@@ -617,7 +617,6 @@
             position: relative;
         }
 
-        /* Image Placeholder Skeleton */
         .project-img-container::before {
             content: '';
             position: absolute;
@@ -742,7 +741,7 @@
             </p>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <a href="#portfolio" class="btn btn-dark smooth-scroll"><i class="fas fa-eye"></i> Explore Projects</a>
-                <a href="Tarek Nageh.pdf" download="Tarek_Nageh_CV.pdf" onclick="downloadCV(event)" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+                <a href="https://raw.githubusercontent.com/Tarek343/Portfolio/main/Tarek%20Nageh.pdf" download="Tarek_Nageh_CV.pdf" onclick="downloadCV(event)" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
             </div>
         </div>
         <div class="hero-visual" id="heroVisual">
@@ -1169,12 +1168,6 @@
         // --- CV Download Function ---
         function downloadCV(e) {
             showToast('Downloading CV file...');
-            const link = document.createElement('a');
-            link.href = 'Tarek Nageh.pdf';
-            link.download = 'Tarek_Nageh_CV.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
         }
 
         // --- Interactive Canvas for Dot Grid Background ---
