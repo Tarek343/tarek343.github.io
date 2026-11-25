@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tarek Nageh">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tarek Nageh | Data Analyst & Power BI Expert">
+    <meta name="twitter:description" content="Interactive dashboards & data analysis portfolio">
+    <meta name="twitter:image" content="https://i.postimg.cc/FKVH321F/1772370579715.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23111111'/><text x='32' y='41' font-family='Arial, sans-serif' font-size='26' font-weight='bold' fill='white' text-anchor='middle'>TN</text></svg>">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <title>Tarek Nageh | Data Analyst & Power BI Expert</title>
     <meta name="description" content="Tarek Nageh's Portfolio: Expert in Data Analysis, interactive Power BI & Fabric dashboard design.">
@@ -13,9 +24,24 @@
     <meta property="og:type" content="website">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Tarek Nageh",
+      "jobTitle": "Data Analyst",
+      "email": "mailto:Tareknageh343@gmail.com",
+      "telephone": "+201060440658",
+      "sameAs": [
+        "https://www.linkedin.com/in/tarek-nageh-7b724434a",
+        "https://github.com/Tarek343"
+      ]
+    }
+    </script>
 
     <style>
         :root {
@@ -29,6 +55,11 @@
             --glass-glow: rgba(0, 0, 0, 0.05);
             --success-green: #10b981;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --accent: #6366f1;
+            --accent-2: #8b5cf6;
+            --accent-grad: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --accent-soft: rgba(99, 102, 241, 0.12);
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
         }
 
         body.dark-mode {
@@ -40,6 +71,10 @@
             --border-color: rgba(255, 255, 255, 0.1);
             --primary: #6366f1;
             --glass-glow: rgba(255, 255, 255, 0.05);
+            --accent: #818cf8;
+            --accent-2: #a78bfa;
+            --accent-grad: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            --accent-soft: rgba(129, 140, 248, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,7 +91,7 @@
         }
 
         *:focus-visible {
-            outline: 2px solid var(--text-main);
+            outline: 2px solid var(--accent);
             outline-offset: 3px;
             border-radius: 4px;
         }
@@ -76,7 +111,7 @@
             top: 0;
             left: 0;
             height: 3px;
-            background: var(--text-main);
+            background: var(--accent-grad);
             z-index: 10000;
             width: 0%;
         }
@@ -88,8 +123,8 @@
             width: 46px;
             height: 46px;
             border-radius: 50%;
-            background: var(--text-main);
-            color: var(--bg-color);
+            background: var(--accent-grad);
+            color: #fff;
             border: none;
             cursor: pointer;
             display: flex;
@@ -123,14 +158,13 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-        }
-
-        .toast {
+        }.toast {
             background: var(--card-bg);
             color: var(--text-main);
             padding: 14px 24px;
             border-radius: 16px;
             border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent);
             backdrop-filter: blur(16px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             display: flex;
@@ -241,11 +275,11 @@
         }
 
         .logo {
-            font-weight: 800;
+            font-weight: 700;
             font-size: 18px;
             letter-spacing: -0.5px;
-            background: var(--text-main);
-            color: var(--bg-color);
+            background: var(--accent-grad);
+            color: #fff;
             padding: 6px 12px;
             border-radius: 8px;
             text-decoration: none;
@@ -266,9 +300,7 @@
             transition: var(--transition);
         }
 
-        .nav-menu a:hover { color: var(--text-main); }
-
-        .nav-actions {
+        .nav-menu a:hover { color: var(--text-main); }.nav-actions {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -289,8 +321,8 @@
         }
 
         .get-in-touch-btn {
-            background: var(--text-main);
-            color: var(--bg-color);
+            background: var(--accent-grad);
+            color: #fff;
             padding: 10px 20px;
             border-radius: 20px;
             font-weight: 600;
@@ -354,7 +386,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--accent);
             margin-bottom: 20px;
         }
 
@@ -380,11 +412,11 @@
             border: none;
         }
 
-        .btn-dark { background: var(--text-main); color: var(--bg-color); }
+        .btn-dark { background: var(--accent-grad); color: #fff; }
         .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
 
-        .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-        .btn-outline:hover { background: var(--text-main); color: var(--bg-color); }
+        .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35); }
+        .btn-outline:hover { background: var(--accent-grad); border-color: transparent; color: #fff; }
 
         .hero-visual {
             flex: 1;
@@ -396,14 +428,14 @@
 
         .profile-card-main {
             width: 300px;
-            height: 300px;
-            border-radius: 50%;
+            height: 300px;border-radius: 50%;
             overflow: hidden;
             background: transparent;
             position: relative;
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border: 4px solid var(--card-bg);
-            transition: transform 0.4s ease, border-color 0.4s ease;
+            border: 4px solid transparent;
+            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, var(--accent-grad) border-box;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             animation: floatHero 6s ease-in-out infinite;
         }
 
@@ -415,7 +447,7 @@
         .hero-visual:hover .profile-card-main,
         .hero-visual.active-touch .profile-card-main {
             transform: scale(1.02);
-            border-color: var(--text-main);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
         }
 
         .profile-card-main img {
@@ -497,12 +529,27 @@
             line-height: 1;
         }
 
-        .metric-unit { font-size: 32px; font-weight: 800; color: var(--text-main); }
+        .metric-unit { font-size: 32px; font-weight: 800; color: var(--accent); }
         .metric-label { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-top: 10px; }
 
-        section { padding: 50px 8%; max-width: 1300px; margin: 0 auto; }
+        section { padding: 50px 8%; max-width: 1300px; margin: 0 auto; scroll-margin-top: 85px; }
         .section-header { margin-bottom: 35px; text-align: center; }
-        .section-header h2 { font-size: 32px; font-weight: 800; }
+        .section-header h2 { font-size: 34px; font-weight: 700; }
+        .section-header h2 span {
+            background: var(--accent-grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .section-overline {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
 
         .about-container {
             display: grid;
@@ -514,9 +561,7 @@
             border-radius: 30px;
             border: 1px solid var(--border-color);
             backdrop-filter: blur(12px);
-        }
-
-        .about-stats-grid {
+        }.about-stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
@@ -532,7 +577,7 @@
         }
 
         .stat-box:hover { transform: translateY(-4px); border-color: var(--text-main); }
-        .stat-box i { font-size: 26px; color: var(--text-main); margin-bottom: 12px; }
+        .stat-box i { font-size: 26px; color: var(--accent); margin-bottom: 12px; }
         .stat-box h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--text-main); }
         .stat-box p { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
@@ -547,10 +592,11 @@
 
         .kpi-controls { display: flex; gap: 8px; margin-bottom: 15px; }
         .kpi-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); }
-        .kpi-btn.active { background: var(--text-main); color: var(--bg-color); }
+        .kpi-btn.active { background: var(--accent-grad); color: #fff; border-color: transparent; }
 
         .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-        .skill-tag { background: var(--border-color); color: var(--text-main); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; }
+        .skill-tag { background: var(--border-color); color: var(--text-main); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; border: 1px solid transparent; transition: var(--transition); cursor: default; }
+        .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
         .certificates-grid {
             display: grid;
@@ -611,22 +657,21 @@
         }
 
         .cert-link:hover {
-            background: var(--text-main);
-            color: var(--bg-color);
+            background: var(--accent-grad);
+            color: #fff;
         }
 
         .search-box-container { max-width: 500px; margin: 0 auto 25px; position: relative; }
         .search-input { width: 100%; padding: 14px 20px 14px 45px; border-radius: 30px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-family: inherit; font-size: 14px; backdrop-filter: blur(12px); outline: none; transition: var(--transition); }
-        .search-input:focus { border-color: var(--text-main); box-shadow: 0 0 15px var(--glass-glow); }
-        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; pointer-events: none; }
-
-        .filter-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; }
+        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+        .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 14px; pointer-events: none; }.filter-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; }
         .filter-btn { padding: 10px 22px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-muted); cursor: pointer; transition: var(--transition); font-weight: 600; font-size: 13px; }
-        .filter-btn.active, .filter-btn:hover { background: var(--text-main); color: var(--bg-color); border-color: var(--text-main); }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent-grad); color: #fff; border-color: transparent; }
 
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; perspective: 1000px; }
         
         .project-card {
+            position: relative;
             background: var(--card-bg);
             border-radius: 24px;
             overflow: hidden;
@@ -683,14 +728,32 @@
         .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; position: relative; z-index: 2; }
         .project-card:hover .project-img { transform: scale(1.05); }
         .project-content { padding: 25px; flex: 1; display: flex; flex-direction: column; transform: translateZ(20px); }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent-grad);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+        }
+        .project-card:hover::before { opacity: 1; }
+
         .tag { background: var(--border-color); color: var(--text-main); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 12px; align-self: flex-start; }
+        .tag-powerbi { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+        .tag-excel { background: rgba(16, 185, 129, 0.15); color: #047857; }
+        .tag-sql { background: rgba(59, 130, 246, 0.15); color: #1d4ed8; }
+        body.dark-mode .tag-powerbi { color: #fbbf24; }
+        body.dark-mode .tag-excel { color: #34d399; }
+        body.dark-mode .tag-sql { color: #60a5fa; }
         .project-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
         .project-content p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
-        .read-more-btn { background: none; border: none; color: var(--text-main); cursor: pointer; font-size: 13px; font-weight: 700; margin-bottom: 15px; text-align: left; padding: 0; }
+        .read-more-btn { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 13px; font-weight: 700; margin-bottom: 15px; text-align: left; padding: 0; }
         .read-more-btn:hover { text-decoration: underline; }
         .project-links { margin-top: auto; display: flex; gap: 10px; }
         .project-links a { flex: 1; text-align: center; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; background: var(--border-color); color: var(--text-main); transition: var(--transition); }
-        .project-links a:hover { background: var(--text-main); color: var(--bg-color); }
+        .project-links a:hover { background: var(--accent-grad); color: #fff; }
 
         .contact-container {
             background: var(--card-bg);
@@ -701,9 +764,7 @@
             gap: 50px;
             border: 1px solid var(--border-color);
             backdrop-filter: blur(12px);
-        }
-
-        .form-step { display: none; }
+        }.form-step { display: none; }
         .form-step.active { display: block; animation: fadeIn 0.4s ease; }
         
         @keyframes fadeIn {
@@ -713,7 +774,7 @@
 
         .step-indicator { display: flex; gap: 8px; margin-bottom: 25px; }
         .step-dot { flex: 1; height: 4px; background: var(--border-color); border-radius: 2px; transition: var(--transition); }
-        .step-dot.active { background: var(--text-main); }
+        .step-dot.active { background: var(--accent); }
 
         .form-control {
             width: 100%;
@@ -727,13 +788,146 @@
             font-size: 15px;
         }
 
-        .form-control:focus { outline: none; border-color: var(--text-main); }
+        .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
 
         .dock-wrapper { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 999; }
         .dock { display: flex; align-items: center; gap: 12px; padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
         .dock-item { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 18px; text-decoration: none; background: var(--bg-color); border: 1px solid var(--border-color); transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1); cursor: pointer; }
+        .dock-item:hover { color: var(--accent); border-color: var(--accent); }
 
-        footer { text-align: center; padding: 30px 20px 100px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border-color); margin-top: 40px; }
+        /* ===== UX/UI improvements ===== */
+        .skip-link {
+            position: absolute;
+            top: -60px;
+            left: 20px;
+            background: var(--text-main);
+            color: var(--bg-color);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            z-index: 30000;
+            transition: top 0.25s ease;
+        }
+        .skip-link:focus { top: 12px; }
+
+        header.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
+        .nav-menu a { position: relative; }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-grad);
+            border-radius: 2px;
+            transition: width 0.25s ease;
+        }
+        .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+        .nav-menu a.active { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .hamburger span { display: block; width: 16px; height: 2px; background: var(--text-main); border-radius: 2px; transition: var(--transition); }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 72px;
+            left: 5%;
+            right: 5%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .mobile-menu.open { display: flex; animation: fadeIn 0.25s ease; }
+        .mobile-menu a { padding: 14px 18px; border-radius: 12px; text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 15px; transition: var(--transition); }
+        .mobile-menu a:hover, .mobile-menu a.active { background: var(--accent-soft); color: var(--accent); }
+
+        .hero { position: relative; }
+        .scroll-hint {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            animation: bounceHint 2s infinite;
+        }
+        @keyframes bounceHint {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(6px); }
+        }
+
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        .results-count { text-align: center; font-size: 13px; color: var(--text-muted); font-weight: 600; margin: -15px 0 25px; }
+        .no-results { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 15px; font-weight: 600; border: 1px dashed var(--border-color); border-radius: 20px; }
+        .no-results i { margin-right: 8px; }
+
+        .contact-lines { display: flex; flex-direction: column; gap: 12px; }
+        .contact-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            background: var(--bg-color);
+            cursor: pointer;
+            font-family: inherit;
+            transition: var(--transition);
+            text-align: left;
+            width: 100%;
+        }
+        .contact-line:hover { border-color: var(--accent); transform: translateX(4px); }
+        .contact-line i { font-size: 16px; width: 20px; text-align: center; }
+
+        .step-dot.completed { background: var(--success-green); }
+        .form-control.input-error { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); }
+        .toast i.fa-exclamation-circle { color: #ef4444; }
+
+        footer { text-align: center; padding: 40px 20px 110px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border-color); margin-top: 40px; }
+        .footer-links { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; }
+        .footer-links a { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); color: var(--text-muted); font-size: 15px; text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: var(--bg-color); background: var(--text-main); transform: translateY(-3px); }
+        footer p { margin-bottom: 6px; }
 
         @media (max-width: 900px) {
             .hero, .about-container, .contact-container {
@@ -744,6 +938,8 @@
             .hero { padding-top: 100px; gap: 50px; }
             .hero-desc { margin-left: auto; margin-right: auto; }
             .nav-menu { display: none; }
+            .hamburger { display: flex; }
+            .scroll-hint { display: none; }
             .get-in-touch-btn { padding: 8px 16px; font-size: 13px; }
             .contact-container { padding: 30px 20px; }
             .about-container { padding: 25px 20px; }
@@ -769,6 +965,65 @@
             .section-header h2 { font-size: 24px; }
         }
 
+        /* ===== v2 visual system ===== */
+        ::selection { background: var(--accent); color: #fff; }
+
+        h1, h2, h3, .logo, .hero-title { font-family: var(--font-display); }
+
+        .grad-text {
+            background: var(--accent-grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+        .hero::before, .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .hero::before { width: 420px; height: 420px; background: rgba(99, 102, 241, 0.16); top: -60px; right: 8%; }
+        .hero::after { width: 320px; height: 320px; background: rgba(139, 92, 246, 0.12); bottom: -40px; left: 4%; }
+
+        /* Tools marquee */
+        #tools-strip { padding: 15px 0 35px; max-width: 100%; }
+        .marquee {
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        }
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+        .marquee-track span {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+        .marquee-track span::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        @keyframes marquee { to { transform: translateX(-50%); } }
+
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -787,13 +1042,13 @@
             <h3 class="modal-title" id="modal-project-title"></h3>
             <div class="modal-body" id="modal-project-text"></div>
         </div>
-    </div>
-
-    <div id="toast-container" aria-live="polite"></div>
+    </div><div id="toast-container" aria-live="polite"></div>
     <canvas id="dotCanvas"></canvas>
     <div id="progress-bar"></div>
 
     <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <a class="skip-link" href="#home">Skip to main content</a>
 
     <header>
         <a href="#home" class="logo smooth-scroll" aria-label="Home">TN</a>
@@ -806,11 +1061,20 @@
                 <li><a href="#contact" class="smooth-scroll">Contact</a></li>
             </ul>
         </nav>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
         <div class="nav-actions">
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon" id="theme-icon"></i></button>
             <a href="#contact" class="get-in-touch-btn smooth-scroll">Get In Touch</a>
         </div>
     </header>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+        <a href="#home" class="smooth-scroll">Home</a>
+        <a href="#about" class="smooth-scroll">About</a>
+        <a href="#certificates" class="smooth-scroll">Certificates</a>
+        <a href="#portfolio" class="smooth-scroll">Projects</a>
+        <a href="#contact" class="smooth-scroll">Contact</a>
+    </nav>
 
     <section id="home" class="hero">
         <div class="hero-content">
@@ -819,7 +1083,7 @@
             </div>
 
             <div class="hero-title">Data Analyst & Power BI Expert</div>
-            <h1>Tarek<br>Nageh</h1>
+            <h1>Tarek<br><span class="grad-text">Nageh</span></h1>
             <p class="hero-desc">
                 I build interactive dashboards, perform comprehensive data analysis, and transform complex metrics into clear, actionable business insights.
             </p>
@@ -841,6 +1105,10 @@
                 </div>
             </div>
         </div>
+        <a href="#metrics" class="scroll-hint smooth-scroll" aria-label="Scroll down to see more">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
     </section>
 
     <section id="metrics">
@@ -865,19 +1133,27 @@
                     <span class="metric-unit">+</span>
                 </div>
                 <div class="metric-label">Students Analyzed</div>
-            </div>
-            <div class="metric-card">
+            </div><div class="metric-card">
                 <div class="metric-number-wrapper">
-                    <span class="metric-number" data-target="100">0</span>
-                    <span class="metric-unit">%</span>
+                    <span class="metric-number" data-target="5">0</span>
+                    <span class="metric-unit">+</span>
                 </div>
-                <div class="metric-label">Data Accuracy & Value</div>
+                <div class="metric-label">Projects Delivered</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools-strip" aria-label="Tools and technologies">
+        <div class="marquee">
+            <div class="marquee-track">
+                <span>Power BI</span><span>Microsoft Fabric</span><span>SQL Server</span><span>Python</span><span>Excel</span><span>Power Query</span><span>DAX</span><span>Data Modeling</span><span>Data Visualization</span><span>ETL</span><span>Power BI</span><span>Microsoft Fabric</span><span>SQL Server</span><span>Python</span><span>Excel</span><span>Power Query</span><span>DAX</span><span>Data Modeling</span><span>Data Visualization</span><span>ETL</span>
             </div>
         </div>
     </section>
 
     <section id="about">
         <div class="section-header">
+            <span class="section-overline">Get to know me</span>
             <h2>About <span>Me</span></h2>
         </div>
         <div class="about-container">
@@ -907,10 +1183,10 @@
                     <div class="kpi-controls">
                         <button class="kpi-btn active" onclick="updateKPI('profit', this)">Profit</button>
                         <button class="kpi-btn" onclick="updateKPI('sales', this)">Sales</button>
-                        <button class="kpi-btn" onclick="updateKPI('accuracy', this)">Accuracy</button>
+                        <button class="kpi-btn" onclick="updateKPI('projects', this)">Projects</button>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 13px; color: var(--text-muted);" id="kpi-label">Tracked Profit Growth</span>
+                        <span style="font-size: 13px; color: var(--text-muted);" id="kpi-label">Tracked Profit Margin</span>
                         <span style="font-size: 20px; font-weight: 800;" id="kpi-value">49.9%</span>
                     </div>
                 </div>
@@ -935,6 +1211,7 @@
 
     <section id="certificates">
         <div class="section-header">
+            <span class="section-overline">Verified Learning</span>
             <h2>Certificates & <span>Credentials</span></h2>
         </div>
         <div class="certificates-grid">
@@ -945,9 +1222,7 @@
                     <p class="cert-issuer">Harmash Academy</p>
                 </div>
                 <a href="https://harmash.com/certificate/tutorials/29632" target="_blank" rel="noopener" class="cert-link">Verify Certificate <i class="fas fa-external-link-alt"></i></a>
-            </div>
-
-            <div class="cert-card">
+            </div><div class="cert-card">
                 <div>
                     <div class="cert-icon"><i class="fas fa-award"></i></div>
                     <h3 class="cert-title">Virtual Experience Program</h3>
@@ -978,6 +1253,7 @@
 
     <section id="portfolio">
         <div class="section-header">
+            <span class="section-overline">Selected Work</span>
             <h2>Featured <span>Projects</span></h2>
         </div>
 
@@ -986,12 +1262,14 @@
             <input type="text" id="project-search" class="search-input" placeholder="Search projects by name, technology, or topic..." aria-label="Search projects">
         </div>
         
-        <div class="filter-group" role="tablist">
-            <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="powerbi">Power BI / Fabric</button>
-            <button class="filter-btn" data-filter="excel">Excel Analysis</button>
-            <button class="filter-btn" data-filter="sql">SQL Projects</button>
+        <div class="filter-group" role="group" aria-label="Filter projects by category">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true">All Projects</button>
+            <button class="filter-btn" data-filter="powerbi" aria-pressed="false">Power BI / Fabric</button>
+            <button class="filter-btn" data-filter="excel" aria-pressed="false">Excel Analysis</button>
+            <button class="filter-btn" data-filter="sql" aria-pressed="false">SQL Projects</button>
         </div>
+
+        <p id="results-count" class="results-count" role="status" aria-live="polite">Showing all 5 projects</p>
 
         <div class="projects-grid" id="projects-grid">
             <div class="project-card" data-category="powerbi" data-keywords="sales performance power bi fabric dax profit analysis">
@@ -999,12 +1277,12 @@
                     <img src="https://i.postimg.cc/1XGf3tRq/unnamed.png" class="project-img" alt="Sales Performance Dashboard" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
-                    <span class="tag">Power BI</span>
+                    <span class="tag tag-powerbi">Power BI</span>
                     <h3>Sales Performance Dashboard</h3>
                     <p>Advanced Sales Performance Analysis (QoQ) tracking <strong>9.9M Total Profit</strong> from <strong>20M Total Sales</strong>.</p>
                     <div class="full-project-desc" style="display:none;">
                         Case Study: Advanced Sales Performance Analysis (QoQ). This Power BI Dashboard was designed for executive decision-making, integrating data from multiple sources to track <strong>9.9M Total Profit</strong> from <strong>20M Total Sales</strong>, achieving <strong>49.9% profitability</strong>.<br><br>
-                        The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak. I utilized <strong>DAX functions</strong> to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth.
+                        The data analysis highlighted significant performance variance across regions and a sharp sales drop in 2016 following a 2015 peak.I utilized <strong>DAX functions</strong> to create dynamic time-intelligence calculations (like Quarter-over-Quarter) and implemented interactive data visualization techniques to allow managers to instantly filter sales trends, identify low-performing states, and strategize for future growth.
                     </div>
                     <button class="read-more-btn" onclick="openProjectModal('Sales Performance Dashboard', this)">Read More <i class="fas fa-arrow-right"></i></button>
                     <div class="project-links">
@@ -1019,7 +1297,7 @@
                     <img src="https://i.postimg.cc/Qd4VtvDb/unnamed-(1).png" class="project-img" alt="HR Analytics Dashboard" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
-                    <span class="tag">Power BI</span>
+                    <span class="tag tag-powerbi">Power BI</span>
                     <h3>HR Analytics Dashboard</h3>
                     <p>Detailed overview of Human Resources data covering <strong>689 employees</strong> and workforce planning.</p>
                     <div class="full-project-desc" style="display:none;">
@@ -1039,10 +1317,9 @@
                     <img src="https://i.postimg.cc/HWVtYjZz/IMG-20251119-WA0004.jpg" class="project-img" alt="Excel Sales Tracker" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
-                    <span class="tag">Excel</span>
+                    <span class="tag tag-excel">Excel</span>
                     <h3>Excel Sales Tracker</h3>
-                    <p>Comprehensive Sales and Profitability Tracking using Pivot Tables, Power Query, and Advanced Formulas.</p>
-                    <div class="full-project-desc" style="display:none;">
+                    <p>Comprehensive Sales and Profitability Tracking using Pivot Tables, Power Query, and Advanced Formulas.</p><div class="full-project-desc" style="display:none;">
                         Case Study: Comprehensive Sales and Profitability Tracking for Retail. This advanced Excel Dashboard offers a dynamic view of sales metrics, profit margins, and detailed geographical/product distribution across various Egyptian branches.<br><br>
                         The analysis integrates Sales, Profit, and Detailed Item Metrics across <strong>three interconnected dashboards</strong> (Sales, Profit, and Details). Key features include tracking high sales (<strong>$62.7K</strong>), maximum profit (<strong>$3.1K</strong>), dynamic filters by Branch and Geographic Segment, utilizing <strong>Pivot Tables, Power Query, and advanced formulas</strong>.
                     </div>
@@ -1059,7 +1336,7 @@
                     <img src="https://i.postimg.cc/Y24rNfx4/Student.png" class="project-img" alt="Platforms Performance Dashboard" loading="lazy" onload="this.parentElement.classList.add('loaded')">
                 </div>
                 <div class="project-content">
-                    <span class="tag">Power BI</span>
+                    <span class="tag tag-powerbi">Power BI</span>
                     <h3>Platforms Performance</h3>
                     <p>Comprehensive analysis of <strong>1,000+ students</strong> across 10 countries and 303 courses.</p>
                     <div class="full-project-desc" style="display:none;">
@@ -1076,10 +1353,9 @@
 
             <div class="project-card" data-category="sql" data-keywords="sql retail sales analysis joins aggregations database queries">
                 <div class="project-img-container">
-                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis" loading="lazy" onload="this.parentElement.classList.add('loaded')">
-                </div>
+                    <img src="https://i.postimg.cc/RZg8jd35/SQL-retial.png" class="project-img" alt="SQL Retail Sales Analysis" loading="lazy" onload="this.parentElement.classList.add('loaded')"></div>
                 <div class="project-content">
-                    <span class="tag">SQL</span>
+                    <span class="tag tag-sql">SQL</span>
                     <h3>SQL Retail Sales Analysis</h3>
                     <p>Comprehensive SQL-based analysis of retail sales data focusing on revenue trends and customer behavior.</p>
                     <div class="full-project-desc" style="display:none;">
@@ -1093,10 +1369,12 @@
                 </div>
             </div>
         </div>
+        <p id="no-results" class="no-results" hidden><i class="fas fa-search"></i> No projects match your search. Try a different keyword or filter.</p>
     </section>
 
     <section id="contact">
         <div class="section-header">
+            <span class="section-overline">Let's Connect</span>
             <h2>Get In <span>Touch</span></h2>
         </div>
         <div class="contact-container">
@@ -1105,8 +1383,12 @@
                 <p style="color: var(--text-muted); margin-bottom: 30px;">
                     Ready to transform your data into actionable insights? Complete the form step-by-step to get in touch.
                 </p>
-                <div style="margin-bottom: 10px; cursor: pointer;" onclick="copyEmail()"><i class="fas fa-envelope"></i> Tareknageh343@gmail.com</div>
-                <div><i class="fas fa-phone"></i> +20 1060440658</div>
+                <div class="contact-lines">
+                    <a class="contact-line" href="mailto:Tareknageh343@gmail.com"><i class="fas fa-envelope"></i><span>Tareknageh343@gmail.com</span></a>
+                    <a class="contact-line" href="tel:+201060440658"><i class="fas fa-phone"></i><span dir="ltr">+20 1060440658</span></a>
+                    <a class="contact-line" href="https://wa.me/201060440658" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span></a>
+                    <button type="button" class="contact-line" onclick="copyEmail()"><i class="fas fa-copy"></i><span>Copy email address</span></button>
+                </div>
             </div>
             
             <div>
@@ -1130,9 +1412,7 @@
                             <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(2)">Back</button>
                             <button type="button" class="btn btn-dark" style="flex:1;" onclick="nextStep(2)">Next Step <i class="fas fa-arrow-right"></i></button>
                         </div>
-                    </div>
-
-                    <div class="form-step" id="step-3">
+                    </div><div class="form-step" id="step-3">
                         <label for="subject-input" style="display:block; margin-bottom:8px; font-weight:600;">Your message / project details?</label>
                         <input type="text" name="subject" id="subject-input" class="form-control" placeholder="Subject" required>
                         <textarea name="message" class="form-control" rows="3" placeholder="Tell me more..." required></textarea>
@@ -1156,6 +1436,12 @@
     </div>
 
     <footer>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/tarek-nageh-7b724434a" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Tarek343" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
+            <a href="mailto:Tareknageh343@gmail.com" aria-label="Send an email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>Designed &amp; built by Tarek Nageh</p>
         <p>&copy; 2026 Tarek Nageh. All rights reserved.</p>
     </footer>
 
@@ -1182,17 +1468,21 @@
         /* ============================================================
            Modal Popup for Read More (صفحة عائمة منفصلة)
         ============================================================ */
+        let lastFocusedElement = null;
         function openProjectModal(title, btn) {
             const desc = btn.previousElementSibling.innerHTML;
+            lastFocusedElement = btn;
             document.getElementById('modal-project-title').innerText = title;
             document.getElementById('modal-project-text').innerHTML = desc;
             document.getElementById('project-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
+            document.querySelector('#project-modal .modal-close').focus();
         }
 
         function closeProjectModal() {
             document.getElementById('project-modal').classList.remove('active');
             document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
         }
 
         window.addEventListener('click', (e) => {
@@ -1202,9 +1492,7 @@
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeProjectModal();
-        });
-
-        /* ============================================================
+        });/* ============================================================
            Touch Support for Floating Profile Badge
         ============================================================ */
         const heroVisual = document.getElementById('heroVisual');
@@ -1244,9 +1532,9 @@
             const value = document.getElementById('kpi-value');
 
             const map = {
-                profit:   { label: 'Tracked Profit Growth', value: '49.9%' },
+                profit:   { label: 'Tracked Profit Margin', value: '49.9%' },
                 sales:    { label: 'Analyzed Sales Volume', value: '20M+' },
-                accuracy: { label: 'Data Accuracy Score', value: '100%' }
+                projects: { label: 'Projects Delivered', value: '5+' }
             };
             if (map[type]) {
                 label.innerText = map[type].label;
@@ -1284,9 +1572,7 @@
                     }
                 }
             });
-        });
-
-        /* ============================================================
+        });/* ============================================================
            Interactive Canvas for Dot Grid Background
         ============================================================ */
         const canvas = document.getElementById('dotCanvas');
@@ -1311,6 +1597,7 @@
         }
 
         function drawDots() {
+            if (!document.hidden) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const isDark = document.body.classList.contains('dark-mode');
             ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
@@ -1325,14 +1612,32 @@
                 ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
                 ctx.fill();
             });
+            }
             requestAnimationFrame(drawDots);
         }
 
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
         window.addEventListener('resize', resizeCanvas);
+
+        // نسخة ثابتة بدون حركة لمن يفعّل prefers-reduced-motion
+        function drawDotsStatic() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isDark = document.body.classList.contains('dark-mode');
+            ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
+            dots.forEach(dot => {
+                ctx.beginPath();
+                ctx.arc(dot.x, dot.y, dot.baseRadius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
         resizeCanvas();
-        drawDots();
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            drawDotsStatic();
+        } else {
+            drawDots();
+        }
 
         /* ============================================================
            Magnification Dock Effect
@@ -1359,6 +1664,7 @@
         ============================================================ */
         function nextStep(currentStep) {
             if (currentStep === 1 && !document.getElementById('name-input').value.trim()) {
+                document.getElementById('name-input').classList.add('input-error');
                 showToast('Please enter your name.', 'fa-exclamation-circle');
                 return;
             }
@@ -1366,6 +1672,7 @@
                 const email = document.getElementById('email-input').value.trim();
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email)) {
+                    document.getElementById('email-input').classList.add('input-error');
                     showToast('Please enter a valid email.', 'fa-exclamation-circle');
                     return;
                 }
@@ -1374,9 +1681,8 @@
             document.getElementById(`step-${currentStep}`).classList.remove('active');
             document.getElementById(`step-${currentStep + 1}`).classList.add('active');
             document.getElementById(`dot-${currentStep + 1}`).classList.add('active');
-        }
-
-        function prevStep(currentStep) {
+            document.getElementById(`dot-${currentStep}`).classList.add('completed');
+        }function prevStep(currentStep) {
             document.getElementById(`step-${currentStep}`).classList.remove('active');
             document.getElementById(`step-${currentStep - 1}`).classList.add('active');
             document.getElementById(`dot-${currentStep}`).classList.remove('active');
@@ -1399,6 +1705,10 @@
                     this.reset();
                     prevStep(3);
                     prevStep(2);
+                    document.querySelectorAll('.step-dot').forEach((d, i) => {
+                        d.classList.toggle('active', i === 0);
+                        d.classList.remove('completed');
+                    });
                 } else {
                     throw new Error();
                 }
@@ -1433,13 +1743,20 @@
                     card.classList.add('hidden');
                 }
             });
+
+            const visibleCount = document.querySelectorAll('.project-card:not(.hidden)').length;
+            document.getElementById('no-results').hidden = visibleCount !== 0;
+            document.getElementById('results-count').innerText = visibleCount === projectCards.length
+                ? `Showing all ${projectCards.length} projects`
+                : `Showing ${visibleCount} of ${projectCards.length} projects`;
         }
 
         searchInput.addEventListener('input', filterProjects);
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
                 btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
                 filterProjects();
             });
         });
@@ -1459,9 +1776,7 @@
                 const progress = Math.min(elapsed / duration, 1);
                 // easing function (easeOutQuad) لحركة ناعمة
                 const eased = 1 - (1 - progress) * (1 - progress);
-                const currentValue = target * eased;
-
-                if (progress < 1) {
+                const currentValue = target * eased;if (progress < 1) {
                     counter.innerText = isDecimal ? currentValue.toFixed(1) : Math.floor(currentValue);
                     requestAnimationFrame(updateCount);
                 } else {
@@ -1538,6 +1853,77 @@
         });
 
         /* ============================================================
+           Header Shadow + Scrollspy (تظليل اللينك النشط أثناء التمرير)
+        ============================================================ */
+        const headerEl = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            headerEl.classList.toggle('scrolled', window.scrollY > 10);
+        }, { passive: true });
+
+        const spyLinks = document.querySelectorAll('.nav-menu a[href^="#"], .mobile-menu a[href^="#"]');
+        if ('IntersectionObserver' in window) {
+            const spy = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const id = '#' + entry.target.id;
+                    spyLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+                });
+            }, { rootMargin: '-40% 0px -55% 0px' });
+            document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+        }
+
+        /* ============================================================
+           Mobile Menu (Hamburger) - كان مفيش قائمة للموبايل خالص
+        ============================================================ */
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        function setMenu(open) {
+            hamburger.classList.toggle('open', open);
+            mobileMenu.classList.toggle('open', open);
+            hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+        }
+        hamburger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
+        /* ============================================================
+           Reveal on Scroll (العناصر تظهر بنعومة أثناء التمرير)
+        ============================================================ */
+        if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const revealTargets = document.querySelectorAll('.section-header, .metric-card, .stat-box, .kpi-widget, .cert-card, .about-container > div, .contact-container > div, .search-box-container, .filter-group');
+            revealTargets.forEach(el => el.classList.add('reveal'));
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealTargets.forEach(el => revealObserver.observe(el));
+        }
+
+        /* ============================================================
+           Form Keyboard Navigation (Enter ينقلك للخطوة اللي بعدها)
+        ============================================================ */
+        document.getElementById('name-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); nextStep(1); }
+        });
+        document.getElementById('email-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); nextStep(2); }
+        });
+        document.getElementById('subject-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); document.querySelector('#multi-step-form textarea').focus(); }
+        });
+        ['name-input', 'email-input', 'subject-input'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() { this.classList.remove('input-error'); });
+        });
+
+        // شغّل الفلتر مرة في البداية عشان يظهر عدد المشاريع
+        filterProjects();
+
+        /* ============================================================
            GSAP Intro Animation
         ============================================================ */
         window.addEventListener('DOMContentLoaded', () => {
@@ -1549,4 +1935,4 @@
         });
     </script>
 </body>
-</html>
+                </html>
