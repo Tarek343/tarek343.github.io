@@ -1032,8 +1032,108 @@
             }
         }
     </style>
+
+    <style>
+        /* ==================== Welcome Cover ==================== */
+        #welcome-cover {
+            position: fixed; inset: 0; z-index: 29999;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(160deg, #0b1120 0%, #141b3a 50%, #1e1b4b 100%);
+            color: #f8fafc; overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        #welcome-cover.cover-leaving { transform: translateY(-100%); }
+        body.cover-active { overflow: hidden; }
+        .cover-glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+        .cover-glow-1 { width: 480px; height: 480px; background: rgba(99, 102, 241, 0.35); top: -120px; left: -100px; animation: coverFloat 9s ease-in-out infinite; }
+        .cover-glow-2 { width: 520px; height: 520px; background: rgba(139, 92, 246, 0.30); bottom: -160px; right: -120px; animation: coverFloat 11s ease-in-out infinite reverse; }
+        @keyframes coverFloat { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(40px, 30px) scale(1.08); } }
+        .cover-inner { text-align: center; padding: 24px; position: relative; z-index: 2; max-width: 760px; }
+        .cover-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+            color: #a5b4fc; font-weight: 600; margin-bottom: 18px;
+        }
+        .cover-eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 10px #34d399; animation: coverPulse 2s ease-in-out infinite; }
+        @keyframes coverPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+        .cover-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(44px, 8vw, 84px); font-weight: 700; line-height: 1.05;
+            margin: 0 0 10px;
+        }
+        .cover-name span {
+            background: linear-gradient(135deg, #818cf8, #c4b5fd);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .cover-role { font-size: clamp(15px, 2.4vw, 20px); color: #cbd5e1; margin: 0 0 34px; letter-spacing: 0.5px; }
+        .cover-stats { display: flex; justify-content: center; gap: clamp(20px, 6vw, 56px); margin-bottom: 40px; flex-wrap: wrap; }
+        .cover-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px, 4.5vw, 38px); font-weight: 700; color: #ffffff; }
+        .cover-unit { color: #a5b4fc; margin-left: 2px; font-size: 0.7em; }
+        .cover-stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #94a3b8; margin-top: 4px; }
+        #cover-enter {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 36px; border: none; border-radius: 999px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #ffffff; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600;
+            cursor: pointer; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        #cover-enter:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(139, 92, 246, 0.5); }
+        #cover-enter i { animation: coverBounce 1.8s ease-in-out infinite; }
+        @keyframes coverBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+        #cover-skip {
+            position: absolute; top: 22px; right: 26px; z-index: 3;
+            background: transparent; border: 1px solid rgba(148, 163, 184, 0.35);
+            color: #94a3b8; padding: 8px 16px; border-radius: 999px;
+            font-family: 'Inter', sans-serif; font-size: 13px; cursor: pointer;
+            transition: color 0.25s ease, border-color 0.25s ease;
+        }
+        #cover-skip:hover { color: #ffffff; border-color: #818cf8; }
+        .cover-autobar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(148, 163, 184, 0.15); }
+        .cover-autobar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #6366f1, #8b5cf6); animation: coverAuto 9s linear forwards; }
+        @keyframes coverAuto { to { width: 100%; } }
+        @media (max-width: 480px) {
+            #cover-skip { top: 14px; right: 14px; }
+            .cover-stats { gap: 18px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cover-glow, #cover-enter i, .cover-eyebrow-dot, .cover-autobar span { animation: none !important; }
+            #welcome-cover { transition: opacity 0.2s ease; }
+            #welcome-cover.cover-leaving { transform: none; opacity: 0; }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- ==================== Welcome Cover ==================== -->
+    <div id="welcome-cover" role="dialog" aria-modal="true" aria-label="Welcome to Tarek Nageh's portfolio">
+        <div class="cover-glow cover-glow-1"></div>
+        <div class="cover-glow cover-glow-2"></div>
+        <button id="cover-skip" type="button">Skip <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        <div class="cover-inner">
+            <div class="cover-eyebrow"><span class="cover-eyebrow-dot"></span> Welcome to my portfolio</div>
+            <h2 class="cover-name">Tarek <span>Nageh</span></h2>
+            <p class="cover-role">Data Analyst | Power BI Expert</p>
+            <div class="cover-stats">
+                <div class="cover-stat">
+                    <div class="cover-stat-num"><span class="cover-count" data-target="20">0</span><span class="cover-unit">M+</span></div>
+                    <div class="cover-stat-label">Sales Analyzed</div>
+                </div>
+                <div class="cover-stat">
+                    <div class="cover-stat-num"><span class="cover-count" data-target="9.9">0</span><span class="cover-unit">M+</span></div>
+                    <div class="cover-stat-label">Profit Tracked</div>
+                </div>
+                <div class="cover-stat">
+                    <div class="cover-stat-num"><span class="cover-count" data-target="1000">0</span><span class="cover-unit">+</span></div>
+                    <div class="cover-stat-label">Students Analyzed</div>
+                </div>
+            </div>
+            <button id="cover-enter" type="button">Enter Portfolio <i class="fas fa-arrow-down" aria-hidden="true"></i></button>
+        </div>
+        <div class="cover-autobar" aria-hidden="true"><span></span></div>
+    </div>
+
 
     <!-- Project Details Modal Popup (Floating separate page) -->
     <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
@@ -1951,6 +2051,60 @@
                 gsap.from(".hero-visual", { opacity: 0, scale: 0.9, duration: 1, delay: 0.5 });
             }
         });
+    </script>
+    <script>
+        /* ==================== Welcome Cover ==================== */
+        (function () {
+            const cover = document.getElementById('welcome-cover');
+            if (!cover) return;
+            document.body.classList.add('cover-active');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const AUTO_DISMISS_MS = 9000;
+            let dismissed = false;
+
+            const counters = cover.querySelectorAll('.cover-count');
+            function animateCount(el) {
+                const target = parseFloat(el.dataset.target);
+                const decimals = (el.dataset.target.split('.')[1] || '').length;
+                if (reduceMotion) {
+                    el.textContent = decimals ? target.toFixed(decimals) : target.toLocaleString('en-US');
+                    return;
+                }
+                const dur = 1600;
+                const start = performance.now();
+                function frame(now) {
+                    const p = Math.min(Math.max((now - start) / dur, 0), 1);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    const val = target * eased;
+                    el.textContent = decimals ? val.toFixed(decimals) : Math.round(val).toLocaleString('en-US');
+                    if (p < 1) requestAnimationFrame(frame);
+                }
+                requestAnimationFrame(frame);
+            }
+            setTimeout(function () { counters.forEach(animateCount); }, 400);
+
+            function dismiss() {
+                if (dismissed) return;
+                dismissed = true;
+                clearTimeout(autoTimer);
+                cover.classList.add('cover-leaving');
+                document.body.classList.remove('cover-active');
+                const hero = document.getElementById('home');
+                if (hero) hero.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+                setTimeout(function () { cover.remove(); }, reduceMotion ? 50 : 750);
+            }
+
+            const autoTimer = setTimeout(dismiss, AUTO_DISMISS_MS);
+            document.getElementById('cover-enter').addEventListener('click', dismiss);
+            document.getElementById('cover-skip').addEventListener('click', dismiss);
+            document.addEventListener('keydown', function (e) {
+                if (!dismissed && e.key === 'Escape') dismiss();
+            });
+            setTimeout(function () {
+                const btn = document.getElementById('cover-enter');
+                if (btn && !dismissed) btn.focus({ preventScroll: true });
+            }, 600);
+        })();
     </script>
 </body>
                 </html>
